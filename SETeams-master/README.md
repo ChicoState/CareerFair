@@ -1,4 +1,3 @@
-#Jeffery Pereira
 #Software Engineering
 
 ##These are the teams for CSCI 430, Spring 2017:
