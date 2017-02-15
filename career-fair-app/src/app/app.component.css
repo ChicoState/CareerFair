@@ -1,0 +1,11 @@
+#header {
+	height: 100px;
+}
+
+#image_right {
+	float: right;
+}
+
+#image_left {
+	float: left;
+}

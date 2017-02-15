@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Lonely? NavBar will never leave you!!';
+  title = 'Engineering Technical Career Fair';
+  date = 'February 16, 2017 Thursday, 12:30 - 4:30';
+  location = ' Bell Memorial Union';
   
 }
