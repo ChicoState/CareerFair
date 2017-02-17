@@ -1,0 +1,58 @@
+<h1>{{ title }}</h1>
+
+
+<form>
+    <label>Name: </label> <br>
+    <input type="text" #name /> <br>
+    <label>Positions: </label> <br>
+    <input type="text" #positions /> <br>
+    <label>Website: </label> <br>
+    <input type="text" #website /> <br>
+    
+    <ul>
+      <li *ngFor="let major of majors; let i = index">
+        <input type="checkbox" (change)="AddMajor(major)">
+          {{ ToDisplay(major) }}
+      </li>
+    </ul>
+    <button (click)="AddCompany(name.value, positions.value, website.value)">
+      Submit
+    </button>
+</form>
+
+
+
+Majors Selected:
+<ul>
+    <li *ngFor="let major of majorsSelected; let i = index">
+     {{ major }}
+    </li>
+</ul><br>
+
+<li *ngFor="let company of companies"> 
+  <div class="jumbotron"> 
+    <div id="header"> 
+      <h1>{{company.name}}</h1> 
+    </div> 
+    <div id="body1"> 
+      <h2>Majors Desired</h2> 
+      <h3>
+        <ul>
+          <li *ngFor="let major of majorsSelected;">
+          {{ ToDisplay(major) }}
+          </li>
+        </ul>
+      </h3> 
+    </div> 
+    <div id="body2"> 
+      <h2>Position </h2> 
+      <h3>{{ company.position}}</h3>
+    </div>
+    <div id="body3"> 
+      <h2>Website </h2> 
+      <h3> 
+        <a href="{{company.website}}" target="_blank">{{ company.website }} </a>
+      </h3>
+    </div> 
+  </div> 
+</li>
