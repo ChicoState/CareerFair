@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { CompaniesComponent } from './companies/companies.component';
+import { CompanyRegistrationComponent } from './companyreg/companyreg.component';
 
 const appRoutes: Routes = [
   {
@@ -17,7 +18,11 @@ const appRoutes: Routes = [
   {
       path: 'companies',
       component: CompaniesComponent
-  }
+  }, 
+	{ 
+		path: 'companyreg', 
+		component: CompanyRegistrationComponent
+	}
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

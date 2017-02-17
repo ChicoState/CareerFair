@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Company } from './companies';
 
 @Component({
   selector: 'companies',
@@ -24,9 +25,4 @@ export const COMPANIES: Company[] = [
   {name: 'Aruba Networks an HPE Company', majorDesired: 'Electrical Engineering', position: 'Fulltime', website: 'http://www.arubanetwork.com'}
 ];
 
-interface Company {
-  name: string;
-  majorDesired: string;
-  position: string;
-  website: string;
-}
+
