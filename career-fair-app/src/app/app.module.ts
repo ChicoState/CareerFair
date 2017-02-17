@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { CompaniesComponent } from './companies/companies.component';
+import { RegistrationComponent } from './registration/registration.component'
 
 @NgModule({
   declarations: [ //components we create
     AppComponent,
     HomeComponent,
     AboutComponent,
-    CompaniesComponent
+    CompaniesComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
