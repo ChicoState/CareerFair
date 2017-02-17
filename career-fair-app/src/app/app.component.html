@@ -6,18 +6,26 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head> 
- <div id="header">
-  <div id="image_left">
+
+<!--HEADER START-->
+<div class="container-fluid">
+ <div id="header" class="row">
+   <div id="image_right"class="col-sm-12 col-md-4 col-md-push-8 col-xs-text-right">
+    <img class="absolute" src="http://www.ecst.csuchico.edu/ltc/MESA/jobfair/photos/csuc-signature.jpg">
+  </div>
+
+  <div id="image_left" class="col-sm-12 col-md-8 col-md-pull-4">
     <h1>{{ title }}</h1>
     <h4>{{date}}{{location}}</h4>
   </div>
-  <div id="image_right">
-    <img class="absolute" src="http://www.ecst.csuchico.edu/ltc/MESA/jobfair/photos/csuc-signature.jpg">
-  </div>
 </div>
-<hr />
+</div>
+<!--HEADER END-->
 
-  
+<hr/>
+<br>
+
+<!--NAVBAR START-->
 <nav class="navbar navbar-inverse">
   <ul class="nav navbar-nav">
       <li><a routerLink="/">Home</a></li>
@@ -27,6 +35,8 @@
   </ul>
 
   <p class="navbar-text">Some text hello</p>
-
 </nav>
-  	<router-outlet></router-outlet>
+<!--NAVBAR END-->
+  	
+    
+<router-outlet></router-outlet>
