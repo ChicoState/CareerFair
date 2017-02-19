@@ -10,6 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { RegistrationComponent } from './registration/registration.component'
+  //import ParkingComponent so that routing can use it
+import { ParkingComponent } from './parking/parking.component'
+
 
 @NgModule({
   declarations: [ //components we create
@@ -17,7 +20,9 @@ import { RegistrationComponent } from './registration/registration.component'
     HomeComponent,
     AboutComponent,
     CompaniesComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    //Add ParkingComponent to components we can use
+    ParkingComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 <head>
-  <title>Bootstrap Example</title>
+  <title>Career Fair Site</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -10,11 +10,11 @@
 <!--HEADER START-->
 <div class="container-fluid">
  <div id="header" class="row">
-   <div id="image_right"class="col-sm-12 col-md-4 col-md-push-8 col-xs-text-right">
+   <div id="image_right"class="col-xs-12 col-md-4 col-md-push-8">
     <img class="absolute" src="http://www.ecst.csuchico.edu/ltc/MESA/jobfair/photos/csuc-signature.jpg">
   </div>
 
-  <div id="image_left" class="col-sm-12 col-md-8 col-md-pull-4">
+  <div id="image_left" class="absolute col-xs-12 col-md-8 col-md-pull-4">
     <h1>{{ title }}</h1>
     <h4>{{date}}{{location}}</h4>
   </div>
@@ -32,9 +32,11 @@
       <li><a routerLink="/about">About</a></li>
       <li><a routerLink="/companies">Companies</a></li>
       <li><a routerLink="/registration">Registration</a></li>
+      <!--add parking directions page-->
+      <li><a routerLink="/parking">Parking</a></li>
+      
   </ul>
 
-  <p class="navbar-text">Some text hello</p>
 </nav>
 <!--NAVBAR END-->
   	
