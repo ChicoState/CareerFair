@@ -12,7 +12,7 @@ export class RegistrationComponent {
  majorsSelected: string[];
  some: boolean;
  companies: Company[];
-
+ submitted: boolean;
  constructor() {
      this.majors = [
          'eece',
@@ -21,6 +21,7 @@ export class RegistrationComponent {
      ]
      this.majorsSelected = []
      this.companies = []
+	 	 this.submitted = false;
 }
 
  ToDisplay (major: string) {
@@ -43,11 +44,72 @@ export class RegistrationComponent {
      }
     this.majorsSelected.push(major);
  }
+ nameBoolean = false; 
+ positionBoolean = false; 
+ websiteBoolean = false;
 
  AddCompany(name: string, position: string, website:string) {
-    let companyToAdd = new Company(name, position, website);
-    this.companies.push(companyToAdd);
+		if(name.length == 0) 
+    {
+      this.nameBoolean = true; 
+    }
+		if(position.length == 0)
+    {
+			this.positionBoolean = true; 
+    }
+		else if(website.length == 0) 
+    {
+			this.websiteBoolean = true;
+		}
+		else
+		{
+			let companyToAdd = new Company(name, position, website);
+    	this.companies.push(companyToAdd);
+	  }	
  }
+	
+ onSubmit()
+ {
+   this.submitted = true;
+ }
+ 
+ onNameChange(value) 
+ {
+   if(value.length == 0) 
+   {
+     this.nameBoolean=true;
+   }
+   else 
+   {
+     this.nameBoolean=false;
+   }
+ }
+
+ onPositionChange(value) 
+ {
+   if(value.length == 0) 
+   {
+     this.positionBoolean=true;
+   }
+   else 
+   {
+     this.positionBoolean=false;
+   }
+ }
+
+ onWebsiteChange(value) 
+ {
+   if(value.length == 0) 
+   {
+     this.websiteBoolean=true;
+   }
+   else 
+   {
+     this.websiteBoolean=false;
+   }
+ }
+
+
 
 } // end of component
 
