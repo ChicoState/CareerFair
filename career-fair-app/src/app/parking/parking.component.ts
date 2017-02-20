@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './parking.component.html',
   styleUrls: ['./parking.component.css']
 })
-export class parkingComponent {
+export class ParkingComponent {
   title: string;
   direction: string;
 
