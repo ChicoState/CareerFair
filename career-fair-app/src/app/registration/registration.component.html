@@ -3,7 +3,7 @@
 
 <form #companyForm="ngForm">
     <label>Name: </label> <br>
-    <input class="form-control" type="text" #name (click)="onNameChange(name.value)" (change)="onNameChange(name.value)" required /> <br>
+    <input class="form-control" type="text" #name (click)="onNameChange(name.value)" required /> <br>
 		<div [hidden]="!nameBoolean" class="alert alert-danger">
 		Company name is required. 
 		</div>
@@ -13,10 +13,13 @@
 			Company position is required.
 		</div>
     <label>Website: </label> <br>
-    <input class="form-control" type="text" #website (click)="onWebsiteChange(website.value)"  required minlength="4" /> <br>
+    <input class="form-control" type="text" #website (click)="onWebsiteChange(website.value)" required minlength="4" /> <br>
    	<div [hidden]="!websiteBoolean" class="alert alert-danger">
 			Company website is required.
 		</div> 
+		<div [hidden]="!regexBoolean" class="alert alert-danger"> 
+			This is not valid website.
+		</div>
     <ul>
       <li *ngFor="let major of majors; let i = index">
         <input type="checkbox" (change)="AddMajor(major)">

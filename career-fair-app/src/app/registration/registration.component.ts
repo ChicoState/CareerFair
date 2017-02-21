@@ -23,7 +23,6 @@ export class RegistrationComponent {
      this.companies = []
 	 	 this.submitted = false;
 }
-
  ToDisplay (major: string) {
     if (major == 'eece')
         return 'Electrical Engineering';
@@ -47,9 +46,12 @@ export class RegistrationComponent {
  nameBoolean = false; 
  positionBoolean = false; 
  websiteBoolean = false;
+ regexBoolean = false;
 
  AddCompany(name: string, position: string, website:string) {
-		if(name.length == 0) 
+    var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+    var regex = new RegExp(expression);
+    if(name.length == 0) 
     {
       this.nameBoolean = true; 
     }
@@ -61,8 +63,17 @@ export class RegistrationComponent {
     {
 			this.websiteBoolean = true;
 		}
+		else if(!website.match(regex))
+    {
+      this.regexBoolean = true;
+    }
 		else
 		{
+			this.regexBoolean = false; 
+			this.nameBoolean = false; 
+      this.positionBoolean = false; 
+			this.websiteBoolean = false;  
+      
 			let companyToAdd = new Company(name, position, website);
     	this.companies.push(companyToAdd);
 	  }	
