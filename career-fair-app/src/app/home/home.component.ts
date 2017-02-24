@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  title = 'Home of this App!';
+  title = 'Welcome to the Technical Career Fair Homepage - Sponsored by the College of Engineering';
 }

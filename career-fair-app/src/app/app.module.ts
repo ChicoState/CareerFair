@@ -12,6 +12,11 @@ import { CompaniesComponent } from './companies/companies.component';
 import { RegistrationComponent } from './registration/registration.component'
   //import ParkingComponent so that routing can use it
 import { ParkingComponent } from './parking/parking.component'
+//import HeaderComponent so that routing can use it
+import { HeaderComponent } from './layout'
+import { FooterComponent } from './layout'
+
+
 
 
 @NgModule({
@@ -22,7 +27,11 @@ import { ParkingComponent } from './parking/parking.component'
     CompaniesComponent,
     RegistrationComponent,
     //Add ParkingComponent to components we can use
-    ParkingComponent
+    ParkingComponent,
+    //Add HeaderComponent to components we can use
+    HeaderComponent,
+    //Add FooterComponent to components we can use
+    FooterComponent
   ],
   imports: [
     BrowserModule,
