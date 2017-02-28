@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing } from './app.routing';
+import { CarouselModule } from 'ng2-bootstrap/carousel';
+
 
 //components we create
 import { AppComponent } from './app.component';
@@ -15,6 +17,7 @@ import { ParkingComponent } from './parking/parking.component'
 //import HeaderComponent so that routing can use it
 import { HeaderComponent } from './layout'
 import { FooterComponent } from './layout'
+import { CarouselComponent } from './carousel/carousel.component'
 
 
 
@@ -31,13 +34,14 @@ import { FooterComponent } from './layout'
     //Add HeaderComponent to components we can use
     HeaderComponent,
     //Add FooterComponent to components we can use
-    FooterComponent
-  ],
+    FooterComponent,
+    CarouselComponent  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [
