@@ -1,9 +1,30 @@
-#header {
-	height: 100px;
+
+
+html,body
+{
+	height: 100%;
+	min-height: 100%;
+	margin:0;
+	width: 100%;
 }
 
-#image_right {
+.page_wrap {
+	min-height: 100%;
+	margin-bottom:-110px;
+	position: relative;
 }
+.page_wrap: after{
+	content: "";
+	display: block;
+}
+.site-footer,.page_wrap:after{
+	height: 110px;
 
-#image_left {
 }
+.site-footer{
+	background: gray;
+}
+#add{position: absolute;bottom: 160px;}
+
+
+

@@ -5,12 +5,16 @@ import { Component } from '@angular/core';
   templateUrl: './parking.component.html',
   styleUrls: ['./parking.component.css']
 })
+
+
+
 export class ParkingComponent {
   title: string;
   direction: string;
 
   constructor(){
-    this.title = 'this is the title';
+
+    this.title = 'Parking for this app!';
     this.direction = 'direction is in your heart';
 
   }
