@@ -1,6 +1,6 @@
 <h1>{{ title }}</h1>
 
-<form #companyForm="ngForm" (ngSubmit)="onSubmit">
+<form #companyForm="ngForm" (ngSubmit)="onSubmit()">
 
   <div>
     <label for="contactName">Contact Name</label>
@@ -49,14 +49,12 @@
 
   <div>
     <label>Select Registration Type</label><br>
-    <input type="radio" [ngModel]="{checked: newCompany.registrationType == 'resume'}" (change)="newCompany.registrationType=$event.target.value"
-      name="registrationType" value="resume">Resume Book<br>
-
-    <input type="radio" [ngModel]="{checked: newCompany.registrationType == 'table'}" (change)="newCompany.registrationType=$event.target.value"
-      name="registrationType" value="table">Table<br>
-
-    <input type="radio" [ngModel]="{checked: newCompany.registrationType == 'resumeAndTable'}" (change)="newCompany.registrationType=$event.target.value"
-      name="registrationType" value="resumeAndTable">Resume Book and Table<br>
+    <input type="radio" id="registrationType" name="registrationType" ngControl="registrationType"
+      [(ngModel)]="newCompany.registrationType" value="resumeBook">Resume Book<br>
+    <input type="radio" id="registrationType" name="registrationType" ngControl="registrationType"
+      [(ngModel)]="newCompany.registrationType" value="table">Table<br>
+    <input type="radio" id="registrationType" name="registrationType" ngControl="registrationType"
+      [(ngModel)]="newCompany.registrationType" value="resumeBookAndTable">Resume Book and Table<br>
   </div>
   <button type="submit">Submit Registration</button>
 

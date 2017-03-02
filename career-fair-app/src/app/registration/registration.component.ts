@@ -61,6 +61,7 @@ export class RegistrationComponent {
 
     //intialize empty company
     this.newCompany = new Company;
+    this.newCompany.registrationType = "resumeBook";
   }
 
   /*
