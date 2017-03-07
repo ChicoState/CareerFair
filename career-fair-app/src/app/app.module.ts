@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing } from './app.routing';
 import { CarouselModule } from 'ng2-bootstrap/carousel';
+import { DropdownModule } from 'ng2-dropdown/';
 
 
 //components we create
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
+import { VolunteerComponent } from './about/volunteer.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { RegistrationComponent } from './registration/registration.component'
   //import ParkingComponent so that routing can use it
@@ -26,7 +27,7 @@ import { CarouselComponent } from './carousel/carousel.component'
   declarations: [ //components we create
     AppComponent,
     HomeComponent,
-    AboutComponent,
+    VolunteerComponent,
     CompaniesComponent,
     RegistrationComponent,
     //Add ParkingComponent to components we can use
@@ -41,7 +42,8 @@ import { CarouselComponent } from './carousel/carousel.component'
     FormsModule,
     HttpModule,
     routing,
-    CarouselModule
+    CarouselModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [
