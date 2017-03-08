@@ -114,6 +114,12 @@ export class RegistrationComponent {
     for (var i = 0; i < this.majorsSelected.length; i++) {
       if (this.majorsSelected[i] == major) {
         this.majorsSelected.splice(i, 1);
+        if(this.majorsSelected.length > 0) {
+          this.majorsSelectedBoolean = true;
+        }
+        else {
+          this.majorsSelectedBoolean = false;
+        }
         return;
       }
     }
@@ -124,6 +130,12 @@ export class RegistrationComponent {
     for (var i = 0; i < this.positionsSelected.length; i++) {
       if (this.positionsSelected[i] == position) {
         this.positionsSelected.splice(i, 1);
+        if(this.positionsSelected.length > 0 ) {
+          this.positionsSelectedBoolean = true;
+        }
+        else {
+          this.positionsSelectedBoolean = false;
+        }
         return;
       }
     }

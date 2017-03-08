@@ -36,14 +36,21 @@
       <li *ngFor="let major of majorOptions; let i = index">
         <input type="checkbox" (change)="AddMajor(major)"> {{ ToDisplay(major) }}
       </li>
+      <div [hidden]="majorsSelectedBoolean" class="alert alert-danger">     
+        Please select at least one major.
+      </div>
     </ul>
   </div>
+
   <div>
     <label>Select Desired Positions:</label>
     <ul>
       <li *ngFor="let position of positionOptions; let i = index">
         <input type="checkbox" (change)="AddPosition(position)"> {{ ToDisplay(position) }}
       </li>
+      <div [hidden]="positionsSelectedBoolean" class="alert alert-danger">     
+        Please select at least one position.
+      </div>
     </ul>
   </div>
 
