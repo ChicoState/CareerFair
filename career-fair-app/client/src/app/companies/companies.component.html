@@ -1,0 +1,25 @@
+<h1>{{ title }}</h1>
+
+<li *ngFor="let company of companies"> 
+
+  <div class="jumbotron"> 
+    <div id="header"> 
+      <h1>{{company.companyName}}</h1> 
+    </div> 
+    <div id="body1"> 
+      <h2>Majors Desired</h2> 
+      <h3>Computer Science</h3> 
+    </div> 
+    <div id="body2"> 
+      <h2>Position </h2> 
+      <h3>{{company.position}}</h3>
+    </div>
+    <div id="body3"> 
+      <h2>Website </h2> 
+      <h3> 
+        <a href="{{company.companyWebsite}}" target="_blank">{{ company.companyWebsite }} </a>
+      </h3>
+    </div> 
+  </div> 
+  
+</li>
