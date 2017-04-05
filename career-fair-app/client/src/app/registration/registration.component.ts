@@ -197,6 +197,7 @@ export class RegistrationComponent {
 			companyWebsite: this.newCompany.companyWebsite,
 			companyDescription: this.newCompany.companyDescription,
       //frank added the following
+      registrationType: this.newCompany.registrationType,
       desiredPositions: this.newCompany.positionsTest,
       desiredMajors: this.newCompany.majorsTest,
       moneyOwed: this.newCompany.moneyOwed,
