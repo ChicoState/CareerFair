@@ -55,6 +55,22 @@ export class RegistrationComponent {
     major's name
   */
 
+  getDate() {
+    let date = new Date();
+    let dateNumber = "";
+    let monthStr = "";
+    if(date.getDate() < 10) {
+      dateNumber = '0' + date.getDate().toString();
+    }
+    let month = date.getMonth() + 1; //because january is 0
+    if(month < 10) {
+      monthStr = "0" + month.toString();
+    }
+    
+    return monthStr + dateNumber + date.getFullYear().toString() + date.getHours().toString() + 
+      date.getMinutes().toString() + date.getSeconds().toString() + date.getMilliseconds().toString();
+  }
+
   ToDisplay(displayMe: string) {
     /* Different Majors */
     if (displayMe == "cagd")
@@ -151,24 +167,45 @@ export class RegistrationComponent {
     return toReturn;
   }
 
+  calculateMoneyOwed(registrationType: string) {
+    if(registrationType == "resumeBook") {
+      this.newCompany.moneyOwed = 150;
+    }
+    else if(registrationType == "table") {
+      this.newCompany.moneyOwed = 450;
+    }
+    else if(registrationType == "resumeBookAndTable") {
+      this.newCompany.moneyOwed = 550;
+    }
+  }
+
 
  	onSubmit() {
     this.submitted = true;
+    this.calculateMoneyOwed(this.newCompany.registrationType);
     this.newCompany.positionsTest = this.convertToSingleString(this.newCompany.positionsSelected);
     this.newCompany.majorsTest = this.convertToSingleString(this.newCompany.majorsSelected);
+    this.newCompany.confirmation = this.getDate();
     //this.calculateMoneyOwed(this.newCompany.registrationType);
-		var newCompany = { 
+		
+    var newCompany = { 
 			contactName: this.newCompany.contactName, 
 			contactEmail: this.newCompany.contactEmail, 
 			companyName: this.newCompany.companyName,
+       //make this a string. ill make sure its valid later on
 			contactPhoneNumber: this.newCompany.contactPhoneNumber,
 			companyWebsite: this.newCompany.companyWebsite,
 			companyDescription: this.newCompany.companyDescription,
+      //frank added the following
+      desiredPositions: this.newCompany.positionsTest,
+      desiredMajors: this.newCompany.majorsTest,
+      moneyOwed: this.newCompany.moneyOwed,
+      confirmation: this.newCompany.confirmation,
 		}
-
-		this.companyService.addCompany(newCompany).subscribe(company => { 
+    
+		//this.companyService.addCompany(newCompany).subscribe(company => { 
 		
-  	});  
+  	//});  
   }
 
 
@@ -190,6 +227,7 @@ class Company {
   moneyOwed: number;
   positionsTest: string;
   majorsTest: string;
+  confirmation: string; //current time and date converted to string
 
 }
 
