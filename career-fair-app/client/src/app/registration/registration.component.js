@@ -40,6 +40,20 @@ var RegistrationComponent = (function () {
     we need full names. This function takes the abbreviation and returns the entire
     major's name
   */
+    RegistrationComponent.prototype.getDate = function () {
+        var date = new Date();
+        var dateNumber = "";
+        var monthStr = "";
+        if (date.getDate() < 10) {
+            dateNumber = '0' + date.getDate().toString();
+        }
+        var month = date.getMonth() + 1; //because january is 0
+        if (month < 10) {
+            monthStr = "0" + month.toString();
+        }
+        return monthStr + dateNumber + date.getFullYear().toString() + date.getHours().toString() +
+            date.getMinutes().toString() + date.getSeconds().toString() + date.getMilliseconds().toString();
+    };
     RegistrationComponent.prototype.ToDisplay = function (displayMe) {
         /* Different Majors */
         if (displayMe == "cagd")
@@ -125,18 +139,38 @@ var RegistrationComponent = (function () {
         }
         return toReturn;
     };
+    RegistrationComponent.prototype.calculateMoneyOwed = function (registrationType) {
+        if (registrationType == "resumeBook") {
+            this.newCompany.moneyOwed = 150;
+        }
+        else if (registrationType == "table") {
+            this.newCompany.moneyOwed = 450;
+        }
+        else if (registrationType == "resumeBookAndTable") {
+            this.newCompany.moneyOwed = 550;
+        }
+    };
     RegistrationComponent.prototype.onSubmit = function () {
         this.submitted = true;
+        this.calculateMoneyOwed(this.newCompany.registrationType);
         this.newCompany.positionsTest = this.convertToSingleString(this.newCompany.positionsSelected);
         this.newCompany.majorsTest = this.convertToSingleString(this.newCompany.majorsSelected);
+        this.newCompany.confirmation = this.getDate();
         //this.calculateMoneyOwed(this.newCompany.registrationType);
         var newCompany = {
             contactName: this.newCompany.contactName,
             contactEmail: this.newCompany.contactEmail,
             companyName: this.newCompany.companyName,
+            //make this a string. ill make sure its valid later on
             contactPhoneNumber: this.newCompany.contactPhoneNumber,
             companyWebsite: this.newCompany.companyWebsite,
             companyDescription: this.newCompany.companyDescription,
+            //frank added the following
+            registrationType: this.newCompany.registrationType,
+            desiredPositions: this.newCompany.positionsTest,
+            desiredMajors: this.newCompany.majorsTest,
+            moneyOwed: this.newCompany.moneyOwed,
+            confirmation: this.newCompany.confirmation,
         };
         this.companyService.addCompany(newCompany).subscribe(function (company) {
         });
