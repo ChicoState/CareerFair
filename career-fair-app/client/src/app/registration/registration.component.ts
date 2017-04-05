@@ -204,9 +204,9 @@ export class RegistrationComponent {
       confirmation: this.newCompany.confirmation,
 		}
     
-		//this.companyService.addCompany(newCompany).subscribe(company => { 
+		this.companyService.addCompany(newCompany).subscribe(company => { 
 		
-  	//});  
+  	});  
   }
 
 
