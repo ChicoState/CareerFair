@@ -14,3 +14,6 @@ npm start
 
 ## For any other information that isnt making clear sense let the group know so we can make additions to this file 
 
+#When wanting to run the app, go to /CareerFair/career-fair-app/ and do npm start. after that, go to /CareerFair/career-fair-app/client/ and do npm start
+
+#I dont think the order of CTRL C'ing things matters but I CTRL C /CareerFair/career-fair-app/client first, then /CareerFair/career-fair-app
