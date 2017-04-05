@@ -26,11 +26,10 @@ router.get('/company/:id', function(req, res, next){
 });
 
 
-/*
 // Save Task
 router.post('/company', function(req, res, next){
     var company = req.body;
-    if(!company.companyName || !company.contactEmail || !company.contactPhoneNumber || !company.companyWebsite || !company.companyDescription || !(company.CAGD + '') || !(company.CIM + '') || !(company.CM + '') || !(company.CE + '') || !(company.CS + '') || !(company.EE + '') || !(company.ME + '') || !(company.MCE + '') || !(company.MIS + '') || !(company.SM + '') || !(company.COOP + '') || !(company.fullTime + '') || !(company.summerIntern + '') || !(company.resumeBook + '') || !(company.tableBook + '') || !(company.tableAndResume + '')){
+    if(!company.contactName || !company.contactEmail || !company.contactPhoneNumber || !company.companyWebsite || !company.companyDescription){
         res.status(400);
         res.json({
             "error": "Bad Data"
@@ -46,6 +45,7 @@ router.post('/company', function(req, res, next){
     }
 });
 
+/*
 // Delete Task
 router.delete('/company/:id', function(req, res, next){
     db.companies.remove({_id: mongojs.ObjectId(req.params.id)},function(err, company){

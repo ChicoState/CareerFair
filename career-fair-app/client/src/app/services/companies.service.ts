@@ -12,15 +12,21 @@ export class CompaniesService{
 	getCompanies(){ 
 		return this.http.get('http://localhost:3000/api/companies').map(res => res.json()); 
 	}
-	/*
-	addCompany(newCompany){ 
+
+	addCompany(newCompany: DBCompany){ 
 		var headers = new Headers(); 
 		headers.append('Content-Type', 'application/json'); 
-		return this.http.post('/api/company', JSON.stringify(newCompany), {headers: headers}).map(res => res.json()); 
+		return this.http.post('http://localhost:3000/api/company', JSON.stringify(newCompany), {headers: headers}).map(res => res.json()); 
 	}
-	*/
 }
 
-	
+class DBCompany {
+  contactName: string;
+  contactEmail: string;
+  companyName: string;
+  contactPhoneNumber: string;
+  companyWebsite: string;
+  companyDescription: string;
+}
 
 

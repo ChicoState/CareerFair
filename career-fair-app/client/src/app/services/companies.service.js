@@ -19,6 +19,11 @@ var CompaniesService = (function () {
     CompaniesService.prototype.getCompanies = function () {
         return this.http.get('http://localhost:3000/api/companies').map(function (res) { return res.json(); });
     };
+    CompaniesService.prototype.addCompany = function (newCompany) {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('http://localhost:3000/api/company', JSON.stringify(newCompany), { headers: headers }).map(function (res) { return res.json(); });
+    };
     CompaniesService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
@@ -26,4 +31,9 @@ var CompaniesService = (function () {
     return CompaniesService;
 }());
 exports.CompaniesService = CompaniesService;
+var DBCompany = (function () {
+    function DBCompany() {
+    }
+    return DBCompany;
+}());
 //# sourceMappingURL=companies.service.js.map

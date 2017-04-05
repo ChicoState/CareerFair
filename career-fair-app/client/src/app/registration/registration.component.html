@@ -1,16 +1,14 @@
 <h1>{{ title }}</h1>
 
-<form #companyForm="ngForm" (ngSubmit)="onSubmit()">
-
-  <div>
-    <label for="contactName">Contact Name</label>
-    <input type="text" id="contactName" name="contactName" ngControl="contactName" [(ngModel)]="newCompany.contactName" required>
-  </div>
-  <div>
-    <label for="contactEmail">Contact Email</label>
-    <input type="email" id="contactEmail" name="contactEmail" ngControl="contactEmail" [(ngModel)]="newCompany.contactEmail"
-      required>
-  </div>
+<form (ngSubmit)="onSubmit()">
+	<div> 
+		<label for="contactName">Contact Name</label> 
+		<input type="text" id="contactName" name="contactName" ngControl="newCompany.contactName" [(ngModel)]="newCompany.contactName" required>
+	</div>	
+	<div>
+		<label for="contactEmail">Contact Email</label> 
+		<input type="email" id="contactEmail" name="contactEmail" ngControl="contactEmail" [(ngModel)]="newCompany.contactEmail" required> 
+	</div>
   <div>
     <label for="contactPhoneNumber">Contact Phone Number</label>
     <input type="tel" id="contactPhoneNumber" name="contactPhoneNumber" ngControl="contactPhoneNumber" [(ngModel)]="newCompany.contactPhoneNumber"
@@ -36,17 +34,23 @@
       <li *ngFor="let major of majorOptions; let i = index">
         <input type="checkbox" (change)="AddMajor(major)"> {{ ToDisplay(major) }}
       </li>
+      <div [hidden]="majorsSelectedBoolean" class="alert alert-danger">     
+        Please select at least one major.
+      </div>
     </ul>
   </div>
+
   <div>
     <label>Select Desired Positions:</label>
     <ul>
       <li *ngFor="let position of positionOptions; let i = index">
         <input type="checkbox" (change)="AddPosition(position)"> {{ ToDisplay(position) }}
       </li>
+      <div [hidden]="positionsSelectedBoolean" class="alert alert-danger">     
+        Please select at least one position.
+      </div>
     </ul>
   </div>
-
   <div>
     <label>Select Registration Type</label><br>
     <input type="radio" id="registrationType" name="registrationType" ngControl="registrationType"
@@ -58,98 +62,7 @@
   </div>
   <button type="submit">Submit Registration</button>
 
+
+ 
+
 </form> <br>
-<hr>
-
-
-<h1><b>TESTING PURPOSES</b></h1>
-
-Majors Selected:
-<ul>
-  <li *ngFor="let major of majorsSelected; let i = index">
-    {{ major }}
-  </li>
-</ul><br> Positions Selected:
-<ul>
-  <li *ngFor="let position of positionsSelected; let i = index">
-    {{ position }}
-  </li>
-</ul><br> Registration Selected: {{ newCompany.registrationType }}
-
-
-<!-->
-<form #companyForm="ngForm">
-
-  <label>Name: </label> <br>
-  <input class="form-control" type="text" #name (click)="onNameChange(name.value)" placeholder="Jane Doe" required /> <br>
-  <div [hidden]="!nameBoolean" class="alert alert-danger">
-    Company name is required.
-  </div>
-
-  <label>Positions: </label> <br>
-  <input class="form-control" type="text" #positions (click)="onPositionChange(positions.value)" required minlength="4" />  <br>
-  <div [hidden]="!positionBoolean" class="alert alert-danger">
-    Company position is required.
-  </div>
-
-  <label>Website: </label> <br>
-  <input class="form-control" type="text" #website (click)="onWebsiteChange(website.value)" placeholder="http://www.example.com"
-    required minlength="4" /> <br>
-  <div [hidden]="!websiteBoolean" class="alert alert-danger">
-    Company website is required.
-  </div>
-  <div [hidden]="!websiteRegexBoolean" class="alert alert-danger">
-    This is not valid website.
-  </div>
-
-  <label>Select Desired Majors:</label>
-  <ul>
-    <li *ngFor="let major of majors; let i = index">
-      <input type="checkbox" (change)="AddMajor(major)"> {{ ToDisplay(major) }}
-    </li>
-  </ul>
-  <button type="submit" (click)="AddCompany(name.value, positions.value, website.value)" [disabled]="!companyForm.form.valid">
-      Submit
-  </button>
-</form>
-
-
-
-
-Majors Selected:
-<ul>
-  <li *ngFor="let major of majorsSelected; let i = index">
-    {{ major }}
-  </li>
-</ul><br>
-
-<li *ngFor="let company of companies">
-  <div class="jumbotron">
-    <div id="header">
-      <h1>{{company.name}}</h1>
-    </div>
-
-    <div id="body1">
-      <h2>Majors Desired</h2>
-      <h3>
-        <ul>
-          <li *ngFor="let major of majorsSelected">
-            {{ ToDisplay(major) }}
-          </li>
-        </ul>
-      </h3>
-    </div>
-
-    <div id="body2">
-      <h2>Position </h2>
-      <h3>{{ company.position}}</h3>
-    </div>
-    <div id="body3">
-      <h2>Website </h2>
-      <h3>
-        <a href="{{company.website}}" target="_blank">{{ company.website }} </a>
-      </h3>
-    </div>
-  </div>
-</li>
-<-->

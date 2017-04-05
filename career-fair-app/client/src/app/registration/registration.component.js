@@ -9,35 +9,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var companies_service_1 = require('./../services/companies.service');
 var RegistrationComponent = (function () {
-    function RegistrationComponent() {
+    /*
+     * The constructor is used to initialize newCompany
+     * newCompany has many attributes used in .html file
+     * for everytime an attribute in .html file isnt found
+     * it references newCompany to see if its there.
+    
+     * Anything with a Boolean handles error checking for multi-
+     * selecting UI's
+     */
+    function RegistrationComponent(aCompaniesService) {
+        this.aCompaniesService = aCompaniesService;
         this.title = 'Registration';
         this.majorOptions = exports.MAJOR_OPTIONS; //majors to choose from
         this.positionOptions = exports.POSITION_OPTIONS; //positions to choose from
-        //no majors, positions, or companies selected yet
-        this.majorsSelected = [];
-        this.positionsSelected = [];
         this.companiesInserted = [];
-        //initialize all booleans to false
-        this.contactNameBoolean = false;
-        this.contactEmailBoolean = false;
-        this.companyNameBoolean = false;
-        this.contactPhoneNumberBoolean = false;
-        this.companyWebsiteBoolean = false;
-        this.companyDescriptionBoolean = false;
+        this.companyService = aCompaniesService;
         this.majorsSelectedBoolean = false;
         this.positionsSelectedBoolean = false;
-        this.registrationTypeBoolean = false;
         this.entireFormSubmitted = false;
-        //intialize empty company
         this.newCompany = new Company;
+        this.newCompany.positionsSelected = [];
+        this.newCompany.majorsSelected = [];
         this.newCompany.registrationType = "resumeBook";
     }
     /*
-      We'll be saving majors as their abbreviations. But when displaying them to customers,
-      we need full names. This function takes the abbreviation and returns the entire
-      major's name
-    */
+    We'll be saving majors as their abbreviations. But when displaying them to customers,
+    we need full names. This function takes the abbreviation and returns the entire
+    major's name
+  */
     RegistrationComponent.prototype.ToDisplay = function (displayMe) {
         /* Different Majors */
         if (displayMe == "cagd")
@@ -70,107 +72,83 @@ var RegistrationComponent = (function () {
             return "Summer Internship";
     };
     /*
-      When companies check a major, we add that major to their majorsSelected array. If
-      they're checking it again (therefore unchecking it), we remove it from majorsSelected.
-      Function is called every time a major is checked or unchecked
-    */
+     * The AddMajor(major: string)  is used to initialize
+     * majorOptions
+     *
+     *
+     */
     RegistrationComponent.prototype.AddMajor = function (major) {
-        for (var i = 0; i < this.majorsSelected.length; i++) {
-            if (this.majorsSelected[i] == major) {
-                this.majorsSelected.splice(i, 1);
+        for (var i = 0; i < this.newCompany.majorsSelected.length; i++) {
+            if (this.newCompany.majorsSelected[i] == major) {
+                this.newCompany.majorsSelected.splice(i, 1);
+                if (this.newCompany.majorsSelected.length > 0) {
+                    this.majorsSelectedBoolean = true;
+                }
+                else {
+                    this.majorsSelectedBoolean = false;
+                }
                 return;
             }
         }
-        this.majorsSelected.push(major);
+        this.newCompany.majorsSelected.push(major);
     };
+    /*
+     * The AddPosition(position: string)  is used to initialize
+     * positionsSelected
+     *
+     *
+     */
     RegistrationComponent.prototype.AddPosition = function (position) {
-        for (var i = 0; i < this.positionsSelected.length; i++) {
-            if (this.positionsSelected[i] == position) {
-                this.positionsSelected.splice(i, 1);
+        for (var i = 0; i < this.newCompany.positionsSelected.length; i++) {
+            if (this.newCompany.positionsSelected[i] == position) {
+                this.newCompany.positionsSelected.splice(i, 1);
+                if (this.newCompany.positionsSelected.length > 0) {
+                    this.positionsSelectedBoolean = true;
+                }
+                else {
+                    this.positionsSelectedBoolean = false;
+                }
                 return;
             }
         }
-        this.positionsSelected.push(position);
+        this.newCompany.positionsSelected.push(position);
     };
-    RegistrationComponent.prototype.OnSumbit = function () {
-        this.companiesInserted.push(this.newCompany);
-    };
-    /*
-      This function is called when they hit submit on the registration form. AddCompany creates that
-      company and adds it to companies array.
-    */
-    /*
-      AddCompany(name: string, position: string, website: string) {
-        var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
-        var regex = new RegExp(expression);
-        if (name.length == 0) {
-          this.nameBoolean = true;
+    RegistrationComponent.prototype.convertToSingleString = function (toConvert) {
+        var toReturn = "";
+        for (var i = 0; i < toConvert.length; i++) {
+            if (i == 0) {
+                toReturn = toReturn + toConvert[i];
+            }
+            else {
+                toReturn = toReturn + ", " + toConvert[i];
+            }
         }
-        if (position.length == 0) {
-          this.positionBoolean = true;
-        }
-        else if (website.length == 0) {
-          this.websiteBoolean = true;
-        }
-        else if (!website.match(regex)) {
-          this.websiteRegexBoolean = true;
-        }
-        else {
-          this.websiteRegexBoolean = false;
-          this.nameBoolean = false;
-          this.positionBoolean = false;
-          this.websiteBoolean = false;
-          let companyToAdd = new Company(name, position, this.transformWebsite(website));
-          this.companies.push(companyToAdd);
-        }
-      }
-    */
-    RegistrationComponent.prototype.transformWebsite = function (website) {
-        if (website.includes("http://", 0) || website.includes("https://", 0)) {
-            return website;
-        }
-        else {
-            return "https://" + website;
-        }
+        return toReturn;
     };
     RegistrationComponent.prototype.onSubmit = function () {
-        /*
-        var newCompany = {
-            companyName: this.title,
-            contactEmail: "a@a.com",
-            contactPhoneNumber: "18001111111",
-            companyWebsite: "www.company.com",
-            companyDescription: "Description of company",
-            CAGD: false,
-            CIM: false,
-            CM: false,
-            CE: false,
-            CS: false,
-            EE: false,
-            ME: false,
-            MCE: false,
-            MIS: false,
-            SM: false,
-            COOP: false,
-            fullTime: false,
-            summerIntern: false,
-            resumeBook: false,
-            tableBook: false,
-            tableAndResume: false
-        }
-        this.companiesService.addCompany(newCompany).subscribe(company => {
-            this.company.push(company);
-        });
-        */
         this.submitted = true;
+        this.newCompany.positionsTest = this.convertToSingleString(this.newCompany.positionsSelected);
+        this.newCompany.majorsTest = this.convertToSingleString(this.newCompany.majorsSelected);
+        //this.calculateMoneyOwed(this.newCompany.registrationType);
+        var newCompany = {
+            contactName: this.newCompany.contactName,
+            contactEmail: this.newCompany.contactEmail,
+            companyName: this.newCompany.companyName,
+            contactPhoneNumber: this.newCompany.contactPhoneNumber,
+            companyWebsite: this.newCompany.companyWebsite,
+            companyDescription: this.newCompany.companyDescription,
+        };
+        this.companyService.addCompany(newCompany).subscribe(function (company) {
+        });
     };
     RegistrationComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'registration',
-            templateUrl: 'registration.component.html'
+            templateUrl: 'registration.component.html',
+            styleUrls: ['registration.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [companies_service_1.CompaniesService])
     ], RegistrationComponent);
     return RegistrationComponent;
 }());
@@ -179,6 +157,11 @@ var Company = (function () {
     function Company() {
     }
     return Company;
+}());
+var DBCompany = (function () {
+    function DBCompany() {
+    }
+    return DBCompany;
 }());
 exports.MAJOR_OPTIONS = [
     //engineering/tech i could think of..KEEP IN ALPHABETICAL ORDER

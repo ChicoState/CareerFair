@@ -1,72 +1,55 @@
 import { Component } from '@angular/core';
+import { CompaniesService } from './../services/companies.service'; 
 
-import { CompaniesService } from '../services/companies.service';
 @Component({
 	moduleId: module.id,
   selector: 'registration',
-  templateUrl: 'registration.component.html'
-
+  templateUrl: 'registration.component.html',
+  styleUrls: ['registration.component.css']
 })
 
-export class RegistrationComponent  {
-	title = 'Registration';
+export class RegistrationComponent {
+
+  title = 'Registration';
   majorOptions = MAJOR_OPTIONS; //majors to choose from
   positionOptions = POSITION_OPTIONS; //positions to choose from
-  majorsSelected: string[]; //save majors selected, then pass them onto company
-  positionsSelected: string[]; //save positions selected, then pass them onto company
   newCompany: Company;
   companiesInserted: Company[];
-
-  //booleans used for validation
-
-  /* None of these can be empty */
-  contactNameBoolean: boolean;
-  contactEmailBoolean: boolean;
-  companyNameBoolean: boolean;
-  contactPhoneNumberBoolean: boolean;
-  companyWebsiteBoolean: boolean;
-  companyDescriptionBoolean: boolean;
+	companyService: CompaniesService; 
 
   /* Make sure at least 1 major, 1 position and 1 registration type were selected */
   majorsSelectedBoolean: boolean;
   positionsSelectedBoolean: boolean;
   registrationTypeBoolean: boolean;
 
-  /* Works only if all else works */
   entireFormSubmitted: boolean;
 
 
-
   submitted: boolean;
-  nameBoolean: boolean;
-  positionBoolean: boolean;
-  websiteBoolean: boolean;
-  websiteRegexBoolean: boolean;
 
-  constructor() {
-    //no majors, positions, or companies selected yet
-    this.majorsSelected = [];
-    this.positionsSelected = [];
+	/*
+	 * The constructor is used to initialize newCompany
+	 * newCompany has many attributes used in .html file
+	 * for everytime an attribute in .html file isnt found
+	 * it references newCompany to see if its there.
+	
+	 * Anything with a Boolean handles error checking for multi-
+	 * selecting UI's
+	 */
+	constructor(private aCompaniesService: CompaniesService) { 
     this.companiesInserted = [];
-
-    //initialize all booleans to false
-    this.contactNameBoolean = false;
-    this.contactEmailBoolean = false;
-    this.companyNameBoolean = false;
-    this.contactPhoneNumberBoolean = false;
-    this.companyWebsiteBoolean = false;
-    this.companyDescriptionBoolean = false;
+		this.companyService = aCompaniesService;
     this.majorsSelectedBoolean = false;
     this.positionsSelectedBoolean = false;
-    this.registrationTypeBoolean = false;
     this.entireFormSubmitted = false;
 
-    //intialize empty company
-    this.newCompany = new Company;
-    this.newCompany.registrationType = "resumeBook";
-  }
+		this.newCompany = new Company;
+		this.newCompany.positionsSelected = []; 
+		this.newCompany.majorsSelected = []; 
+		this.newCompany.registrationType = "resumeBook"; 
+	}
 
-  /*
+	/*
     We'll be saving majors as their abbreviations. But when displaying them to customers,
     we need full names. This function takes the abbreviation and returns the entire
     major's name
@@ -106,134 +89,91 @@ export class RegistrationComponent  {
       return "Summer Internship";
   }
 
-  /*
-    When companies check a major, we add that major to their majorsSelected array. If 
-    they're checking it again (therefore unchecking it), we remove it from majorsSelected.
-    Function is called every time a major is checked or unchecked
-  */
 
+
+	/*
+	 * The AddMajor(major: string)  is used to initialize 
+	 * majorOptions
+	 * 	  
+	 * 
+	 */
+	
   AddMajor(major: string) {
-    for (var i = 0; i < this.majorsSelected.length; i++) {
-      if (this.majorsSelected[i] == major) {
-        this.majorsSelected.splice(i, 1);
+    for (var i = 0; i < this.newCompany.majorsSelected.length; i++) {
+      if (this.newCompany.majorsSelected[i] == major) {
+        this.newCompany.majorsSelected.splice(i, 1);
+        if(this.newCompany.majorsSelected.length > 0) {
+          this.majorsSelectedBoolean = true;
+        }
+        else {
+          this.majorsSelectedBoolean = false;
+        }
         return;
       }
     }
-    this.majorsSelected.push(major);
+    this.newCompany.majorsSelected.push(major);
   }
 
-  AddPosition(position: string) {
-    for (var i = 0; i < this.positionsSelected.length; i++) {
-      if (this.positionsSelected[i] == position) {
-        this.positionsSelected.splice(i, 1);
+
+	/*
+	 * The AddPosition(position: string)  is used to initialize 
+	 * positionsSelected
+	 * 	  
+	 * 
+	 */
+	
+	AddPosition(position: string) {
+    for (var i = 0; i < this.newCompany.positionsSelected.length; i++) {
+      if (this.newCompany.positionsSelected[i] == position) {
+        this.newCompany.positionsSelected.splice(i, 1);
+        if(this.newCompany.positionsSelected.length > 0 ) {
+          this.positionsSelectedBoolean = true;
+        }
+        else {
+          this.positionsSelectedBoolean = false;
+        }
         return;
       }
     }
-    this.positionsSelected.push(position);
+    this.newCompany.positionsSelected.push(position);
   }
 
-  OnSumbit() {
-    this.companiesInserted.push(this.newCompany);
-  }
-
-  /*
-    This function is called when they hit submit on the registration form. AddCompany creates that
-    company and adds it to companies array.
-  */
-
-  /*
-    AddCompany(name: string, position: string, website: string) {
-      var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
-      var regex = new RegExp(expression);
-      if (name.length == 0) {
-        this.nameBoolean = true;
-      }
-      if (position.length == 0) {
-        this.positionBoolean = true;
-      }
-      else if (website.length == 0) {
-        this.websiteBoolean = true;
-      }
-      else if (!website.match(regex)) {
-        this.websiteRegexBoolean = true;
+  convertToSingleString(toConvert: string[]) {
+    let toReturn: string = "";
+    for(var i = 0; i < toConvert.length; i++) {
+      if(i == 0) {
+        toReturn = toReturn + toConvert[i];
       }
       else {
-        this.websiteRegexBoolean = false;
-        this.nameBoolean = false;
-        this.positionBoolean = false;
-        this.websiteBoolean = false;
-        let companyToAdd = new Company(name, position, this.transformWebsite(website));
-        this.companies.push(companyToAdd);
+        toReturn = toReturn + ", " + toConvert[i];
       }
     }
-  */
-  transformWebsite(website: string) {
-    if (website.includes("http://", 0) || website.includes("https://", 0)) {
-      return website;
-    }
-    else {
-      return "https://" + website;
-    }
+    return toReturn;
   }
-	onSubmit() {
-		/*
-		var newCompany = { 
-			companyName: this.title, 
-			contactEmail: "a@a.com", 
-			contactPhoneNumber: "18001111111", 
-			companyWebsite: "www.company.com", 
-			companyDescription: "Description of company", 
-			CAGD: false, 
-			CIM: false, 
-			CM: false, 
-			CE: false, 
-			CS: false, 	
-			EE: false, 
-			ME: false, 
-			MCE: false, 
-			MIS: false, 	
-			SM: false, 
-			COOP: false, 
-			fullTime: false, 
-			summerIntern: false, 
-			resumeBook: false, 
-			tableBook: false, 
-			tableAndResume: false 
-		}
-		this.companiesService.addCompany(newCompany).subscribe(company => { 
-			this.company.push(company); 
-		}); 
-		*/
+
+
+ 	onSubmit() {
     this.submitted = true;
-  }
-/*
-  onNameChange(value) {
-    if (value.length == 0) {
-      this.nameBoolean = true;
-    }
-    else {
-      this.nameBoolean = false;
-    }
+    this.newCompany.positionsTest = this.convertToSingleString(this.newCompany.positionsSelected);
+    this.newCompany.majorsTest = this.convertToSingleString(this.newCompany.majorsSelected);
+    //this.calculateMoneyOwed(this.newCompany.registrationType);
+		var newCompany = { 
+			contactName: this.newCompany.contactName, 
+			contactEmail: this.newCompany.contactEmail, 
+			companyName: this.newCompany.companyName,
+			contactPhoneNumber: this.newCompany.contactPhoneNumber,
+			companyWebsite: this.newCompany.companyWebsite,
+			companyDescription: this.newCompany.companyDescription,
+		}
+
+		this.companyService.addCompany(newCompany).subscribe(company => { 
+		
+  	});  
   }
 
-  onPositionChange(value) {
-    if (value.length == 0) {
-      this.positionBoolean = true;
-    }
-    else {
-      this.positionBoolean = false;
-    }
-  }
 
-  onWebsiteChange(value) {
-    if (value.length == 0) {
-      this.websiteBoolean = true;
-    }
-    else {
-      this.websiteBoolean = false;
-    }
-  }
-	*/
+
+
 } // end of component
 
 class Company {
@@ -247,21 +187,19 @@ class Company {
   positionsSelected: string[];
   registrationType: string;
 
-/*
-  constructor(contactName: string, contactEmail: string, companyName: string, contactPhoneNumber: string,
-    companyWebsite: string, companyDescription: string, majorsSelected: string[], positionsSelected: string[],
-    registrationType: string) {
-    this.contactName = contactName;
-    this.contactEmail = contactEmail;
-    this.companyName = companyName;
-    this.contactPhoneNumber = contactPhoneNumber;
-    this.companyWebsite = companyWebsite;
-    this.companyDescription = companyDescription;
-    this.majorsSelected = majorsSelected;
-    this.positionsSelected = positionsSelected;
-    this.registrationType = registrationType;
-  }
-  */
+  moneyOwed: number;
+  positionsTest: string;
+  majorsTest: string;
+
+}
+
+class DBCompany {
+  contactName: string;
+  contactEmail: string;
+  companyName: string;
+  contactPhoneNumber: string;
+  companyWebsite: string;
+  companyDescription: string;
 }
 
 export const MAJOR_OPTIONS: string[] = [
@@ -284,4 +222,3 @@ export const POSITION_OPTIONS: string[] = [
   "full_time",
   "summer_internship",
 ];
-
