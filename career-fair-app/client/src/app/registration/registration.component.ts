@@ -188,11 +188,17 @@ export class RegistrationComponent {
     this.newCompany.confirmation = this.getDate();
     //this.calculateMoneyOwed(this.newCompany.registrationType);
 		
+
+		/* MESSAGE TO FRANK
+		 * Alright Frank so below is a instance of the class CompanyDB,
+		 * this class is based on how the schema of the database is set up
+		 * the class is defined all the way at the bottom of this component
+		 * just in case you wanted to see the definitions 
+		 */
     var newCompany = { 
 			contactName: this.newCompany.contactName, 
 			contactEmail: this.newCompany.contactEmail, 
 			companyName: this.newCompany.companyName,
-       //make this a string. ill make sure its valid later on
 			contactPhoneNumber: this.newCompany.contactPhoneNumber,
 			companyWebsite: this.newCompany.companyWebsite,
 			companyDescription: this.newCompany.companyDescription,
@@ -239,6 +245,11 @@ class DBCompany {
   contactPhoneNumber: string;
   companyWebsite: string;
   companyDescription: string;
+	registrationType: string; 
+	desiredPositions: string; 
+	desiredMajors: string; 
+	moneyOwed: number; 
+	confirmation: string; 
 }
 
 export const MAJOR_OPTIONS: string[] = [

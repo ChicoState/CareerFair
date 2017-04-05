@@ -29,7 +29,7 @@ router.get('/company/:id', function(req, res, next){
 // Save Task
 router.post('/company', function(req, res, next){
     var company = req.body;
-    if(!company.contactName || !company.contactEmail || !company.contactPhoneNumber || !company.companyWebsite || !company.companyDescription){
+    if(!company.contactName || !company.contactEmail || !company.contactPhoneNumber || !company.companyWebsite || !company.companyDescription || !company.registrationType || !company.desiredPositions || !company.desiredMajors || !company.moneyOwed || !company.confirmation ){
         res.status(400);
         res.json({
             "error": "Bad Data"

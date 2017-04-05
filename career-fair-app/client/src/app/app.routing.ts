@@ -6,6 +6,7 @@ import { CompaniesComponent } from './companies/companies.component';
 import { RegistrationComponent } from './registration/registration.component'; 
 import { ParkingComponent } from './parking/parking.component'; 
 import { VolunteerComponent } from './about/volunteer.component';
+import { FileUploadComponent } from './fileupload/fileupload.component'; 
 
 
 const appRoutes: Routes = [ 
@@ -28,7 +29,12 @@ const appRoutes: Routes = [
 	{
 		path: 'volunteer', 
 		component: VolunteerComponent
+	},
+	{
+		path: 'fileupload', 
+		component: FileUploadComponent
 	}
+
 ]; 
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

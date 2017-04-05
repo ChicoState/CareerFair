@@ -13,6 +13,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var app_routing_1 = require('./app.routing');
+var ng2_file_upload_1 = require('ng2-file-upload');
 // components we create
 var app_component_1 = require('./app.component');
 var home_component_1 = require('./home/home.component');
@@ -21,6 +22,7 @@ var companies_component_1 = require('./companies/companies.component');
 var registration_component_1 = require('./registration/registration.component');
 var parking_component_1 = require('./parking/parking.component');
 var volunteer_component_1 = require('./about/volunteer.component');
+var fileupload_component_1 = require('./fileupload/fileupload.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -36,7 +38,9 @@ var AppModule = (function () {
                 companies_component_1.CompaniesComponent,
                 registration_component_1.RegistrationComponent,
                 parking_component_1.ParkingComponent,
-                volunteer_component_1.VolunteerComponent],
+                fileupload_component_1.FileUploadComponent,
+                volunteer_component_1.VolunteerComponent,
+                ng2_file_upload_1.FileSelectDirective],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

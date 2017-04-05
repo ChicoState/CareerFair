@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing } from './app.routing'; 
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 
 
 // components we create
@@ -13,6 +14,7 @@ import { CompaniesComponent } from './companies/companies.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ParkingComponent } from './parking/parking.component'; 
 import { VolunteerComponent } from './about/volunteer.component'; 
+import { FileUploadComponent } from './fileupload/fileupload.component'; 
 
 
 
@@ -27,7 +29,9 @@ import { VolunteerComponent } from './about/volunteer.component';
 									CompaniesComponent, 
 									RegistrationComponent, 
 									ParkingComponent, 
-									VolunteerComponent ],
+									FileUploadComponent, 
+									VolunteerComponent,
+									FileSelectDirective ],
 
   bootstrap:    [ AppComponent ]
 })

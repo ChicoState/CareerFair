@@ -5,6 +5,7 @@ var companies_component_1 = require('./companies/companies.component');
 var registration_component_1 = require('./registration/registration.component');
 var parking_component_1 = require('./parking/parking.component');
 var volunteer_component_1 = require('./about/volunteer.component');
+var fileupload_component_1 = require('./fileupload/fileupload.component');
 var appRoutes = [
     {
         path: '',
@@ -25,6 +26,10 @@ var appRoutes = [
     {
         path: 'volunteer',
         component: volunteer_component_1.VolunteerComponent
+    },
+    {
+        path: 'fileupload',
+        component: fileupload_component_1.FileUploadComponent
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

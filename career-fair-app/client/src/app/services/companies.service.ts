@@ -27,6 +27,11 @@ class DBCompany {
   contactPhoneNumber: string;
   companyWebsite: string;
   companyDescription: string;
+	registrationType: string; 
+	desiredPositions: string; 
+	desiredMajors: string; 
+	moneyOwed: number; 
+	confirmation: string; 
 }
 
 
