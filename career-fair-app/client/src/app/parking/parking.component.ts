@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 
 @Component({
 	moduleId: module.id,
   selector: 'parking',
   templateUrl: 'parking.component.html',
-	styleUrls: ['parking.component.css']
+	styleUrls: ['./parking.component.css']
 
 })
 export class ParkingComponent  {  

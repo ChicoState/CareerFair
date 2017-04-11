@@ -19,7 +19,7 @@ var ParkingComponent = (function () {
             moduleId: module.id,
             selector: 'parking',
             templateUrl: 'parking.component.html',
-            styleUrls: ['parking.component.css']
+            styleUrls: ['./parking.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], ParkingComponent);
