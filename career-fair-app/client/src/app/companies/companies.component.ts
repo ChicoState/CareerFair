@@ -27,7 +27,7 @@ export class CompaniesComponent  {
 
 	setupString(toTransform: string) {
 		var toReturn = "";
-		var afterSplit;
+		var afterSplit: string[];
 		if(toTransform.indexOf(",", 0) > 0) {
 			afterSplit = toTransform.split(",");
 			for(var i = 0; i < afterSplit.length; i++) {
