@@ -13,6 +13,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var app_routing_1 = require('./app.routing');
+var ngx_bootstrap_1 = require('ngx-bootstrap');
 // components we create
 var app_component_1 = require('./app.component');
 var home_component_1 = require('./home/home.component');
@@ -20,7 +21,9 @@ var header_component_1 = require('./layout/header.component');
 var companies_component_1 = require('./companies/companies.component');
 var registration_component_1 = require('./registration/registration.component');
 var parking_component_1 = require('./parking/parking.component');
-var volunteer_component_1 = require('./about/volunteer.component');
+var volunteer_component_1 = require('./volunteer/volunteer.component');
+var admin_component_1 = require('./admin/admin.component');
+var carousel_component_1 = require('./carousel/carousel.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -29,14 +32,23 @@ var AppModule = (function () {
             imports: [platform_browser_1.BrowserModule,
                 app_routing_1.routing,
                 forms_1.FormsModule,
-                http_1.HttpModule],
+                http_1.HttpModule,
+                ngx_bootstrap_1.CarouselModule.forRoot(),
+                ngx_bootstrap_1.TimepickerModule.forRoot(),
+                ngx_bootstrap_1.AlertModule.forRoot(),
+                ngx_bootstrap_1.ModalModule.forRoot(),
+                ngx_bootstrap_1.BsDropdownModule.forRoot(),
+            ],
             declarations: [app_component_1.AppComponent,
                 home_component_1.HomeComponent,
                 header_component_1.HeaderComponent,
                 companies_component_1.CompaniesComponent,
                 registration_component_1.RegistrationComponent,
                 parking_component_1.ParkingComponent,
-                volunteer_component_1.VolunteerComponent],
+                volunteer_component_1.VolunteerComponent,
+                admin_component_1.AdminComponent,
+                carousel_component_1.CarouselComponent,
+            ],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])
