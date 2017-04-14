@@ -1,8 +1,25 @@
 <h1>{{ title }}</h1>
 
 <li *ngFor="let company of companies"> 
+<div style="border-style:solid;">
+  <h3>Contact Name: </h3> {{company.contactName}} <br>
+  <h3>Contact Email: </h3> {{company.contactEmail}} <br>
+  <h3>Company Name: </h3> {{company.companyName}} <br>
+  <h3>Contact Phone Number: </h3> {{company.contactPhoneNumber}} <br>
 
-  <div class="jumbotron"> 
+  <h3>Company Website: </h3> <br>
+  <a href="{{company.companyWebsite}}" target="_blank">{{ company.companyWebsite }} </a> <br>
+  <h3>Company Description: </h3> {{company.companyDescription}} <br>
+  <h3>Company Registration Type: </h3> {{toDisplay(company.registrationType)}} <br>
+  <h3>Positions Desired: </h3> {{company.desiredPositions}} <br>
+  <h3>Majors Desired: </h3> {{company.desiredMajors}} <br>
+  <h3>Money Owed: </h3> {{company.moneyOwed}} <br>
+  <h3>Confirmation Number: </h3> {{company.confirmation}} <br>  
+
+</div> <br>
+
+
+  <!--<div class="jumbotron"> 
     <div id="header"> 
       <h1>{{company.companyName}}</h1> 
     </div> 
@@ -20,6 +37,6 @@
         <a href="{{company.companyWebsite}}" target="_blank">{{ company.companyWebsite }} </a>
       </h3>
     </div> 
-  </div> 
+  </div> -->
   
 </li>

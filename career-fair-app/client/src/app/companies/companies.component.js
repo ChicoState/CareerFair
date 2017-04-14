@@ -16,8 +16,71 @@ var CompaniesComponent = (function () {
         this.companiesService = companiesService;
         this.companiesService.getCompanies().subscribe(function (companies) {
             _this.companies = companies;
+            //desiredPositions and desiredMajors
+            for (var i = 0; i < _this.companies.length; i++) {
+                _this.companies[i].desiredPositions = _this.setupString(_this.companies[i].desiredPositions);
+                _this.companies[i].desiredMajors = _this.setupString(_this.companies[i].desiredMajors);
+            }
         });
     }
+    CompaniesComponent.prototype.setupString = function (toTransform) {
+        var toReturn = "";
+        var afterSplit;
+        if (toTransform.indexOf(",", 0) > 0) {
+            afterSplit = toTransform.split(",");
+            for (var i = 0; i < afterSplit.length; i++) {
+                var part = afterSplit[i];
+                var trans = this.toDisplay(afterSplit[i]);
+                if (i == 0) {
+                    toReturn = toReturn + trans;
+                }
+                else {
+                    toReturn = toReturn + ", " + trans;
+                }
+            }
+        }
+        else {
+            toReturn = this.toDisplay(toTransform);
+        }
+        return toReturn;
+    };
+    CompaniesComponent.prototype.toDisplay = function (displayMe) {
+        /* Different Majors */
+        if (displayMe.includes("cagd"))
+            return "Computer Animation and Game Development";
+        else if (displayMe.includes("cimt"))
+            return "Concrete Industry Management";
+        else if (displayMe.includes("cmgt"))
+            return "Construction Management";
+        else if (displayMe.includes("cins"))
+            return "Computer Information Systems";
+        else if (displayMe.includes("civl"))
+            return "Civil Engineering";
+        else if (displayMe.includes("csci"))
+            return "Computer Science";
+        else if (displayMe.includes("eece"))
+            return "Electrical Engineering";
+        else if (displayMe.includes("meca"))
+            return "Mechatronic Engineering";
+        else if (displayMe.includes("mech"))
+            return "Mechanical Engineering";
+        else if (displayMe.includes("mins"))
+            return "Management Information Systems";
+        else if (displayMe.includes("smfg"))
+            return "Sustainable Manufacturing";
+        else if (displayMe.includes("co_op"))
+            return "CO OP";
+        else if (displayMe.includes("full_time"))
+            return "Full Time Position";
+        else if (displayMe.includes("summer_internship"))
+            return "Summer Internship";
+        else if (displayMe == "resumeBook")
+            return "Resume";
+        else if (displayMe == "table")
+            return "Table";
+        else if (displayMe == "resumeBookAndTable")
+            return "Resume Book and Table";
+    };
     CompaniesComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

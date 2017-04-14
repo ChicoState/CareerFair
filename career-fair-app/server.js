@@ -14,9 +14,20 @@ var port = 3000;
 var app = express();
 
 
-app.use(cors()); 
+//app.use(cors()); 
 
 
+//Allow cross origin requests 
+
+app.use(function(req, res, next) { 
+	res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET"); 
+	res.header("Access-Control-Allow-Origin", "http://localhost:3000", "http://localhost:3000/upload", "http://localhost:3001","http://localhost:3001/upload"); 
+	res.header("Access-Control-Allow-Origin", "http://localhost:3001"); 
+
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
+	res.header("Access-Control-Allow-Credentials", true); 
+	next(); 
+});
 
 // Working with Multer 
 var storage = multer.diskStorage({ 

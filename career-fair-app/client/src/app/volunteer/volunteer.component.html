@@ -1,0 +1,128 @@
+  <h1> {{title}} </h1>
+      <br/>
+<!--First Name registration field-->
+      <div>
+        <label for="firstName">*First Name</label>     
+        <input type="text" class="form-control" id="firstName" [(ngModel)]="tempVolunteer.firstName" name="firstName" placeholder="First Name" #firstName="ngModel" required/> 
+        <!--Alert Error Message. Tells the user that a first name is required -->
+        <div [hidden]="firstName.valid || firstName.untouched" class="alert alert-danger">
+          First Name Required
+        </div>  
+      </div>
+
+
+<!--Last Name registration field-->
+      <div>
+        <label for="lastName">*Last Name</label>     
+        <input type="text" class="form-control" id="lastName" [(ngModel)]="tempVolunteer.lastName" name="lastName" placeholder="Last Name" #lastName="ngModel" required/>   
+        <!--Alert Error Message. Tells the user that a last name is required -->
+        <div [hidden]="lastName.valid || lastName.untouched" class="alert alert-danger">
+          Last Name Required
+        </div>
+      </div>
+
+
+<!--Email registration field-->
+      <div>
+        <label for="myEmail">*Email</label>     
+        <input type="email" class="form-control" id="myEmail" [(ngModel)]="tempVolunteer.email" name="myEmail" placeholder="Email@mail.com" #myEmail="ngModel" required/>   
+        <!--Alert Error Message. Tells the user that an email is required -->
+        <div [hidden]="myEmail.valid || myEmail.untouched" class="alert alert-danger">
+          Email Required
+        </div>
+        <!--Alert Error Message. Tells the user that the current email is invalid -->
+        <div *ngIf="!validEmail() && myEmail.touched">
+          <alert type="warning">
+            <strong> Not a Valid Email</strong>
+          </alert>
+        </div>
+        <!--Alert Error Message. Tells the user that the current email already exist -->
+        <div *ngIf="validSameEmail(tempVolunteer.email | lowercase)">
+          <alert type="warning">
+            <strong>Email already in Database</strong>
+          </alert>
+        </div>
+      </div>
+      <!--Converts the email field to lowercase-->
+      <div *ngIf="toLower(tempVolunteer.email | lowercase)">
+      </div>
+
+
+<!--Volunteering Helping Position-->
+      <div>
+        <label for="options"> Volunteering Position</label>
+        <select class="form-control" id="options" required [(ngModel)]="tempVolunteer.position" name="options" placeholder="Please Select a Position" #myOption="ngModel">
+          <option *ngFor="let option of volunteerOptions" [value]="option"> {{option}}</option>
+           <div [hidden]="myOption.valid" class="alert alert-danger">
+            Position Required
+           </div>
+        </select>
+      </div> 
+      <hr/>
+
+
+<!--Selection of the Volunteers Start and Ending Time-->
+      <div>
+        <h3> Select Your Start Time </h3>
+        <timepicker [(ngModel)]="startTime" [minuteStep]="minStep" [max]="maxTime" [min]="minTime"></timepicker>
+        <pre class="alert alert-info"> Time is: {{startTime | date:"HH:mm"}}</pre>
+        <h3> Select Your End Time </h3>
+        <timepicker [(ngModel)]="endTime" [minuteStep]="minStep" [max]="maxTime" [min]="minTime"></timepicker>
+        <pre class="alert alert-info"> Time is: {{endTime | date:"HH:mm"}}</pre>
+      </div>
+
+      <!--Alert Error Message. Tells the user to fix their time interval -->
+      <div *ngIf="endTime <= startTime" >
+          <alert type="danger">
+            <strong> Oh Snap! </strong> You Cant Do That Bro. Fix your Time Interval
+          </alert>
+      </div> 
+      <hr/>
+
+
+<!--Button that verifies all requirements are met,then displays the Modal-->
+      <button [hidden]="validSameEmail(tempVolunteer.email | lowercase) || !validEmail() || firstName.invalid || myOption.invalid || lastName.invalid || myEmail.invalid || (endTime <= startTime)" (click)="onSubmit()" (click)="staticModal.show()" > Submit Registration</button>
+      
+      <!--Error Alert Message. Tells the user to fix their errors-->
+      <div *ngIf="validSameEmail(tempVolunteer.email | lowercase) || !validEmail() || firstName.invalid || myOption.invalid || lastName.invalid || myEmail.invalid || (endTime <= startTime)" >
+          <alert type="info">
+            The <strong>Submit Button</strong> Will Appear Once you Fill The Applicaton and Fix All of the Above Errors.
+          </alert>
+      </div>
+
+      <!--Modal Message. Displays Once the user successfully completes the Registration Form-->
+      <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title pull-left"><strong>Registration Complete</strong></h4>
+              <button type="button" class="close pull-right" aria-label="Close" routerLink="/" (click)="staticModal.hide()">
+              <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <alert type="success">
+                  You have successfully completed your registration
+              </alert>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+<!--Show the Array of Current Volunteers-->
+      <hr/>
+      <h3>Top Volunteers</h3>
+      <hr/>
+        <div class="row">
+          <a *ngFor="let volunteer of volunteerList" class="col-xs-8 col-sm-6 col-md-4 col-lg-4">
+         <div class="module hero">
+          <h4>{{volunteer.firstName}} {{volunteer.lastName}}</h4> 
+          <h4>{{volunteer.position}}</h4>
+          <h4>Begin Time: {{volunteer.beginTime | date:"HH:mm"}}</h4>
+          <h4>End Time: {{volunteer.endTime | date:"HH:mm"}}</h4>
+          <h4>Email: {{volunteer.email}}</h4>
+         </div>
+        </a>
+      </div>
+      <hr/>

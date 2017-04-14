@@ -1,0 +1,12 @@
+.sebm-google-map-container {
+  height: 500px;
+  width: 500px;
+  float:left;
+}
+#textNextToPicture {
+    font-size:150%;
+    text-align:left;
+}
+#divNextToPicture {
+    padding:5px;
+}

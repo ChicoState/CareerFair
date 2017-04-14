@@ -177,8 +177,8 @@ var RegistrationComponent = (function () {
             moneyOwed: this.newCompany.moneyOwed,
             confirmation: this.newCompany.confirmation,
         };
-        //this.companyService.addCompany(newCompany).subscribe(company => { 
-        //});  
+        this.companyService.addCompany(newCompany).subscribe(function (company) {
+        });
     };
     RegistrationComponent = __decorate([
         core_1.Component({

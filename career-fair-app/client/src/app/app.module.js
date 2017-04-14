@@ -23,6 +23,7 @@ var registration_component_1 = require('./registration/registration.component');
 var parking_component_1 = require('./parking/parking.component');
 var volunteer_component_1 = require('./about/volunteer.component');
 var fileupload_component_1 = require('./fileupload/fileupload.component');
+var core_2 = require('angular2-google-maps/core');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -31,7 +32,10 @@ var AppModule = (function () {
             imports: [platform_browser_1.BrowserModule,
                 app_routing_1.routing,
                 forms_1.FormsModule,
-                http_1.HttpModule],
+                http_1.HttpModule,
+                core_2.AgmCoreModule.forRoot({
+                    apiKey: 'AIzaSyD5H2OAPwP5wAF3b0kN8OCfYJceS9mwq3k'
+                })],
             declarations: [app_component_1.AppComponent,
                 home_component_1.HomeComponent,
                 header_component_1.HeaderComponent,

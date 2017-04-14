@@ -11,7 +11,7 @@
     // map tells the System loader where to look for things
     map: {
       // our app is within the app folder
-      app: 'app',
+      app: 'app/',
 
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -26,7 +26,9 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-			'ng2-file-upload': 'npm:ng2-file-upload' 
+			'ng2-file-upload': 'npm:ng2-file-upload',  
+      //need this for google maps
+      'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {

@@ -2,5 +2,48 @@
 {{title}}
 </h1> 
 
-{{direction}}
 
+
+
+ <br><br>
+
+    <h1 id="parkingHeader"><u>Parking Information</u></h1>
+    <br>
+    <div id="divNextToPicture">
+      <p id="textNextToPicture"> 
+          This parking area is north of campus best accessible from Highway 99 using the Mangrove Exit. 
+          It is one block from Starbucks, for your convenience. 
+          Parking will open at 9:30am busses will begin transporting recruiters to the venue location.  
+          At 4:30pm busses will take recruiters back to the parking area at the end of the Technical Career Fair. 
+          Please plan on attending until the close of the event.  
+          There will be no transportation between 12:30 and 4:30. 
+     </p>
+        <p float="textNextToPicture">
+        <b>Find local area accomadations:</b> <a href="http://entertainmentchico.com/pages/chico-hotels.htm">Chico Hotels</a>
+      </p>
+    </div>
+
+<sebm-google-map 
+                [latitude]="39.747257" 
+                  [longitude]="-121.852620"
+                  [zoom] ="14"
+                  >
+
+                 
+  <sebm-google-map-marker  [latitude]="39.747257" 
+                  [longitude]="-121.852620">
+
+   <sebm-google-map-info-window>
+                  <p><b>Esplanade & </b></p>
+                    <p><b>West 10th Avenue</b></p>
+             </sebm-google-map-info-window> 
+
+  
+
+<sebm-google-map-marker  [latitude]="39.7337601" 
+                  [longitude]="-121.8513755">
+
+                  <sebm-google-map-info-window>
+                    <p><b>California State </b></p>
+                      <p><b>University Chico</b></p>
+                </sebm-google-map-info-window> 

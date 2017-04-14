@@ -16,13 +16,17 @@ import { ParkingComponent } from './parking/parking.component';
 import { VolunteerComponent } from './about/volunteer.component'; 
 import { FileUploadComponent } from './fileupload/fileupload.component'; 
 
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 
 @NgModule({
   imports:      [ BrowserModule, 
 									routing, 
 									FormsModule, 	
-									HttpModule ],
+									HttpModule,
+									AgmCoreModule.forRoot({ 
+     									 apiKey: 'AIzaSyD5H2OAPwP5wAF3b0kN8OCfYJceS9mwq3k'
+  											  }) ],
   declarations: [ AppComponent, 
 									HomeComponent, 
 									HeaderComponent, 
