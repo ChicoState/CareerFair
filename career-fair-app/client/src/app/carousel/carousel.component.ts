@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { CarouselConfig } from 'ng2-bootstrap/carousel';
+import { CarouselConfig } from 'ngx-bootstrap';
 import { Images } from './carousel.images'
 
  @Component({
 	moduleId: module.id,
   selector: 'homecarousel',
-  templateUrl: 'app.component.html'
+  templateUrl: 'carousel.component.html',
+	"styles": [
+				"../node_modules/bootstrap/dist/css/bootstrap.min.css",
+			"styles.css",
+		],
+	providers: [{provide: CarouselConfig, useValue: {interval: 5000}}]
 })
 
 export class CarouselComponent  {  

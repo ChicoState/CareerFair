@@ -19,3 +19,5 @@ npm start
 #I dont think the order of CTRL C'ing things matters but I CTRL C /CareerFair/career-fair-app/client first, then /CareerFair/career-fair-app
 
 #in /client for google-maps: npm install angular2-google-maps --save
+#in /client for auth0 i think: npm install angular2-jwt --save
+#in /client for bootstrap: npm install ngx-bootstrap --save

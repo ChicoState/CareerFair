@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var ngx_bootstrap_1 = require('ngx-bootstrap');
 var CarouselComponent = (function () {
     function CarouselComponent() {
         this.images = exports.IMAGES;
@@ -17,7 +18,12 @@ var CarouselComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'homecarousel',
-            templateUrl: 'app.component.html'
+            templateUrl: 'carousel.component.html',
+            "styles": [
+                "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+                "styles.css",
+            ],
+            providers: [{ provide: ngx_bootstrap_1.CarouselConfig, useValue: { interval: 5000 } }]
         }), 
         __metadata('design:paramtypes', [])
     ], CarouselComponent);

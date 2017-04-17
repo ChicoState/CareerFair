@@ -5,8 +5,10 @@ import { HomeComponent } from './home/home.component';
 import { CompaniesComponent } from './companies/companies.component'; 
 import { RegistrationComponent } from './registration/registration.component'; 
 import { ParkingComponent } from './parking/parking.component'; 
-import { VolunteerComponent } from './about/volunteer.component';
+
 import { FileUploadComponent } from './fileupload/fileupload.component'; 
+import { VolunteerComponent } from './volunteer/volunteer.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 const appRoutes: Routes = [ 
@@ -33,6 +35,10 @@ const appRoutes: Routes = [
 	{
 		path: 'fileupload', 
 		component: FileUploadComponent
+	}, 
+	{
+		path: 'admin', 
+		component: AdminComponent
 	}
 
 ]; 

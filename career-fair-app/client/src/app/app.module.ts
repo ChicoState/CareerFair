@@ -3,7 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing } from './app.routing'; 
+
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+import { AUTH_PROVIDERS } from 'angular2-jwt';
+import { CarouselModule, TimepickerModule, AlertModule, ModalModule,BsDropdownModule } from 'ngx-bootstrap';
+
 
 
 // components we create
@@ -13,29 +17,43 @@ import { HeaderComponent } from './layout/header.component';
 import { CompaniesComponent } from './companies/companies.component'; 
 import { RegistrationComponent } from './registration/registration.component';
 import { ParkingComponent } from './parking/parking.component'; 
-import { VolunteerComponent } from './about/volunteer.component'; 
+
 import { FileUploadComponent } from './fileupload/fileupload.component'; 
+import { VolunteerComponent } from './volunteer/volunteer.component'; 
+import { AdminComponent } from './admin/admin.component'; 
+import { CarouselComponent } from './carousel/carousel.component'; 
+
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
 
 @NgModule({
-  imports:      [ BrowserModule, 
-									routing, 
-									FormsModule, 	
-									HttpModule,
-									AgmCoreModule.forRoot({ 
+  imports:      [ 	BrowserModule, 
+					routing, 
+					FormsModule, 	
+					HttpModule,
+					AgmCoreModule.forRoot({ 
      									 apiKey: 'AIzaSyD5H2OAPwP5wAF3b0kN8OCfYJceS9mwq3k'
-  											  }) ],
-  declarations: [ AppComponent, 
-									HomeComponent, 
-									HeaderComponent, 
-									CompaniesComponent, 
-									RegistrationComponent, 
-									ParkingComponent, 
-									FileUploadComponent, 
-									VolunteerComponent,
-									FileSelectDirective ],
+  											  }),
+				 	CarouselModule.forRoot(),
+					TimepickerModule.forRoot(),
+					AlertModule.forRoot(),
+					ModalModule.forRoot(),
+					BsDropdownModule.forRoot(),
+				],
+
+  declarations: [ 	AppComponent, 
+					HomeComponent, 
+					HeaderComponent, 
+					CompaniesComponent, 
+					RegistrationComponent, 
+					ParkingComponent, 
+					FileUploadComponent, 
+					FileSelectDirective, 
+					VolunteerComponent,
+					AdminComponent,
+					CarouselComponent,
+					],
 
   bootstrap:    [ AppComponent ]
 })

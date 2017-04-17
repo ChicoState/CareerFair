@@ -1,7 +1,11 @@
 import { Component,Input } from '@angular/core';
-import { TimepickerModule } from 'ng2-bootstrap/timepicker';
-import { AlertModule } from 'ng2-bootstrap/alert';
-import { ModalModule } from 'ng2-bootstrap/modal'
+// <<<<<<< HEAD
+// import { TimepickerModule } from 'ng2-bootstrap/timepicker';
+// import { AlertModule } from 'ng2-bootstrap/alert';
+// import { ModalModule } from 'ng2-bootstrap/modal'
+// =======
+
+// >>>>>>> aeade345501146a8874013e1e1290b96e96d9c0d
 
 class Volunteer {
     firstName: string;
@@ -24,8 +28,10 @@ class Volunteer {
 
 
 @Component({
+  moduleId: module.id,
   selector: 'volunteer',
   templateUrl: './volunteer.component.html',
+//   templateUrl: `Hello`,
   styleUrls: ['./volunteer.component.css'],
 })
 
