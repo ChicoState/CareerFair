@@ -1,33 +1,44 @@
 <h1>{{ title }}</h1>
 
 <form (ngSubmit)="onSubmit()">
-	<div> 
+  
+  <div>
 		<label for="contactName">Contact Name</label> 
-		<input type="text" id="contactName" name="contactName" ngControl="newCompany.contactName" [(ngModel)]="newCompany.contactName" required>
+		<input type="text" class="form-control" id="contactName" name="contactName" ngControl="newCompany.contactName" 
+    [(ngModel)]="newCompany.contactName" placeholder="Jane Doe" required>
 	</div>	
-	<div>
+	
+  <div>
 		<label for="contactEmail">Contact Email</label> 
-		<input type="email" id="contactEmail" name="contactEmail" ngControl="contactEmail" [(ngModel)]="newCompany.contactEmail" required> 
+		<input type="email" class="form-control" id="contactEmail" name="contactEmail" ngControl="contactEmail" 
+    [(ngModel)]="newCompany.contactEmail" placeholder="jdoe123@mail.com" required> 
 	</div>
+  
   <div>
     <label for="contactPhoneNumber">Contact Phone Number</label>
-    <input type="tel" id="contactPhoneNumber" name="contactPhoneNumber" ngControl="contactPhoneNumber" [(ngModel)]="newCompany.contactPhoneNumber"
-      required>
+    <input type="tel" class="form-control" id="contactPhoneNumber" name="contactPhoneNumber" ngControl="contactPhoneNumber" 
+    [(ngModel)]="newCompany.contactPhoneNumber" placeholder="1 999 234 4545" required>
   </div>
+  
   <div>
     <label for="companyName">Company Name</label>
-    <input type="text" id="companyName" name="companyName" ngControl="companyName" [(ngModel)]="newCompany.companyName" required>
+    <input type="text" class="form-control" id="companyName" name="companyName" ngControl="companyName" 
+    [(ngModel)]="newCompany.companyName" placeholder="JaneTech Corporation" required>
   </div>
+  
   <div>
     <label for="companyWebsite">Company Website</label>
-    <input type="url" id="companyWebsite" name="companyWebsite" ngControl="companyWebsite" [(ngModel)]="newCompany.companyWebsite"
-      required>
+    <input type="url" class="form-control" id="companyWebsite" name="companyWebsite" ngControl="companyWebsite" 
+    [(ngModel)]="newCompany.companyWebsite" placeholder="https://www.janetech.com" required>
   </div>
+  
   <div>
     <label for="companyDescription">Company Description</label>
-    <input type="text" id="companyDescription" name="companyDescription" ngControl="companyDescription" [(ngModel)]="newCompany.companyDescription"
-      required>
+    <textarea type="text" class="form-control" rows="5" cols="80" id="companyDescription" name="companyDescription" ngControl="companyDescription" 
+    [(ngModel)]="newCompany.companyDescription" placeholder="Find solutions to your tech problems here!" required>
+    </textarea>
   </div>
+  
   <div>
     <label>Select Desired Majors:</label>
     <ul>
@@ -51,6 +62,7 @@
       </div>
     </ul>
   </div>
+  
   <div>
     <label>Select Registration Type</label><br>
     <input type="radio" id="registrationType" name="registrationType" ngControl="registrationType"
@@ -60,9 +72,26 @@
     <input type="radio" id="registrationType" name="registrationType" ngControl="registrationType"
       [(ngModel)]="newCompany.registrationType" value="resumeBookAndTable">Resume Book and Table<br>
   </div>
-  <button type="submit">Submit Registration</button>
-
-
- 
+  
+  <button type="submit" (click)="staticModal.show()">Submit Registration</button>
 
 </form> <br>
+
+ <!--Modal Message. Displays Once the user successfully completes the Registration Form-->
+      <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title pull-left"><strong>Registration Complete</strong></h4>
+              <button type="button" class="close pull-right" aria-label="Close" routerLink="/" (click)="staticModal.hide()">
+              <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <alert type="success">
+                  You have successfully completed your registration
+              </alert>
+            </div>
+          </div>
+        </div>
+      </div>

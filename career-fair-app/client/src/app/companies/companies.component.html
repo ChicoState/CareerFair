@@ -1,7 +1,7 @@
 <h1>{{ title }}</h1>
 
 <li *ngFor="let company of companies"> 
-<div style="border-style:solid;">
+<!--<div style="border-style:solid;">
   <h3>Contact Name: </h3> {{company.contactName}} <br>
   <h3>Contact Email: </h3> {{company.contactEmail}} <br>
   <h3>Company Name: </h3> {{company.companyName}} <br>
@@ -16,27 +16,47 @@
   <h3>Money Owed: </h3> {{company.moneyOwed}} <br>
   <h3>Confirmation Number: </h3> {{company.confirmation}} <br>  
 
-</div> <br>
+</div> <br>-->
 
 
-  <!--<div class="jumbotron"> 
-    <div id="header"> 
-      <h1>{{company.companyName}}</h1> 
-    </div> 
-    <div id="body1"> 
-      <h2>Majors Desired</h2> 
-      <h3>Computer Science</h3> 
-    </div> 
-    <div id="body2"> 
-      <h2>Position </h2> 
-      <h3>{{company.position}}</h3>
-    </div>
-    <div id="body3"> 
-      <h2>Website </h2> 
-      <h3> 
-        <a href="{{company.companyWebsite}}" target="_blank">{{ company.companyWebsite }} </a>
-      </h3>
-    </div> 
-  </div> -->
+  <div class="panel panel-default">
+               <div class="panel-heading">
+                   <div class = "row">
+                       <div class = "col-sm-3">
+                           <h4 style="color: deepskyblue;" (click)="staticModal.show()">{{ company.companyName }}</h4>
+                       </div>
+                       <div class = "col-sm-3">
+                           <p>Interested in:</p>
+                           <p>{{ company.desiredMajors }}</p>
+                       </div>
+                       <div class = "col-sm-2">
+                           <p>Looking for:</p>
+                           <p>{{ company.desiredPositions }}</p>
+                       </div>
+                       <div class = "col-sm-4">
+                           <p>{{ company.companyName }}'s site:</p>
+                           <p><a target="_blank" href="{{company.companyWebsite}}">{{ company.companyWebsite }}</a></p>
+                       </div>
+                   </div>
+               </div>
+
+              <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title pull-left"><strong>{{company.companyName}} Description</strong></h4>
+                      <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <alert type="success">
+                          {{company.companyDescription}}
+                      </alert>
+                    </div>
+                  </div>
+                </div>
+              </div>
+         </div>
   
 </li>
