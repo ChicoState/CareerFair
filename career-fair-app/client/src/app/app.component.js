@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var companies_service_1 = require('./services/companies.service');
+var volunteers_service_1 = require('./services/volunteers.service');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Engineering Technical Career Fair';
@@ -21,7 +22,7 @@ var AppComponent = (function () {
             moduleId: module.id,
             selector: 'my-app',
             templateUrl: 'app.component.html',
-            providers: [companies_service_1.CompaniesService]
+            providers: [companies_service_1.CompaniesService, volunteers_service_1.VolunteersService]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
