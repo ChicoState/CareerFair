@@ -116,12 +116,12 @@
       <h3>Top Volunteers</h3>
       <hr/>
         <div class="row">
-          <a *ngFor="let volunteer of volunteerList" class="col-xs-8 col-sm-6 col-md-4 col-lg-4">
+          <a *ngFor="let volunteer of volunteers" class="col-xs-8 col-sm-6 col-md-4 col-lg-4">
          <div class="module hero">
           <h4>{{volunteer.firstName}} {{volunteer.lastName}}</h4> 
           <h4>{{volunteer.position}}</h4>
-          <h4>Begin Time: {{volunteer.beginTime | date:"HH:mm"}}</h4>
-          <h4>End Time: {{volunteer.endTime | date:"HH:mm"}}</h4>
+          <h4>Begin Time: {{volunteer.beginTime}}</h4>
+          <h4>End Time: {{volunteer.endTime}}</h4>
           <h4>Email: {{volunteer.email}}</h4>
          </div>
         </a>

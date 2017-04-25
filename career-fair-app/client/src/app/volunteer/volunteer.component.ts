@@ -1,11 +1,8 @@
 import { Component,Input } from '@angular/core';
-// <<<<<<< HEAD
-// import { TimepickerModule } from 'ng2-bootstrap/timepicker';
-// import { AlertModule } from 'ng2-bootstrap/alert';
-// import { ModalModule } from 'ng2-bootstrap/modal'
-// =======
-
-// >>>>>>> aeade345501146a8874013e1e1290b96e96d9c0d
+import { TimepickerModule } from 'ng2-bootstrap/timepicker';
+import { AlertModule } from 'ng2-bootstrap/alert';
+import { ModalModule } from 'ng2-bootstrap/modal'
+import { VolunteersService } from '../services/volunteers.service'; 
 
 class Volunteer {
     firstName: string;
@@ -16,6 +13,24 @@ class Volunteer {
     position: string;
 
     constructor (first: string, last: string, mail: string, begin: Date, end: Date,duty: string)
+    {
+      this.firstName = first;
+      this.lastName = last;
+      this.email = mail;
+      this.beginTime = begin;
+      this.endTime = end;
+      this.position = duty;
+    }
+}
+
+class DBVolunteer { 
+	firstName: string; 
+	lastName: string; 
+	email: string; 
+	beginTime: string; 
+	endTime: string; 
+	position: string; 
+	constructor (first: string, last: string, mail: string, begin: string, end: string,duty: string)
     {
       this.firstName = first;
       this.lastName = last;
@@ -48,8 +63,10 @@ export class VolunteerComponent {
   lowerString: string;
 
   title = "Volunteer Registration";
-  volunteerList: Volunteer[];
+  volunteerList: Volunteer[];	
+	volunteers: DBVolunteer[]; 
   newVolunteer: Volunteer;
+	newDBVolunteer: DBVolunteer;
 
   volunteerOptions = ['Unloading in Parking Lot','Assisting in Setting up Tables'];
 
@@ -62,8 +79,11 @@ export class VolunteerComponent {
     position: ""
   }
   
-  constructor ()
+  constructor (private volunteersService: VolunteersService)
   {
+		this.volunteersService.getVolunteers().subscribe(volunteers => { 
+			this.volunteers = volunteers; 
+		});
     this.maxTime.setHours(17);
     this.minTime.setHours(12);
     this.maxTime.setMinutes(0);
@@ -86,6 +106,10 @@ export class VolunteerComponent {
         this.lowerString,this.startTime,this.endTime,this.tempVolunteer.position);
         this.volunteerList.push(this.newVolunteer);
         this.registrationComplete = true;
+				this.newDBVolunteer = new DBVolunteer(this.tempVolunteer.firstName, this.tempVolunteer.lastName, this.lowerString, this.startTime.toLocaleString('en-US'), this.endTime.toLocaleString('en-US'),this.tempVolunteer.position);
+	this.volunteersService.addVolunteer(this.newDBVolunteer).subscribe(volunteer => { 
+
+		});
     }
     else 
     {

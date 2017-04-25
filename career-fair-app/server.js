@@ -8,6 +8,7 @@ var multer = require('multer');
 var index = require('./routes/index');
 var tasks = require('./routes/tasks');
 var companies = require('./routes/companies'); 
+var volunteers = require('./routes/volunteers'); 
 
 var port = 3000;
 
@@ -73,6 +74,7 @@ app.use('/', index);
 
 app.use('/api', tasks);
 app.use('/api', companies);
+app.use('/api', volunteers);
 
 app.listen(port, function(){
     console.log('Server started on port ' + port);
