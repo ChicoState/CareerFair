@@ -3,37 +3,91 @@
 <form (ngSubmit)="onSubmit()">
   
   <div>
-		<label for="contactName">Contact Name</label> 
-		<input type="text" class="form-control" id="contactName" name="contactName" ngControl="newCompany.contactName" 
+		<label for="contactName">*Contact Name</label> 
+		<input type="text" class="form-control" id="contactName" name="contactName" ngControl="contactName" 
     [(ngModel)]="newCompany.contactName" placeholder="Jane Doe" required>
 	</div>	
+  
 	
-  <div>
-		<label for="contactEmail">Contact Email</label> 
-		<input type="email" class="form-control" id="contactEmail" name="contactEmail" ngControl="contactEmail" 
-    [(ngModel)]="newCompany.contactEmail" placeholder="jdoe123@mail.com" required> 
-	</div>
+  <!--when you do an email this way, without class="form-control" and ngControl, the validation 
+  is provided for you-->
+
+    <div>
+      <label for="myEmail">*Contact Email</label>     
+      <input type="email" class="form-control" id="contactEmail" [(ngModel)]="newCompany.contactEmail" 
+          name="contactEmail" placeholder="Email@mail.com" #contactEmail="ngModel" required/>   
+      <div [hidden]="contactEmail.valid || contactEmail.untouched" class="alert alert-danger">
+        Email Required
+      </div>
+      <div *ngIf="!validContactEmail() && contactEmail.touched">
+        <alert type="warning">
+          <strong> Not a Valid Email</strong>
+        </alert>
+      </div>
+    </div>
+
   
   <div>
-    <label for="contactPhoneNumber">Contact Phone Number</label>
+		<label for="billingContactName">*Billing Contact Name</label> 
+		<input type="text" class="form-control" id="billingContactName" name="billingContactName" ngControl="billingContactName" 
+      [(ngModel)]="newCompany.billingContactName" placeholder="Bill Marx" required>
+	</div>	
+	
+    <div>
+      <label for="billingEmail">*Billing Email</label> 
+      <input type="email" class="form-control" id="billingEmail" [(ngModel)]="newCompany.billingEmail" 
+          name="billingEmail" placeholder="marx190@billing.com" #billingEmail="ngModel" required> 
+      <div [hidden]="billingEmail.valid || billingEmail.untouched" class="alert alert-danger">
+        Email Required
+      </div>
+      <div *ngIf="!validBillingEmail() && billingEmail.touched">
+        <alert type="warning">
+          <strong> Not a Valid Email</strong>
+        </alert>
+      </div>
+    </div>
+
+  <div>
+    <label for="contactPhoneNumber">*Contact Phone Number</label>
     <input type="tel" class="form-control" id="contactPhoneNumber" name="contactPhoneNumber" ngControl="contactPhoneNumber" 
-    [(ngModel)]="newCompany.contactPhoneNumber" placeholder="1 999 234 4545" required>
+      [(ngModel)]="newCompany.contactPhoneNumber" placeholder="1 999 234 4545 OR 1 (999) 234-4545 OR 19992344545" #phone="ngModel" required>
+    <div [hidden]="phone.valid || phone.untouched" class="alert alert-danger">
+      Phone Number Required
+    </div>
+    <div *ngIf="!validPhoneNumber() && phone.touched">
+      <alert type="warning">
+        <strong> Not a valid Phone Number</strong>
+      </alert>
+    </div>
   </div>
+  <!--<div *ngIf="!validPhoneNumber() && newCompany.contactPhoneNumber.touched">
+    <alert type="warning">
+      <strong> Phone number must include 10 numbers and no letters</strong>
+    </alert>
+  </div>-->
   
   <div>
-    <label for="companyName">Company Name</label>
+    <label for="companyName">*Company Name</label>
     <input type="text" class="form-control" id="companyName" name="companyName" ngControl="companyName" 
     [(ngModel)]="newCompany.companyName" placeholder="JaneTech Corporation" required>
   </div>
   
   <div>
-    <label for="companyWebsite">Company Website</label>
+    <label for="companyWebsite">*Company Website</label>
     <input type="url" class="form-control" id="companyWebsite" name="companyWebsite" ngControl="companyWebsite" 
-    [(ngModel)]="newCompany.companyWebsite" placeholder="https://www.janetech.com" required>
+      [(ngModel)]="newCompany.companyWebsite" placeholder="https://www.janetech.com" #website="ngModel" required>
+    <div [hidden]="website.valid || website.untouched" class="alert alert-danger">
+      Website Required
+    </div>
+    <div *ngIf="!validURL() && website.touched">
+      <alert type="warning">
+        <strong> Not a valid URL</strong>
+      </alert>
+    </div>
   </div>
   
   <div>
-    <label for="companyDescription">Company Description</label>
+    <label for="companyDescription">*Company Description</label>
     <textarea type="text" class="form-control" rows="5" cols="80" id="companyDescription" name="companyDescription" ngControl="companyDescription" 
     [(ngModel)]="newCompany.companyDescription" placeholder="Find solutions to your tech problems here!" required>
     </textarea>
@@ -43,7 +97,7 @@
     <label>Select Desired Majors:</label>
     <ul>
       <li *ngFor="let major of majorOptions; let i = index">
-        <input type="checkbox" (change)="AddMajor(major)"> {{ ToDisplay(major) }}
+        <input type="checkbox" (change)="newCompany.AddMajor(major)"> {{ newCompany.toDisplay(major) }}
       </li>
       <div [hidden]="majorsSelectedBoolean" class="alert alert-danger">     
         Please select at least one major.
@@ -55,7 +109,7 @@
     <label>Select Desired Positions:</label>
     <ul>
       <li *ngFor="let position of positionOptions; let i = index">
-        <input type="checkbox" (change)="AddPosition(position)"> {{ ToDisplay(position) }}
+        <input type="checkbox" (change)="newCompany.AddPosition(position)"> {{ newCompany.toDisplay(position) }}
       </li>
       <div [hidden]="positionsSelectedBoolean" class="alert alert-danger">     
         Please select at least one position.
