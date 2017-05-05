@@ -11,12 +11,9 @@
     // map tells the System loader where to look for things
     map: {
       // our app is within the app folder
-// <<<<<<< HEAD
 //       app: 'app/',
-// =======
       app: 'app',
       
-// >>>>>>> aeade345501146a8874013e1e1290b96e96d9c0d
 
       // angular bundles
       '@angular/core':                        'npm:@angular/core/bundles/core.umd.js',
@@ -30,6 +27,8 @@
 
       // other libraries
 			'ng2-file-upload': 'npm:ng2-file-upload',  
+			'ng2-pdf-viewer': 'npm:ng2-pdf-viewer',
+			'pdfjs-dist': 'node_modules/pdfjs-dist',
       //need this for google maps
       'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js',
 
@@ -54,7 +53,12 @@
 			'ng2-file-upload': {  
 				main: 'ng2-file-upload.js', 
 				defaultExtension: 'js' 
-			}
+			},
+			'ng2-pdf-viewer': { 
+				main: 'dist/index.js', 
+				defaultExtension: 'js'
+			}, 
+			'pdfjs-dist': { defaultExtension: 'js' }
     }
   });
 })(this);
