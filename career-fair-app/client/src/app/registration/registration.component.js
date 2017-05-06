@@ -40,7 +40,7 @@ var RegistrationComponent = (function () {
     }
     RegistrationComponent.prototype.validURL = function () {
         if (this.newCompany.companyWebsite.length > 0) {
-            var urlPattern = /(https:\/\/|http:\/\/)(www\.)?(\w*\d*)+\.\w+(\/(\w*\d*)+)*/gi;
+            var urlPattern = /^(https:\/\/|http:\/\/)(www\.)?(\w*\d*)+\.\w+(\/(\w*\d*)+)*((\w*\d*)+\.\w+)?$/gi;
             var urlRegex = new RegExp(urlPattern);
             if (this.newCompany.companyWebsite.match(urlRegex)) {
                 return true;
@@ -55,7 +55,7 @@ var RegistrationComponent = (function () {
     };
     RegistrationComponent.prototype.validContactEmail = function () {
         if (this.newCompany.contactEmail.length > 0) {
-            var emailPattern = /(\d*\w*)+\@\w+\.\w+(\.\w+)*/;
+            var emailPattern = /^(\d*\w*)+\@\w+\.\w+(\.\w+)*$/;
             var emailRegex = new RegExp(emailPattern);
             if (this.newCompany.contactEmail.match(emailRegex)) {
                 return true;
@@ -70,7 +70,7 @@ var RegistrationComponent = (function () {
     };
     RegistrationComponent.prototype.validBillingEmail = function () {
         if (this.newCompany.billingEmail.length > 0) {
-            var emailPattern = /(\d*\w*)+\@\w+\.\w+(\.\w+)*/;
+            var emailPattern = /^(\d*\w*)+\@\w+\.\w+(\.\w+)*$/;
             var emailRegex = new RegExp(emailPattern);
             if (this.newCompany.billingEmail.match(emailRegex)) {
                 return true;
@@ -84,22 +84,19 @@ var RegistrationComponent = (function () {
         }
     };
     RegistrationComponent.prototype.validPhoneNumber = function () {
-        var numCount = 0;
-        var valid = false;
-        for (var i = 0; i < this.newCompany.contactPhoneNumber.length; i++) {
-            if (this.newCompany.contactPhoneNumber[i] >= 'a' && this.newCompany.contactPhoneNumber[i] <= 'Z') {
-                valid = false;
-                break;
+        if (this.newCompany.contactPhoneNumber.length > 0) {
+            var phonePattern = /^(\(?\d{3}\)?)\-?\.?\s*\d{3}\-?\.?\s*\d{4}$/;
+            var phoneRegex = new RegExp(phonePattern);
+            if (this.newCompany.contactPhoneNumber.match(phoneRegex)) {
+                return true;
             }
-            if (this.newCompany.contactPhoneNumber[i] >= '0' && this.newCompany.contactPhoneNumber[i] <= '9') {
-                numCount += 1;
-                if (numCount == 11) {
-                    valid = true;
-                    break;
-                }
+            else {
+                return false;
             }
         }
-        return valid;
+        else {
+            return false;
+        }
     };
     RegistrationComponent.prototype.AddMajor = function (major) {
         this.newCompany.AddMajor(major);

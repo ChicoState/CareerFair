@@ -50,13 +50,13 @@
   <div>
     <label for="contactPhoneNumber">*Contact Phone Number</label>
     <input type="tel" class="form-control" id="contactPhoneNumber" name="contactPhoneNumber" ngControl="contactPhoneNumber" 
-      [(ngModel)]="newCompany.contactPhoneNumber" placeholder="1 999 234 4545 OR 1 (999) 234-4545 OR 19992344545" #phone="ngModel" required>
+      [(ngModel)]="newCompany.contactPhoneNumber" placeholder="999 234 4545 OR (999) 234-4545 OR 9992344545" #phone="ngModel" required>
     <div [hidden]="phone.valid || phone.untouched" class="alert alert-danger">
       Phone Number Required
     </div>
     <div *ngIf="!validPhoneNumber() && phone.touched">
       <alert type="warning">
-        <strong>Phone number must contain 11 digits and no letters</strong>
+        <strong>Phone number must contain 10 digits and no letters</strong>
       </alert>
     </div>
   </div>
