@@ -3,6 +3,6 @@ interface AuthConfiguration {
     domain: string
 }
 export const myConfig: AuthConfiguration = {
-    clientID: 'oeUlYzdwqTTPiHD5Mz7rz3NgXaodNeK1',
+    clientID: 'lQRo1pNBtAwGDM0aA7NrmSuU1vFCTMGQ',
     domain: 'cmartinez77.auth0.com'
 };

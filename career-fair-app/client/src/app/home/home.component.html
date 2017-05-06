@@ -17,3 +17,9 @@
 
 <p> {{paragraph1}} </p>
 <p> {{paragraph2}} </p>
+
+<div class="row">
+    <div *ngFor="let sponsor of sponsors">
+        <img src="{{sponsor.url}}" alt="{{sponsor.url}}" class="col-xs-3 sponsor-img"  >
+    </div>  
+</div>

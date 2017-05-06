@@ -12,13 +12,14 @@ var core_1 = require('@angular/core');
 var angular2_jwt_1 = require('angular2-jwt');
 var auth_config_1 = require('./auth.config');
 //options for the login popup
-var options = {
-    allowSignUp: false
-};
+// var options = {
+//   // allowSignUp: false
+// };
 var Auth = (function () {
     function Auth() {
         //Configure Auth0Lock
-        this.lock = new Auth0Lock(auth_config_1.myConfig.clientID, auth_config_1.myConfig.domain, options);
+        // lock = new Auth0Lock(myConfig.clientID, myConfig.domain, options);
+        this.lock = new Auth0Lock(auth_config_1.myConfig.clientID, auth_config_1.myConfig.domain);
         // Add callback for lock `authenticated` event
         this.lock.on('authenticated', function (authResult) {
             localStorage.setItem('id_token', authResult.idToken);
@@ -32,7 +33,7 @@ var Auth = (function () {
     Auth.prototype.authenticated = function () {
         // Check if there's an unexpired JWT
         // It searches for an item in localStorage with key == 'id_token'
-        return angular2_jwt_1.tokenNotExpired();
+        return angular2_jwt_1.tokenNotExpired('id_token');
     };
     ;
     Auth.prototype.logout = function () {

@@ -6,15 +6,16 @@ import { myConfig }         from './auth.config'
 // Avoid name not found warnings
 declare var Auth0Lock: any;
 //options for the login popup
-var options = {
-  allowSignUp: false
-};
+// var options = {
+//   // allowSignUp: false
+// };
 
 @Injectable()
 export class Auth {
     //Configure Auth0Lock
-    lock
-     = new Auth0Lock(myConfig.clientID, myConfig.domain, options);
+    // lock = new Auth0Lock(myConfig.clientID, myConfig.domain, options);
+    lock = new Auth0Lock(myConfig.clientID, myConfig.domain);
+
 
     constructor() {
         // Add callback for lock `authenticated` event
@@ -31,7 +32,7 @@ export class Auth {
     public authenticated() {
     // Check if there's an unexpired JWT
     // It searches for an item in localStorage with key == 'id_token'
-    return tokenNotExpired();
+    return tokenNotExpired('id_token');
   };
 
     public logout() {

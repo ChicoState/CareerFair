@@ -1,5 +1,33 @@
-<button class="btn btn-primary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
-<button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
+<div class="admin-login">
+    <button class="btn btn-primary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
+    <button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
 
-<h4 *ngIf="auth.authenticated()">You are logged in</h4>
-<h4 *ngIf="!auth.authenticated()">You are not logged in, please click 'Log in' button to login</h4>
+<h4 *ngIf="!auth.authenticated()">Hello Ben, Please log in</h4>
+
+</div>
+<h4 *ngIf="auth.authenticated()">
+    
+    
+    <table>
+        <tr> 
+            <th>Company Name</th>
+            <th>payment type</th>
+            <th>Fee </th>
+            <th>Contact Name</th>
+            <th>Contact Email</th>
+            <th>Contact Phone</th>
+            <th>Confirmation</th>
+        </tr>
+
+        <tr *ngFor="let company of companies" >
+            <td>{{company.companyName}}</td> 
+            <td>{{company.registrationType}}</td> 
+            <td>{{company.moneyOwed}}</td>
+            <td>{{company.contactName}}</td>
+            <td>{{company.contactEmail}}</td>
+            <td>{{company.contactPhoneNumber}}</td>  
+            <td>{{company.confirmation}}</td>
+        </tr>
+    </table>
+
+</h4>

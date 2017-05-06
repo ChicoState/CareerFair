@@ -16,6 +16,11 @@ var AppComponent = (function () {
         this.title = 'Engineering Technical Career Fair';
         this.date = 'February 16, 2017 Thursday, 12:30 - 4:30';
         this.location = ' Bell Memorial Union';
+        this.footerLine1 = 'MESA Programs, O\'Connell 114';
+        this.footerLine2 = 'California State University, Chico';
+        this.footerLine3 = '400 West First Street';
+        this.footerLine4 = 'Chico, CA 95929-0100';
+        this.footerLine5 = '(530) 898-4017';
     }
     AppComponent = __decorate([
         core_1.Component({
