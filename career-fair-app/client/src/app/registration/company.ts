@@ -1,3 +1,4 @@
+
 export class Company {
 
     contactName: string;

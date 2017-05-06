@@ -101,20 +101,23 @@ export class RegistrationComponent {
   }
 
   validPhoneNumber(): boolean {
-    let numCount: number = 0;
+    var numCount: number = 0;
+    var valid: boolean = false;
 
     for (var i = 0; i < this.newCompany.contactPhoneNumber.length; i++) {
+      if (this.newCompany.contactPhoneNumber[i] >= 'a' && this.newCompany.contactPhoneNumber[i] <= 'Z') {
+        valid = false;
+        break;
+      }
       if (this.newCompany.contactPhoneNumber[i] >= '0' && this.newCompany.contactPhoneNumber[i] <= '9') {
         numCount += 1;
+        if (numCount == 11) {
+          valid = true;
+          break;
+        }
       }
-      if (this.newCompany.contactPhoneNumber[i] >= 'a' &&
-        this.newCompany.contactPhoneNumber[i] <= 'Z')
-        return false;
     }
-    if (numCount == 11)
-      return true;
-    else
-      return false;
+    return valid;
   }
 
   AddMajor(major: string) {
