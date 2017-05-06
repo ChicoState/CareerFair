@@ -19,6 +19,7 @@ var ngx_bootstrap_1 = require('ngx-bootstrap');
 var app_component_1 = require('./app.component');
 var home_component_1 = require('./home/home.component');
 var header_component_1 = require('./layout/header.component');
+var footer_component_1 = require('./layout/footer.component');
 var companies_component_1 = require('./companies/companies.component');
 var registration_component_1 = require('./registration/registration.component');
 var parking_component_1 = require('./parking/parking.component');
@@ -48,6 +49,7 @@ var AppModule = (function () {
             declarations: [app_component_1.AppComponent,
                 home_component_1.HomeComponent,
                 header_component_1.HeaderComponent,
+                footer_component_1.FooterComponent,
                 companies_component_1.CompaniesComponent,
                 registration_component_1.RegistrationComponent,
                 parking_component_1.ParkingComponent,

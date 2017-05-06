@@ -1,0 +1,1000 @@
+ 1129  clear
+ 1130  make
+ 1131  c
+ 1132  make
+ 1133  c
+ 1134  cat tests/t01.cmd 
+ 1135  rm x
+ 1136  ./run train_input1.txt train_output1.txt test_input1.txt test_output1.txt structure1.txt weights1.txt encoding.txt 0.01 300 > x
+ 1137  vimdiff x tests/t01.out 
+ 1138  make
+ 1139  rm x
+ 1140  ./run train_input1.txt train_output1.txt test_input1.txt test_output1.txt structure1.txt weights1.txt encoding.txt 0.01 300 > x
+ 1141  vimdiff x tests/t01.out 
+ 1142  rm x
+ 1143  cat tests/t02.cmd 
+ 1144  rm x
+ 1145  ./run train_input2.txt train_output2.txt test_input2.txt test_output2.txt structure2.txt weights2.txt encoding.txt 0.01 300
+ 1146  ./run train_input2.txt train_output2.txt test_input2.txt test_output2.txt structure2.txt weights2.txt encoding.txt 0.01 300 > x
+ 1147  vimdiff x tests/t02.out 
+ 1148  rm x
+ 1149  cat tests/t03.out 
+ 1150  cat tests/t03.cmd
+ 1151  rm x
+ 1152  ./run train_input2.txt train_output2.txt test_input2.txt test_output2.txt structure2.txt weights2.txt encoding.txt 0.01 100 > x
+ 1153  vimdiff x tests/t03.out 
+ 1154  cat tests/t04.cmd
+ 1155  rm x
+ 1156  ./run train_input1.txt train_output1.txt test_input1.txt test_output1.txt structure1.txt weights1.txt encoding.txt 0.01 200 > x
+ 1157  vimdiff x tests/t04.out 
+ 1158  make
+ 1159  c
+ 1160  cd 550/p2/
+ 1161  vim ann.h 
+ 1162  make
+ 1163  c
+ 1164  cat tests/t01.cmd 
+ 1165  ./run train_input1.txt train_output1.txt test_input1.txt test_output1.txt structure1.txt weights1.txt encoding.txt 0.01 300 > x
+ 1166  vimdiff x tests/t01.out 
+ 1167  cd 550/p2/
+ 1168  ls
+ 1169  vim ann.cpp 
+ 1170  cd 550/p2/
+ 1171  ls
+ 1172  vim ann.cpp 
+ 1173  vim ann.h 
+ 1174  ls -a
+ 1175  rm .ann.cpp.swp 
+ 1176  vim ann.cpp 
+ 1177  c
+ 1178  make
+ 1179  cat tests/t01.cmd 
+ 1180  ./run train_input1.txt train_output1.txt test_input1.txt test_output1.txt structure1.txt weights1.txt encoding.txt 0.01 300 > x
+ 1181  vimdiff x tests/t01.out 
+ 1182  ls
+ 1183  cd 550/p2/
+ 1184  ls
+ 1185  diff x tests/t01.out 
+ 1186  vim ann.cpp 
+ 1187  p
+ 1188  ls
+ 1189  p
+ 1190  npm start
+ 1191  p
+ 1192  cd client/
+ 1193  npm start
+ 1194  c
+ 1195  npm start
+ 1196  c
+ 1197  npm start
+ 1198  p
+ 1199  ls
+ 1200  cd client/
+ 1201  ls
+ 1202  cd src/app/
+ 1203  ls
+ 1204  cd fileupload/
+ 1205  ls
+ 1206  cd ..
+ 1207  clear
+ 1208  ls
+ 1209  cd client/
+ 1210  ls
+ 1211  cd src/app/
+ 1212  ls
+ 1213  cd ../../../
+ 1214  ls
+ 1215  git pull origin chris-pedro 
+ 1216  git status
+ 1217  ls
+ 1218  vim package.json 
+ 1219  git commit -am 'merging post-database-life with chris-pedro'
+ 1220  git reset HEAD~
+ 1221  clear
+ 1222  ls
+ 1223  git status
+ 1224  clear
+ 1225  ls
+ 1226  git status
+ 1227  git statsh
+ 1228  git stash
+ 1229  clear
+ 1230  git pull origin chris-pedro 
+ 1231  git status
+ 1232  c
+ 1233  cd client/
+ 1234  npm install angular2-jwt --save
+ 1235  npm install ngx-bootstrap --save
+ 1236  vim ../../POSTDATABASELIFE.md 
+ 1237  p
+ 1238  git pull
+ 1239  5~clear
+ 1240  clera
+ 1241  c
+ 1242  l
+ 1243  cd client/
+ 1244  ls
+ 1245  cd src/
+ 1246  ls
+ 1247  cd app/
+ 1248  ls
+ 1249  cd ../../../
+ 1250  ls
+ 1251  git pull origin post-database-life 
+ 1252  clear
+ 1253  ls
+ 1254  cd client/src/app/
+ 1255  ls
+ 1256  cd ../../
+ 1257  cd ..
+ 1258  clear
+ 1259  git status
+ 1260  git stash
+ 1261  clear
+ 1262  ls
+ 1263  git pull origin post-database-life 
+ 1264  git rm
+ 1265  git clean -f
+ 1266  git pull origin post-database-life 
+ 1267  clear
+ 1268  git status
+ 1269  git pull -f origin post-database-life 
+ 1270  git add *
+ 1271  git stash
+ 1272  git pull origin post-database-life 
+ 1273  c
+ 1274  l
+ 1275  cd client/
+ 1276  ls
+ 1277  cd src/
+ 1278  ls
+ 1279  cd app/
+ 1280  ls
+ 1281  cd ../.././
+ 1282  cd ..
+ 1283  git add *
+ 1284  git stash
+ 1285  git pull origin chris-pedro 
+ 1286  git status
+ 1287  git add package.json 
+ 1288  git add client/package.json 
+ 1289  git add client/src/app/app.module.ts 
+ 1290  git add client/src/app/app.routing.ts 
+ 1291  git add client/src/app/volunteer/volunteer.component.html 
+ 1292  git add client/src/app/volunteer/volunteer.component.ts 
+ 1293  git add client/src/systemjs.config.js 
+ 1294  git add ../POSTDATABASELIFE.md 
+ 1295  git commit -m "look at POSTDATABASELIFE.md for new installs! finished merging post-database-life with chris-pedro. I think everyones code is here now!"
+ 1296  git rm client/src/app/app.module.js
+ 1297  git rm client/src/app/app.module.js.map
+ 1298  git rm client/src/app/app.routing.js
+ 1299  git rm client/src/app/app.routing.js.map 
+ 1300  git rm client/src/app/volunteer/volunteer.component.js
+ 1301  git rm client/src/app/volunteer/volunteer.component.js.map 
+ 1302  git commit -m "look at POSTDATABASELIFE.md for new installs! finished merging post-database-life with chris-pedro. I think everyones code is here now!"
+ 1303  git push origin post-database-life 
+ 1304  sudo hdiutil attach Downloads/SDM.dmg 
+ 1305  dmg2dmg Downloads/SDM.dmg Downloads/SDM.img
+ 1306  cd Downloads/
+ 1307  ls
+ 1308  rm SDM.dmg 
+ 1309  sudo apt-get install python-lxml
+ 1310  clear
+ 1311  ls
+ 1312  git clone https://github.com/RadekSimkanic/Linux-SDM-Downloader.git
+ 1313  ls
+ 1314  cd Linux-SDM-Downloader/
+ 1315  ls
+ 1316  mv ../100540653041.sdx .
+ 1317  python main.py 100540653041.sdx 
+ 1318  ls
+ 1319  vim main.py 
+ 1320  sudo apt-get install bouml
+ 1321  ls Downloads/
+ 1322  wget -q http://bouml.free.fr/bouml_key.asc -O- | sudo apt-key add -
+ 1323  echo "deb http://www.bouml.fr/apt/xenial xenial non-free" | sudo tee -a /etc/apt/sources.list
+ 1324  vim /etc/apt/sources.list
+ 1325  sudo apt-get update 
+ 1326  c
+ 1327  sudo apt-get install bouml
+ 1328  c
+ 1329  cd Do
+ 1330  cd Downloads/
+ 1331  ls
+ 1332  sudo dpkg -i StarUML-v2.8.0-64-bit.deb 
+ 1333  ls
+ 1334  rm StarUML-v2.8.0-64-bit.deb 
+ 1335  rm -rf Linux-SDM-Downloader/
+ 1336  clear
+ 1337  p
+ 1338  git add client/src/app/layout/header.component.html 
+ 1339  git commit -m "fixed navbar"
+ 1340  git push origin post-database-life 
+ 1341  p
+ 1342  npm start
+ 1343  p
+ 1344  cd client/
+ 1345  npm start
+ 1346  p
+ 1347  cd client/src/
+ 1348  mkdir uploads
+ 1349  ls
+ 1350  cd uploads/
+ 1351  ls
+ 1352  p
+ 1353  l
+ 1354  cd ..
+ 1355  l
+ 1356  vim POSTDATABASELIFE.md 
+ 1357  cd career-fair-app/
+ 1358  cd client/src/
+ 1359  ls
+ 1360  p
+ 1361  cd client/`
+ 1362  f
+ 1363  cd client/
+ 1364  ls
+ 1365  cd src/
+ 1366  ls
+ 1367  npm start
+ 1368  p
+ 1369  npm start
+ 1370  ls
+ 1371  p
+ 1372  ls
+ 1373  vim server.js 
+ 1374  p
+ 1375  cd client/
+ 1376  cd
+ 1377  ls
+ 1378  ls -a
+ 1379  vim .bashrc 
+ 1380  s
+ 1381  ls
+ 1382  p
+ 1383  pwd
+ 1384  cd ..
+ 1385  ls
+ 1386  cd career-fair-app/
+ 1387  ng test
+ 1388  cd ..
+ 1389  ng test
+ 1390  cd career-fair-app/client/
+ 1391  clear
+ 1392  ng test
+ 1393  ls
+ 1394  clear
+ 1395  npm install @angular/cli
+ 1396  ng test
+ 1397  clear
+ 1398  npm install @angular/cli --save
+ 1399  ng test
+ 1400  cd ..
+ 1401  ls
+ 1402  vim package.json 
+ 1403  npm install @angular/cli --save
+ 1404  npm test
+ 1405  cd client/
+ 1406  ls
+ 1407  npm test
+ 1408  npm install
+ 1409  npm test
+ 1410  clera
+ 1411  clear
+ 1412  ng test
+ 1413  cd src/app/registration/
+ 1414  ng test
+ 1415  cd 
+ 1416  p
+ 1417  ng test
+ 1418  p
+ 1419  cd client/
+ 1420  npm start
+ 1421  c
+ 1422  p
+ 1423  grep -nr "karma.conf.js"
+ 1424  c
+ 1425  ls
+ 1426  cd node_modules/
+ 1427  ls
+ 1428  cd debug/
+ 1429  ls
+ 1430  ls ../../client/
+ 1431  cp karma.conf.js ../../client/
+ 1432  cd ../../client/
+ 1433  ls
+ 1434  c
+ 1435  ls
+ 1436  vim package.json 
+ 1437  npm install -g angular-cli
+ 1438  clear
+ 1439  cd ..
+ 1440  npm start
+ 1441  p
+ 1442  npm start
+ 1443  clear
+ 1444  npm start
+ 1445  c
+ 1446  npm start
+ 1447  p
+ 1448  cd client/
+ 1449  npm start
+ 1450  c
+ 1451  npm start
+ 1452  p
+ 1453  npm start
+ 1454  p
+ 1455  cd client/
+ 1456  ls
+ 1457  npm start
+ 1458  p
+ 1459  cd ..
+ 1460  p
+ 1461  cd client/src/app/registration/
+ 1462  ls
+ 1463  git add registration.component.html 
+ 1464  git add registration.component.css 
+ 1465  git add ../companies/companies.component.html 
+ 1466  git add ../companies/companies.component.css 
+ 1467  git commit -m "frank worked on css for registration and companies"
+ 1468  git push origin post-database-life 
+ 1469  git commit -m "frank worked on css for registration and companies"
+ 1470  git push origin post-database-life 
+ 1471  p
+ 1472  ls
+ 1473  git branch
+ 1474  git checkout -b delete_parking
+ 1475  cd client/src/app/layout/
+ 1476  vim header.component.html 
+ 1477  git add header.component.html 
+ 1478  git commit -m "deleted second parking tab"
+ 1479  git push origin delete_parking 
+ 1480  p
+ 1481  git checkout post-database-life 
+ 1482  git merge delete_parking 
+ 1483  git branch
+ 1484  git add client/src/app/layout/header.component.html 
+ 1485  git commit -m "deleted second parking"
+ 1486  git push origin post-database-life 
+ 1487  history
+ 1488  p
+ 1489  npm start
+ 1490  ls
+ 1491  cd ..
+ 1492  ls
+ 1493  git pull origin post-database-life 
+ 1494  clear
+ 1495  git status
+ 1496  git stash
+ 1497  clear
+ 1498  git pull origin post-database-life 
+ 1499  git stash
+ 1500  git status
+ 1501  git add .
+ 1502  clear
+ 1503  cd ..
+ 1504  rm -rf CareerFair/
+ 1505  git pull origin post-database-life
+ 1506  git branch
+ 1507  git clone -b post-database-life https://github.com/ChicoState/CareerFair.git
+ 1508  c
+ 1509  l
+ 1510  p
+ 1511  ls
+ 1512  npm start
+ 1513  history
+ 1514  ls
+ 1515  cd ..
+ 1516  git branch
+ 1517  ls
+ 1518  git branch -d delete_parking 
+ 1519  ls
+ 1520  git branch
+ 1521  git checkout -b redoing_registration
+ 1522  ls
+ 1523  cd career-fair-app/
+ 1524  ls
+ 1525  npm start
+ 1526  ls
+ 1527  p
+ 1528  ls
+ 1529  cd client/
+ 1530  ls
+ 1531  cd src/app/
+ 1532  ls
+ 1533  cd
+ 1534  cd CareerFair/
+ 1535  ls
+ 1536  cd ..
+ 1537  p
+ 1538  cd client/
+ 1539  npm start
+ 1540  clear
+ 1541  cd
+ 1542  npm start
+ 1543  p
+ 1544  cd client/
+ 1545  npm install
+ 1546  cd ..
+ 1547  npm install
+ 1548  cd client/
+ 1549  clear
+ 1550  npm start
+ 1551  c
+ 1552  cd ..
+ 1553  cd career-fair-app/
+ 1554  cd ..
+ 1555  git branch
+ 1556  cd career-fair-app/
+ 1557  clear
+ 1558  cd client/
+ 1559  npm start
+ 1560  p
+ 1561  npm start
+ 1562  git branch
+ 1563  npm start
+ 1564  git push origin post-database-life 
+ 1565  c
+ 1566  l
+ 1567  p
+ 1568  clear
+ 1569  git branch
+ 1570  git push origin --delete delete_parking
+ 1571  git push origin --delete new_branch
+ 1572  git push origin --delete working
+ 1573  clear
+ 1574  git push origin --delete chris_pedro
+ 1575  git push origin --delete chris-pedro
+ 1576  ls
+ 1577  git branch
+ 1578  clear
+ 1579  npm start
+ 1580  cd client/
+ 1581  clear
+ 1582  npm start
+ 1583  cd src/app/registration/
+ 1584  ls
+ 1585  vim registration.component.spec.ts 
+ 1586  p
+ 1587  cd client/
+ 1588  clear
+ 1589  npm start
+ 1590  cd ..
+ 1591  git branch
+ 1592  npm start
+ 1593  cd client/
+ 1594  npm start
+ 1595  c
+ 1596  cd
+ 1597  p
+ 1598  p
+ 1599  git branch
+ 1600  git add client/src/app/layout/footer.component.ts
+ 1601  git add client/src/app/layout/footer.component.css
+ 1602  git add client/src/app/layout/footer.component.html 
+ 1603  git add client/src/app/app.component.html 
+ 1604  git add client/src/app/app.component.ts 
+ 1605  git add client/src/app/app.module.ts 
+ 1606  git commit -m "created footer, need to come back and play with css"
+ 1607  git push origin redoing_registration 
+ 1608  git checkout post-database-life 
+ 1609  git merge redoing_registration 
+ 1610  git push origin --delete redoing_registration
+ 1611  git push origin --delete chris-admin
+ 1612  git branch
+ 1613  git branch -d redoing_registration 
+ 1614  git checkout -b next
+ 1615  git branch
+ 1616  p
+ 1617  git branch
+ 1618  npm start
+ 1619  p
+ 1620  cd client/
+ 1621  l
+ 1622  cd ..
+ 1623  cd client/
+ 1624  npm start
+ 1625  p
+ 1626  cd client/
+ 1627  npm start
+ 1628  c
+ 1629  npm start
+ 1630  jp
+ 1631  c
+ 1632  p
+ 1633  npm start
+ 1634  c
+ 1635  npm start
+ 1636  p
+ 1637  npm start
+ 1638  p
+ 1639  cd client/
+ 1640  npm start
+ 1641  p
+ 1642  git status
+ 1643  clear
+ 1644  ls
+ 1645  git branch
+ 1646  cd client/
+ 1647  npm start
+ 1648  p
+ 1649  cd client/
+ 1650  ls
+ 1651  cd src/app/
+ 1652  ls
+ 1653  cd registration/
+ 1654  ls
+ 1655  git add registration.component.css 
+ 1656  git add registration.component.html 
+ 1657  git add registration.component.ts 
+ 1658  ls
+ 1659  git add company.ts 
+ 1660  git commit -m "validation for 11 digit phone number, valid email, and valid url"
+ 1661  git push origin post-database-life 
+ 1662  clear
+ 1663  git push origin post-database-life 
+ 1664  git add registration.component.css 
+ 1665  git add registration.component.html 
+ 1666  git add registration.component.ts 
+ 1667  git add company.ts 
+ 1668  git commit -m "trying to push again"
+ 1669  git push origin post-database-life 
+ 1670  git push origin next 
+ 1671  p
+ 1672  c
+ 1673  ls
+ 1674  git branch
+ 1675  git branch post-database-life 
+ 1676  git checkout post-database-life 
+ 1677  ls
+ 1678  cd client/src/app/registration/
+ 1679  ls
+ 1680  p
+ 1681  npm start
+ 1682  git merge next 
+ 1683  npm start
+ 1684  clear
+ 1685  git push origin post-database-life
+ 1686  p
+ 1687  git push origin -d next 
+ 1688  git push origin --delete next 
+ 1689  clear
+ 1690  ls
+ 1691  git branch
+ 1692  git branch -d next 
+ 1693  git checkout -b next
+ 1694  c
+ 1695  git branch
+ 1696  clear
+ 1697  p
+ 1698  cd client/
+ 1699  ls
+ 1700  npm test
+ 1701  c
+ 1702  npm test
+ 1703  c
+ 1704  cd src/app/
+ 1705  ls
+ 1706  cd registration/
+ 1707  ls
+ 1708  vim registration.component.spec.ts 
+ 1709  git add registration.component.spec.ts 
+ 1710  git commit -m "simple test we need to get passing"
+ 1711  git push origin post-database-life 
+ 1712  p
+ 1713  git checkout post-database-life 
+ 1714  git merge next 
+ 1715  git push origin post-database-life 
+ 1716  clear
+ 1717  git checkout next 
+ 1718  clear
+ 1719  cd client/
+ 1720  cd src/app/registration/
+ 1721  ls
+ 1722  p
+ 1723  cd client/
+ 1724  npm i -S @angular/forms
+ 1725  npm run test:headless
+ 1726  vim registration.component.spec.ts 
+ 1727  cd src/app/registration/
+ 1728  c
+ 1729  l
+ 1730  vim registration.component.spec.ts 
+ 1731  p
+ 1732  cd client/
+ 1733  vim karma.conf.js 
+ 1734  ls
+ 1735  npm install karma-cli phantomjs -g
+ 1736  sudo npm install karma-cli phantomjs -g
+ 1737  karma --version
+ 1738  phantomjs --version
+ 1739  npm install karma jasmine --save-dev
+ 1740  ls
+ 1741  vim package.json 
+ 1742  clear
+ 1743  npm install angular-mocks --save
+ 1744  ls
+ 1745  cd ..
+ 1746  ls
+ 1747  cd client/src/app/
+ 1748  ls
+ 1749  p
+ 1750  cd client/
+ 1751  c
+ 1752  npm start
+ 1753  p
+ 1754  ls
+ 1755  cd client/
+ 1756  ls
+ 1757  cd ..
+ 1758  ls
+ 1759  cd ..
+ 1760  ls
+ 1761  cd career-fair-app/
+ 1762  ls
+ 1763  cd node_modules/
+ 1764  ls
+ 1765  cd ..
+ 1766  ls
+ 1767  c
+ 1768  l
+ 1769  cd client/
+ 1770  ls
+ 1771  cd node_modules/
+ 1772  ls
+ 1773  cd ..
+ 1774  clear
+ 1775  ls
+ 1776  cd ..
+ 1777  ls
+ 1778  cd client/
+ 1779  ls
+ 1780  cd node_modules/
+ 1781  ls
+ 1782  cd karma
+ 1783  ls
+ 1784  cd ..
+ 1785  ls
+ 1786  cd jasmine
+ 1787  ls
+ 1788  cd
+ 1789  grep -nr "karma\.conf\.js"
+ 1790  grep -nr "karma\.conf\.js" .
+ 1791  grep -nr "karma" .
+ 1792  clear
+ 1793  p
+ 1794  find -name "karma"
+ 1795  cd client/
+ 1796  cd node_modules/
+ 1797  cd debug/
+ 1798  ls
+ 1799  vim karma.conf.js 
+ 1800  cp karma.conf.js ../../
+ 1801  cd ..
+ 1802  ls
+ 1803  cd ..
+ 1804  ls
+ 1805  c
+ 1806  npm run test:headless
+ 1807  find -name "system"
+ 1808  find -name "systemjs"
+ 1809  cd src/
+ 1810  clear
+ 1811  ls
+ 1812  vim systemjs.config.
+ 1813  cd ../../../
+ 1814  grep -nr "9876" .
+ 1815  c
+ 1816  cd career-fair-app/
+ 1817  cd client/
+ 1818  grep -nr "9876" .
+ 1819  c
+ 1820  ls
+ 1821  cd src/
+ 1822  ls
+ 1823  p
+ 1824  npm start
+ 1825  p
+ 1826  ls
+ 1827  cd client/
+ 1828  ls
+ 1829  c
+ 1830  l
+ 1831  c
+ 1832  l
+ 1833  ls
+ 1834  cd src/
+ 1835  ls
+ 1836  cd app/
+ 1837  l
+ 1838  scd ..
+ 1839  ls
+ 1840  l
+ 1841  c
+ 1842  l
+ 1843  vim app.component.html 
+ 1844  npm start
+ 1845  c
+ 1846  ls
+ 1847  p
+ 1848  cd client/
+ 1849  c
+ 1850  karma init
+ 1851  c
+ 1852  vim package.json 
+ 1853  karma init
+ 1854  sudo npm install requirejs
+ 1855  c
+ 1856  karma init
+ 1857  karma start
+ 1858  c
+ 1859  karma init
+ 1860  karma startls
+ 1861  ls
+ 1862  karma start
+ 1863  c
+ 1864  karma start
+ 1865  c
+ 1866  karma start
+ 1867  c
+ 1868  karma start
+ 1869  c
+ 1870  karma start
+ 1871  c
+ 1872  karma start
+ 1873  c
+ 1874  karma start
+ 1875  c
+ 1876  karma start
+ 1877  p
+ 1878  c
+ 1879  l
+ 1880  npm start
+ 1881  cd client/src/app/registration/
+ 1882  pwd
+ 1883  ls
+ 1884  p
+ 1885  cd client/
+ 1886  vim karma.conf.js 
+ 1887  npm test
+ 1888  c
+ 1889  npm test
+ 1890  c
+ 1891  npm test
+ 1892  c
+ 1893  ls
+ 1894  cd src/
+ 1895  ls
+ 1896  cd ..
+ 1897  karma start karma.conf.js 
+ 1898  c
+ 1899  karma start karma.conf.js 
+ 1900  c
+ 1901  cd src/app/registration/
+ 1902  ls
+ 1903  p
+ 1904  cd client/
+ 1905  ls
+ 1906  vim karma.conf.js 
+ 1907  npm test
+ 1908  c
+ 1909  npm test
+ 1910  ls
+ 1911  karma start karma.conf.js 
+ 1912  cd src/app/registration/
+ 1913  c
+ 1914  karma start karma.conf.js 
+ 1915  ls
+ 1916  p
+ 1917  cd client/
+ 1918  vim karma.conf.js 
+ 1919  karma run karma.conf.js 
+ 1920  vim karma.conf.js 
+ 1921  vim package.json 
+ 1922  npm test
+ 1923  karma start
+ 1924  p
+ 1925  cd client/
+ 1926  ls
+ 1927  vim karma.conf.js 
+ 1928  cd src/app/registration/
+ 1929  s
+ 1930  l
+ 1931  cd ../../../
+ 1932  ls
+ 1933  vim karma.conf.js 
+ 1934  ls -a
+ 1935  rm .package.json.swp 
+ 1936  history
+ 1937  p
+ 1938  cd client/
+ 1939  ls
+ 1940  vim karma.conf.js 
+ 1941  p
+ 1942  cd client/
+ 1943  ls
+ 1944  cd src/app/
+ 1945  ls
+ 1946  cd registration/
+ 1947  ls
+ 1948  pwd
+ 1949  p
+ 1950  cd client/
+ 1951  c
+ 1952  l
+ 1953  vim src/app/registration/registration.component.spec.ts 
+ 1954  p
+ 1955  cd client/
+ 1956  c
+ 1957  vim karma.conf.js 
+ 1958  karma start karma.conf.js 
+ 1959  c
+ 1960  karma start karma.conf.js 
+ 1961  c
+ 1962  karma start karma.conf.js 
+ 1963  c
+ 1964  karma start karma.conf.js 
+ 1965  c
+ 1966  karma start karma.conf.js 
+ 1967  [
+ 1968  p
+ 1969  cd client/
+ 1970  karma init
+ 1971  vim src/app/registration/registration.component.spec.ts 
+ 1972  cd src/app/registration/
+ 1973  c
+ 1974  l
+ 1975  vim registration.component.spec.js
+ 1976  p
+ 1977  cd routes/
+ 1978  cd ../client/
+ 1979  karma init
+ 1980  c
+ 1981  karma init
+ 1982  c
+ 1983  karma init
+ 1984  cd src/app/registration/
+ 1985  ls
+ 1986  vim  registration.component.spec.ts 
+ 1987  c
+ 1988  p
+ 1989  cd client/
+ 1990  karma init
+ 1991  c
+ 1992  p
+ 1993  cd client/
+ 1994  ls
+ 1995  cd src/app/tests/
+ 1996  ls
+ 1997  c
+ 1998  p
+ 1999  npm start
+ 2000  p
+ 2001  cd client/
+ 2002  ls
+ 2003  karma init
+ 2004  c
+ 2005  karma start karma.conf.js 
+ 2006  c
+ 2007  p
+ 2008  npm start
+ 2009  cd client/
+ 2010  karma start karma.conf.js 
+ 2011  c
+ 2012  p
+ 2013  npm start
+ 2014  cd client/
+ 2015  karma start karma.conf.js 
+ 2016  c
+ 2017  karma start karma.conf.js 
+ 2018  c
+ 2019  npm install karma-browserify --save-dev
+ 2020  karma start karma.conf.js 
+ 2021  c
+ 2022  karma start karma.conf.js 
+ 2023  c
+ 2024  karma start karma.conf.js 
+ 2025  c
+ 2026  karma start karma.conf.js 
+ 2027  npm install  browserify   
+ 2028  c
+ 2029  karma start karma.conf.js 
+ 2030  npm install watchify
+ 2031  c
+ 2032  npm install watchify
+ 2033  karma start karma.conf.js 
+ 2034  history
+ 2035  npm install karma-browserify
+ 2036  karma start karma.conf.js 
+ 2037  c
+ 2038  karma start karma.conf.js 
+ 2039  c
+ 2040  karma start karma.conf.js 
+ 2041  c
+ 2042  karma start karma.conf.js 
+ 2043  c
+ 2044  karma start karma.conf.js 
+ 2045  c
+ 2046  karma start karma.conf.js 
+ 2047  c
+ 2048  karma start karma.conf.js 
+ 2049  c
+ 2050  karma start karma.conf.js 
+ 2051  c
+ 2052  karma start karma.conf.js 
+ 2053  c
+ 2054  karma start karma.conf.js 
+ 2055  c
+ 2056  karma start karma.conf.js 
+ 2057  c
+ 2058  karma start karma.conf.js 
+ 2059  c
+ 2060  karma start karma.conf.js 
+ 2061  c
+ 2062  karma start karma.conf.js 
+ 2063  c
+ 2064  karma start karma.conf.js 
+ 2065  c
+ 2066  karma start karma.conf.js 
+ 2067  c
+ 2068  karma start karma.conf.js 
+ 2069  c
+ 2070  sudo npm install karma-jasmine jasmine-core --save-dev
+ 2071  c
+ 2072  karma start karma.conf.js 
+ 2073  c
+ 2074  karma start karma.conf.js 
+ 2075  c
+ 2076  karma start karma.conf.js 
+ 2077  c
+ 2078  karma start karma.conf.js 
+ 2079  c
+ 2080  ls -a
+ 2081  cd ..
+ 2082  ls
+ 2083  ls -a
+ 2084  cd ..
+ 2085  ls -a
+ 2086  p
+ 2087  cd client/
+ 2088  vim karma.conf.js 
+ 2089  karma start karma.conf.js 
+ 2090  vim karma.conf.js 
+ 2091  karma start karma.conf.js 
+ 2092  vim karma.conf.js 
+ 2093  c
+ 2094  vim karma.conf.js 
+ 2095  ls -a
+ 2096  rm .karma.conf.js.swp 
+ 2097  karma start karma.conf.js 
+ 2098  c
+ 2099  karma start karma.conf.js 
+ 2100  c
+ 2101  karma start karma.conf.js 
+ 2102  c
+ 2103  karma start karma.conf.js 
+ 2104  c
+ 2105  karma start karma.conf.js 
+ 2106  c
+ 2107  karma start karma.conf.js 
+ 2108  c
+ 2109  karma start karma.conf.js 
+ 2110  c
+ 2111  karma start karma.conf.js 
+ 2112  c
+ 2113  karma start karma.conf.js 
+ 2114  ls
+ 2115  cd src/app/
+ 2116  ls
+ 2117  d
+ 2118  p
+ 2119  cd client/
+ 2120  c
+ 2121  karma start karma.conf.js 
+ 2122  c
+ 2123  karma start karma.conf.js 
+ 2124  c
+ 2125  karma start karma.conf.js 
+ 2126  history
+ 2127  c
+ 2128  history > hist
