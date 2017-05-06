@@ -1,8 +1,19 @@
 "use strict";
 var company_1 = require('../registration/company');
+var registration_component_1 = require('../registration/registration.component');
+var companies_service_1 = require('../services/companies.service');
 describe('Sanity Test', function () {
     it('should be true', function () { return expect(true).toBe(true); });
     it('2 + 2', function () { return expect(2 + 2).toBe(4); });
+});
+describe('Registration Component Tests', function () {
+    it('registration component should be defined', function () {
+        var http;
+        var service = new companies_service_1.CompaniesService(http);
+        var x = new registration_component_1.RegistrationComponent(service);
+        x.newCompany.billingEmail = "https://google.com";
+        expect(x.validBillingEmail()).toBe(true);
+    });
 });
 describe('Company Tests', function () {
     it('money owed is 150', function () {
