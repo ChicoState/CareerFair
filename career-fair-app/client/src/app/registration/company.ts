@@ -37,60 +37,68 @@ export class Company {
 
     toDisplay(displayMe: string) {
         /* Different Majors */
-        if (displayMe.includes("cagd"))// displayMe == "cagd")
+        if (displayMe.match(/cagd/))
             return "Computer Animation and Game Development";
-        else if (displayMe.includes("cimt"))
+        else if (displayMe.match(/cimt/))
             return "Concrete Industry Management";
-        else if (displayMe.includes("cmgt"))
+        else if (displayMe.match(/cmgt/))
             return "Construction Management";
-        else if (displayMe.includes("cins"))
+        else if (displayMe.match(/cins/))
             return "Computer Information Systems";
-        else if (displayMe.includes("civl"))
+        else if (displayMe.match(/civl/))
             return "Civil Engineering";
-        else if (displayMe.includes("csci"))
+        else if (displayMe.match(/csci/))
             return "Computer Science";
-        else if (displayMe.includes("eece"))
+        else if (displayMe.match(/eece/))
             return "Electrical Engineering";
-        else if (displayMe.includes("meca"))
+        else if (displayMe.match(/meca/))
             return "Mechatronic Engineering";
-        else if (displayMe.includes("mech"))
+        else if (displayMe.match(/mech/))
             return "Mechanical Engineering";
-        else if (displayMe.includes("mins"))
+        else if (displayMe.match(/mins/))
             return "Management Information Systems";
-        else if (displayMe.includes("smfg"))
+        else if (displayMe.match(/smfg/))
             return "Sustainable Manufacturing";
         /* Position types */
-        else if (displayMe.includes("co_op"))
+        else if (displayMe.match(/co\_op/))
             return "CO OP";
-        else if (displayMe.includes("full_time"))
+        else if (displayMe.match(/full\_time/))
             return "Full Time Position";
-        else if (displayMe.includes("summer_internship"))
+        else if (displayMe.match(/summer\_intership/))
             return "Summer Internship";
         /* Registration types */
-        else if (displayMe == "resumeBook")
-            return "Resume";
-        else if (displayMe == "table")
-            return "Table";
-        else if (displayMe == "resumeBookAndTable")
+        else if (displayMe.match(/resumeBookAndTable/))
             return "Resume Book and Table";
+        else if (displayMe.match(/resumeBook/))
+            return "Resume Book Package";
+        else if (displayMe.match(/table/))
+            return "Table";
     }
 
     AddMajor(major: string) {
+        var wasAlreadyIn = false;
         for (var i = 0; i < this.majorsSelected.length; i++) {
             if (this.majorsSelected[i] == major) {
                 this.majorsSelected.splice(i, 1);
+                wasAlreadyIn = true;
             }
         }
-        this.majorsSelected.push(major);
+        if(wasAlreadyIn == false) {
+            this.majorsSelected.push(major);
+        }
     }
 
     AddPosition(position: string) {
+        var wasAlreadyIn = false;
         for (var i = 0; i < this.positionsSelected.length; i++) {
             if (this.positionsSelected[i] == position) {
                 this.positionsSelected.splice(i, 1);
+                wasAlreadyIn = true;
             }
         }
-        this.positionsSelected.push(position);
+        if(wasAlreadyIn == false) {
+            this.positionsSelected.push(position);
+        }
     }
 
 
