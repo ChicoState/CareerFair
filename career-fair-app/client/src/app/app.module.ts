@@ -7,6 +7,8 @@ import { routing } from './app.routing';
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { CarouselModule, TimepickerModule, AlertModule, ModalModule,BsDropdownModule } from 'ngx-bootstrap';
+import { PdfViewerComponent } from 'ng2-pdf-viewer'; 
+
 
 
 
@@ -19,6 +21,8 @@ import { CompaniesComponent } from './companies/companies.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ParkingComponent } from './parking/parking.component'; 
 import { FileUploadComponent } from './fileupload/fileupload.component'; 
+import { FileDownloadComponent } from './filedownload/filedownload.component'; 
+
 import { VolunteerComponent } from './volunteer/volunteer.component'; 
 import { AdminComponent } from './admin/admin.component'; 
 import { CarouselComponent } from './carousel/carousel.component'; 
@@ -48,8 +52,10 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 					FooterComponent, 
 					CompaniesComponent, 
 					RegistrationComponent, 
+					PdfViewerComponent,
 					ParkingComponent, 
 					FileUploadComponent, 
+					FileDownloadComponent,
 					FileSelectDirective, 
 					VolunteerComponent,
 					AdminComponent,

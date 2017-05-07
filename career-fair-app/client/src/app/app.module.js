@@ -15,6 +15,7 @@ var http_1 = require('@angular/http');
 var app_routing_1 = require('./app.routing');
 var ng2_file_upload_1 = require('ng2-file-upload');
 var ngx_bootstrap_1 = require('ngx-bootstrap');
+var ng2_pdf_viewer_1 = require('ng2-pdf-viewer');
 // components we create
 var app_component_1 = require('./app.component');
 var home_component_1 = require('./home/home.component');
@@ -24,6 +25,7 @@ var companies_component_1 = require('./companies/companies.component');
 var registration_component_1 = require('./registration/registration.component');
 var parking_component_1 = require('./parking/parking.component');
 var fileupload_component_1 = require('./fileupload/fileupload.component');
+var filedownload_component_1 = require('./filedownload/filedownload.component');
 var volunteer_component_1 = require('./volunteer/volunteer.component');
 var admin_component_1 = require('./admin/admin.component');
 var carousel_component_1 = require('./carousel/carousel.component');
@@ -53,8 +55,10 @@ var AppModule = (function () {
                 footer_component_1.FooterComponent,
                 companies_component_1.CompaniesComponent,
                 registration_component_1.RegistrationComponent,
+                ng2_pdf_viewer_1.PdfViewerComponent,
                 parking_component_1.ParkingComponent,
                 fileupload_component_1.FileUploadComponent,
+                filedownload_component_1.FileDownloadComponent,
                 ng2_file_upload_1.FileSelectDirective,
                 volunteer_component_1.VolunteerComponent,
                 admin_component_1.AdminComponent,

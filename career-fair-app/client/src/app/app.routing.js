@@ -5,6 +5,7 @@ var companies_component_1 = require('./companies/companies.component');
 var registration_component_1 = require('./registration/registration.component');
 var parking_component_1 = require('./parking/parking.component');
 var fileupload_component_1 = require('./fileupload/fileupload.component');
+var filedownload_component_1 = require('./filedownload/filedownload.component');
 var volunteer_component_1 = require('./volunteer/volunteer.component');
 var admin_component_1 = require('./admin/admin.component');
 var canvas_component_1 = require('./canvas/canvas.component');
@@ -32,6 +33,10 @@ var appRoutes = [
     {
         path: 'fileupload',
         component: fileupload_component_1.FileUploadComponent
+    },
+    {
+        path: 'filedownload',
+        component: filedownload_component_1.FileDownloadComponent
     },
     {
         path: 'admin',
