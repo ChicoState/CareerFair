@@ -21,17 +21,17 @@ export class CompaniesService{
 }
 
 class DBCompany {
-  contactName: string;
-  contactEmail: string;
-  companyName: string;
-  contactPhoneNumber: string;
-  companyWebsite: string;
-  companyDescription: string;
-	registrationType: string; 
-	desiredPositions: string; 
-	desiredMajors: string; 
-	moneyOwed: number; 
-	confirmation: string; 
+	contactName: 			string;
+	contactEmail: 			string;
+	companyName: 			string;
+	contactPhoneNumber: 	string;
+	companyWebsite: 		string;
+	companyDescription: 	string;
+	registrationType: 		string; 
+	desiredPositions: 		string; 
+	desiredMajors: 			string; 
+	moneyOwed: 				number; 
+	confirmation: 			string; 
 }
 
 

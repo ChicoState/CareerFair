@@ -1,0 +1,1 @@
+{"version":3,"file":"canvas.component.js","sourceRoot":"","sources":["canvas.component.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,qBAA0B,eAG1B,CAAC,CAHwC;AAUzC;IAAA;IAEA,CAAC;IATD;QAAC,gBAAS,CAAC;YACP,QAAQ,EAAE,MAAM,CAAC,EAAE;YACnB,QAAQ,EAAE,gBAAgB;YAC1B,WAAW,EAAE,yBAAyB;YACtC,SAAS,EAAE,EAAE;SAChB,CAAC;;uBAAA;IAIF,sBAAC;AAAD,CAAC,AAFD,IAEC;AAFY,uBAAe,kBAE3B,CAAA"}

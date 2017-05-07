@@ -117,7 +117,6 @@ var VolunteerComponent = (function () {
             moduleId: module.id,
             selector: 'volunteer',
             templateUrl: './volunteer.component.html',
-            //   templateUrl: `Hello`,
             styleUrls: ['./volunteer.component.css'],
         }), 
         __metadata('design:paramtypes', [volunteers_service_1.VolunteersService])

@@ -10,15 +10,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ng2_file_upload_1 = require('ng2-file-upload');
+var Uploader = (function () {
+    function Uploader(firstName, lastName, idNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.idNumber = idNumber;
+    }
+    return Uploader;
+}());
 var FileUploadComponent = (function () {
     function FileUploadComponent() {
         this.uploader = new ng2_file_upload_1.FileUploader({ url: 'http://localhost:3000/upload' });
+        this.uploader_ = new Uploader("", "", "");
     }
+    FileUploadComponent.prototype.validIdNumber = function () {
+        if (this.uploader_.idNumber.length > 0) {
+            var idPattern = /^\d{9}$/;
+            var idRegex = new RegExp(idPattern);
+            if (this.uploader_.idNumber.match(idRegex)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    };
+    FileUploadComponent.prototype.onSumbit = function () {
+        //currently just goes to companies home page
+        //code to push uploader_ to database goes HERE
+    };
     FileUploadComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'fileupload',
             templateUrl: 'fileupload.component.html',
+            styleUrls: ['./fileupload.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], FileUploadComponent);

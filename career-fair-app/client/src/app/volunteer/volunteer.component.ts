@@ -46,7 +46,6 @@ class DBVolunteer {
   moduleId: module.id,
   selector: 'volunteer',
   templateUrl: './volunteer.component.html',
-//   templateUrl: `Hello`,
   styleUrls: ['./volunteer.component.css'],
 })
 

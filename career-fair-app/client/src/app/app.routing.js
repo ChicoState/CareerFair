@@ -7,6 +7,7 @@ var parking_component_1 = require('./parking/parking.component');
 var fileupload_component_1 = require('./fileupload/fileupload.component');
 var volunteer_component_1 = require('./volunteer/volunteer.component');
 var admin_component_1 = require('./admin/admin.component');
+var canvas_component_1 = require('./canvas/canvas.component');
 var appRoutes = [
     {
         path: '',
@@ -35,6 +36,10 @@ var appRoutes = [
     {
         path: 'admin',
         component: admin_component_1.AdminComponent
+    },
+    {
+        path: 'canvas',
+        component: canvas_component_1.CanvasComponent
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

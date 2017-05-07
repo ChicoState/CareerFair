@@ -9,6 +9,7 @@ import { ParkingComponent } from './parking/parking.component';
 import { FileUploadComponent } from './fileupload/fileupload.component'; 
 import { VolunteerComponent } from './volunteer/volunteer.component';
 import { AdminComponent } from './admin/admin.component';
+import { CanvasComponent } from './canvas/canvas.component'
 
 
 const appRoutes: Routes = [ 
@@ -39,6 +40,10 @@ const appRoutes: Routes = [
 	{
 		path: 'admin', 
 		component: AdminComponent
+	}, 
+	{
+		path: 'canvas', 
+		component: CanvasComponent
 	}
 
 ]; 

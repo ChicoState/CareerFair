@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CompaniesService } from './services/companies.service'; 
 import { VolunteersService } from './services/volunteers.service'; 
-
+import { AdminService } from './services/admin.service'; 
 
 
 @Component({
 	moduleId: module.id,
   selector: 'my-app',
   templateUrl: 'app.component.html',
-	providers: [CompaniesService, VolunteersService]
+	providers: [CompaniesService,AdminService, VolunteersService]
 
 })
 export class AppComponent  {  

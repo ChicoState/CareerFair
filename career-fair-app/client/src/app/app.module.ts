@@ -18,12 +18,11 @@ import { FooterComponent } from './layout/footer.component';
 import { CompaniesComponent } from './companies/companies.component'; 
 import { RegistrationComponent } from './registration/registration.component';
 import { ParkingComponent } from './parking/parking.component'; 
-
 import { FileUploadComponent } from './fileupload/fileupload.component'; 
 import { VolunteerComponent } from './volunteer/volunteer.component'; 
 import { AdminComponent } from './admin/admin.component'; 
 import { CarouselComponent } from './carousel/carousel.component'; 
-
+import { CanvasComponent } from './canvas/canvas.component';
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
@@ -55,6 +54,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 					VolunteerComponent,
 					AdminComponent,
 					CarouselComponent,
+					CanvasComponent
 					],
 
   bootstrap:    [ AppComponent ]

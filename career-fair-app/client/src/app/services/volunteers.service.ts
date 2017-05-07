@@ -21,12 +21,12 @@ export class VolunteersService{
 }
 
 class DBVolunteer {
-	firstName: string; 
-	lastName: string; 
-	email: string; 
-	beginTime: string; 
-	endTime: string;
-	position: string;
+	firstName: 	string; 
+	lastName: 	string; 
+	email: 		string; 
+	beginTime: 	string; 
+	endTime: 	string;
+	position: 	string;
 }
 
 

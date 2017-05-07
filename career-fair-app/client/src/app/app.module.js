@@ -27,6 +27,7 @@ var fileupload_component_1 = require('./fileupload/fileupload.component');
 var volunteer_component_1 = require('./volunteer/volunteer.component');
 var admin_component_1 = require('./admin/admin.component');
 var carousel_component_1 = require('./carousel/carousel.component');
+var canvas_component_1 = require('./canvas/canvas.component');
 var core_2 = require('angular2-google-maps/core');
 var AppModule = (function () {
     function AppModule() {
@@ -58,6 +59,7 @@ var AppModule = (function () {
                 volunteer_component_1.VolunteerComponent,
                 admin_component_1.AdminComponent,
                 carousel_component_1.CarouselComponent,
+                canvas_component_1.CanvasComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

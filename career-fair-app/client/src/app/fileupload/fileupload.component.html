@@ -1,77 +1,134 @@
-<div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <form>
-                               <div class="form-group">
-                                    <label for="single">single</label>
-                                    <input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploader" />                                  
-                                </div>            
-                            </form>
-                        </div>
-                        <div class="col-md-8">
-                            <h3>File Upload with Angular 2 and Node</h3>
-                            Queue length: {{ uploader?.queue?.length }}
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th width="50%">Name</th>
-                                    <th>Size</th>
-                                    <th>Progress</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr *ngFor="let item of uploader.queue">
-                                    <td><strong>{{ item.file.name }}</strong></td>
-                                    <td nowrap>{{ item.file.size/1024/1024 | number:'.2' }} MB</td>
-                                    <td>
-                                        <div class="progress" style="margin-bottom: 0;">
-                                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-                                        <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
-                                        <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
-                                    </td>
-                                    <td nowrap>
-                                        <button type="button" class="btn btn-success btn-xs"
-                                                (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
-                                            <span class="glyphicon glyphicon-upload"></span> Upload
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-xs"
-                                                (click)="item.cancel()" [disabled]="!item.isUploading">
-                                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                                        </button>
-                                        <button type="button" class="btn btn-danger btn-xs"
-                                                (click)="item.remove()">
-                                            <span class="glyphicon glyphicon-trash"></span> Remove
-                                        </button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div>
-                                <div>
-                                    Queue progress:
-                                    <div class="progress" style="">
-                                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
-                                    </div>
-                                </div>
-                                <button type="button" class="btn btn-success btn-s"
-                                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-                                    <span class="glyphicon glyphicon-upload"></span> Upload all
-                                </button>
-                                <button type="button" class="btn btn-warning btn-s"
-                                        (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
-                                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
-                                </button>
-                                <button type="button" class="btn btn-danger btn-s"
-                                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
-                                    <span class="glyphicon glyphicon-trash"></span> Remove all
+
+<!--First Name registration field-->
+    <div>
+        <label for="firstName">First Name</label>     
+        <input type="text" class="form-control" id="firstName" [(ngModel)]="uploader_.firstName" name="firstName" placeholder="First Name" #firstName="ngModel" required/> 
+
+        <!--Alert Error Message. Tells the user that a first name is required -->
+        <div [hidden]="firstName.valid || firstName.untouched" class="alert alert-danger">
+            First Name Required
+        </div>  
+    </div>
+
+
+<!--Last Name registration field-->
+    <div>
+        <label for="lastName">Last Name</label>     
+        <input type="text" class="form-control" id="lastName" [(ngModel)]="uploader_.lastName" name="lastName" placeholder="Last Name" #lastName="ngModel" required/>   
+
+        <!--Alert Error Message. Tells the user that a last name is required -->
+        <div [hidden]="lastName.valid || lastName.untouched" class="alert alert-danger">
+            Last Name Required
+        </div>
+    </div>
+
+<!--ID Number registration field-->
+    <div>
+        <label for="idNumber">ID Number</label>     
+        <input type="text" class="form-control" id="idNumber" [(ngModel)]="uploader_.idNumber" name="idNumber" placeholder="School ID Number (006111222)" #idNumber="ngModel" required/>   
+
+        <!--Alert Error Message. Tells the user that a last name is required -->
+        <div [hidden]="idNumber.valid || idNumber.untouched" class="alert alert-danger">
+            ID Number Required
+        </div>
+        <div *ngIf="!validIdNumber() && idNumber.touched">
+            <alert type="warning">
+                <strong>ID Number contains 9 digits and no letters</strong>
+            </alert>
+        </div>
+    </div>
+
+
+
+<!--FILE UPLOADER AND STATUS-->
+    <div class="row">
+        <div class="col-xs-4 row">
+            <form>
+
+                <!--FILE PICKER-->
+                <div class="form-group col-xs-12">
+                    <label for="single">Select a resume</label>
+                    <input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploader" />
+                </div>
+                <!--end-->
+                
+                <!--BUTTONS-->
+                <div class="col-xs-12">
+                    <button type="button" class="btn btn-success btn-s col-xs-6" (click)="uploader.uploadAll()" (click)="staticModal.show()" [disabled]="!uploader.getNotUploadedItems().length">
+                        <span class="glyphicon glyphicon-upload"></span> Upload Resume
+                    </button>
+
+                    <button type="button" class="btn btn-danger btn-s col-xs-offset-1 col-xs-5" (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                        <span class="glyphicon glyphicon-trash"></span> Remove
+                    </button>
+                </div>
+                <!--end-->
+
+                <!--MODAL FOR SUCCESSFUL UPLOAD; Redirects you to home-->
+                <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            
+                            <div class="modal-header">
+                                <h4 class="modal-title pull-left"><strong>Registration Complete</strong></h4>
+                                <button type="button" class="close pull-right" aria-label="Close" routerLink="/" (click)="staticModal.hide()">
+                                    <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+
+                            <div class="modal-body">
+                                <alert type="success">
+                                    You have successfully submitted youur resume
+                                </alert>
+                            </div>
+
                         </div>
                     </div>
                 </div>
+                <!--end-->
+
+            </form>
+
+        </div>
+        <!--end-->
+
+
+        <!--STATUS TABLE-->
+        <div class="col-xs-8">
+
+            <table id="status-table" class="table">
+                <caption><span>STATUS:</span></caption>
+                <thead>
+                    <tr>
+                        <th width="50%">Name</th>
+                        <th>Size</th>
+                        <th>Progress</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let item of uploader.queue">
+                        <td><strong>{{ item.file.name }}</strong></td>
+                        <td nowrap>{{ item.file.size/1024/1024 | number:'.2' }} MB</td>
+                        <td>
+                            <div class="progress" style="margin-bottom: 0;">
+                                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                            <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                            <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <!--end-->
+
+    </div>
+<!--end-->
+
+
