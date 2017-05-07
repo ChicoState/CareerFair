@@ -45,8 +45,14 @@
   <div class="panel">
         
             <div class = "row">
-                <div class = "col-sm-3">
-                    <h4 style="" (click)="staticModal.show()">{{ company.companyName }}</h4>
+                <div  class = "col-sm-3">
+                    <span dropdown >
+                        <a dropdownToggle class="dropdown-toggle" (click)="false">{{company.companyName}}</a>
+                        <ul *dropdownMenu class="dropdown-menu" role="menu">
+                            <li role="menuitem"><a class="dropdown-item" href="#">{{company.companyDescription}}</a>
+                        </ul>
+                    </span>
+                    <!--<h4 style=""  (click)="staticModal.show()">{{ company.companyName }}</h4>-->
                 </div>
                 <div class = "col-sm-3">
                     <p>Interested in:</p>
@@ -61,8 +67,10 @@
                     <p><a target="_blank" href="{{company.companyWebsite}}">{{ company.companyWebsite }}</a></p>
                 </div>
         </div>
+    </div>
+</div>
 
-        <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+ <!--<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -78,6 +86,4 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+        </div>-->

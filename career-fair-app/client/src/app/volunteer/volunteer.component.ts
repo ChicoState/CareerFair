@@ -50,21 +50,18 @@ class DBVolunteer {
 })
 
 export class VolunteerComponent {
-
+  title = "Volunteer Registration";
   public startTime: Date = new Date();
   public endTime: Date = new Date();
   
   minStep: number = 30;
   maxTime: Date = new Date();
   minTime: Date = new Date();
-  alreadyInList: boolean;
-  registrationComplete: boolean;
   lowerString: string;
-
-  title = "Volunteer Registration";
-  volunteerList: Volunteer[];	
+  myNumber: number;
+  volunteersLength: number;
+	
 	volunteers: DBVolunteer[]; 
-  newVolunteer: Volunteer;
 	newDBVolunteer: DBVolunteer;
 
   volunteerOptions = ['Unloading in Parking Lot','Assisting in Setting up Tables'];
@@ -82,38 +79,24 @@ export class VolunteerComponent {
   {
 		this.volunteersService.getVolunteers().subscribe(volunteers => { 
 			this.volunteers = volunteers; 
+      this.volunteersLength = volunteers.length;
 		});
+
     this.maxTime.setHours(17);
     this.minTime.setHours(12);
     this.maxTime.setMinutes(0);
     this.minTime.setMinutes(0);
     this.startTime.setHours(12);
     this.startTime.setMinutes(0);
-    this.endTime.setHours(12);
+    this.endTime.setHours(13);
     this.endTime.setMinutes(0);
-    this.volunteerList = [];
-    this.alreadyInList = false;
-    this.registrationComplete = true;
     this.lowerString = "";
+
   }
 
   onSubmit(): void {
-    this.traverseVolunteerList(this.tempVolunteer.firstName);
-    if (this.alreadyInList == false)
-    {
-        this.newVolunteer = new Volunteer(this.tempVolunteer.firstName,this.tempVolunteer.lastName,
-        this.lowerString,this.startTime,this.endTime,this.tempVolunteer.position);
-        this.volunteerList.push(this.newVolunteer);
-        this.registrationComplete = true;
-				this.newDBVolunteer = new DBVolunteer(this.tempVolunteer.firstName, this.tempVolunteer.lastName, this.lowerString, this.startTime.toLocaleString('en-US'), this.endTime.toLocaleString('en-US'),this.tempVolunteer.position);
-	this.volunteersService.addVolunteer(this.newDBVolunteer).subscribe(volunteer => { 
-
-		});
-    }
-    else 
-    {
-        this.alreadyInList = false;  
-    }
+		this.newDBVolunteer = new DBVolunteer(this.tempVolunteer.firstName, this.tempVolunteer.lastName, this.lowerString, this.startTime.toLocaleTimeString(), this.endTime.toLocaleTimeString(),this.tempVolunteer.position);
+	  this.volunteersService.addVolunteer(this.newDBVolunteer).subscribe(volunteer => { });
   }
 
   toLower(myString: string): boolean {
@@ -122,10 +105,21 @@ export class VolunteerComponent {
   }
 
   validEmail(): boolean {
+    this.myNumber = 0;
     for (var i = 0; i < this.tempVolunteer.email.length; i++)
     {
       if (this.tempVolunteer.email[i] == '@')
-      { return true;}
+      { 
+        this.myNumber = this.myNumber + 1;
+      }
+      if (this.tempVolunteer.email[i] == '.')
+      {
+        this.myNumber = this.myNumber + 1;
+      }
+      if (this.myNumber == 2)
+      {
+        return true;
+      }
     }
     if (this.tempVolunteer.email.length == 0)
     return true;
@@ -134,9 +128,9 @@ export class VolunteerComponent {
   }
 
   validSameEmail(myEmail: string): boolean {
-    for (var i = 0; i < this.volunteerList.length; i++)
+    for (var i = 0; i < this.volunteersLength; i++)
     {
-      if (myEmail == this.volunteerList[i].email)
+      if (myEmail == this.volunteers[i].email)
       return true;
     }
 
@@ -146,15 +140,4 @@ export class VolunteerComponent {
   changed(): void {
     console.log('Time changed to:' + this.startTime)
   }
-
-  traverseVolunteerList(fname: string): void {
-    for (var i = 0; i < this.volunteerList.length; i++)
-    {
-       if ( fname == this.volunteerList[i].firstName) 
-       {
-          this.alreadyInList = true;
-       }
-    }
-  }
-
 }

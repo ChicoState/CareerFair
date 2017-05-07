@@ -35,7 +35,7 @@
       </div>
 
       <!--Alert Error Message. Tells the user that the current email is invalid -->
-      <div *ngIf="!validEmail() && myEmail.touched">
+      <div *ngIf="!validEmail()">
         <alert type="warning">
           <strong> Not a Valid Email</strong>
         </alert>
@@ -90,7 +90,7 @@
     </div>
 
     <!--Alert Error Message. Tells the user to fix their time interval -->
-    <div *ngIf="endTime <= startTime" >
+    <div *ngIf="endTime <= startTime">
         <alert type="danger">
           <strong> Oh Snap! </strong> You Cant Do That Bro. Fix your Time Interval
         </alert>

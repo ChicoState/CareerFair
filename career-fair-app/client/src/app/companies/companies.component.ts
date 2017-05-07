@@ -25,6 +25,10 @@ export class CompaniesComponent  {
 
 	}
 
+	public toggled(open:boolean):void {
+    console.log('Dropdown is now: ', open);
+	}
+
 	setupString(toTransform: string) {
 		var toReturn = "";
 		var afterSplit: string[];
