@@ -21,8 +21,6 @@ export class RegistrationComponent {
   companyService: CompaniesService;
 
   /* Make sure at least 1 major, 1 position and 1 registration type were selected */
-  majorsSelectedBoolean: boolean;
-  positionsSelectedBoolean: boolean;
   registrationTypeBoolean: boolean;
 
   entireFormSubmitted: boolean;
@@ -42,8 +40,6 @@ export class RegistrationComponent {
   constructor(private aCompaniesService: CompaniesService) {
     this.companiesInserted = [];
     this.companyService = aCompaniesService;
-    this.majorsSelectedBoolean = false;
-    this.positionsSelectedBoolean = false;
     this.entireFormSubmitted = false;
 
     this.newCompany = new Company();
@@ -116,24 +112,41 @@ export class RegistrationComponent {
     }
   }
 
-  AddMajor(major: string) {
-    this.newCompany.AddMajor(major);
-    if (this.newCompany.majorsSelected.length > 0) {
-      this.majorsSelectedBoolean = true;
+  validMajorsChosen() : boolean {
+    if(this.newCompany.majorsSelected.length > 0) {
+      return true;
     }
     else {
-      this.majorsSelectedBoolean = false;
+      return false;
     }
+  }
+
+  validPositionsChosen() : boolean {
+    if(this.newCompany.positionsSelected.length > 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  isFormValid() : boolean {
+    let valid: boolean = false;
+    if(this.validBillingEmail() && this.validMajorsChosen() && this.validContactEmail() &&
+        this.validPhoneNumber() && this.validPositionsChosen() && this.validURL() && 
+        this.newCompany.billingContactName.length > 0 && this.newCompany.contactName.length > 0
+        && this.newCompany.companyName.length > 0 && this.newCompany.companyDescription.length > 0) {
+      valid = true;
+    }
+    return valid;
+  }
+
+  AddMajor(major: string) {
+    this.newCompany.AddMajor(major);
   }
 
   AddPosition(position: string) {
     this.newCompany.AddPosition(position);
-    if (this.newCompany.positionsSelected.length > 0) {
-      this.positionsSelectedBoolean = true;
-    }
-    else {
-      this.positionsSelectedBoolean = false;
-    }
   }
 
   convertToSingleString(toConvert: string[]) {

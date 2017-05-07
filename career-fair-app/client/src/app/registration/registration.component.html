@@ -1,5 +1,3 @@
-<h1>{{ title }}</h1>
-
 <form (ngSubmit)="onSubmit()">
   
   <div>
@@ -99,10 +97,10 @@
       <li *ngFor="let major of majorOptions; let i = index">
         <input type="checkbox" (change)="newCompany.AddMajor(major)"> {{ newCompany.toDisplay(major) }}
       </li>
-      <div [hidden]="majorsSelectedBoolean" class="alert alert-danger">     
-        Please select at least one major.
-      </div>
     </ul>
+  </div>
+  <div *ngIf="!validMajorsChosen()" class="alert alert-danger">
+      <strong>Please choose at least one major</strong>
   </div>
 
   <div>
@@ -111,10 +109,10 @@
       <li *ngFor="let position of positionOptions; let i = index">
         <input type="checkbox" (change)="newCompany.AddPosition(position)"> {{ newCompany.toDisplay(position) }}
       </li>
-      <div [hidden]="positionsSelectedBoolean" class="alert alert-danger">     
-        Please select at least one position.
-      </div>
     </ul>
+  </div>
+  <div *ngIf="!validPositionsChosen()" class="alert alert-danger">
+      <strong>Please choose at least one major</strong>
   </div>
   
   <div>
@@ -127,7 +125,10 @@
       [(ngModel)]="newCompany.registrationType" value="resumeBookAndTable">Resume Book and Table<br>
   </div>
   
-  <button type="submit" (click)="staticModal.show()">Submit Registration</button>
+  <button type="submit" [disabled]="!isFormValid()" (click)="staticModal.show()">Submit Registration</button>
+  <div *ngIf="!isFormValid()" class="alert alert-danger">
+      <strong>One or more fields of registration fields are invalid</strong>
+  </div>
 
 </form> <br>
 

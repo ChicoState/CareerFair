@@ -64,7 +64,7 @@ export class Company {
             return "CO OP";
         else if (displayMe.match(/full\_time/))
             return "Full Time Position";
-        else if (displayMe.match(/summer\_intership/))
+        else if (displayMe.match(/summer\_internship/))
             return "Summer Internship";
         /* Registration types */
         else if (displayMe.match(/resumeBookAndTable/))
