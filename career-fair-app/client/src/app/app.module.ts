@@ -16,6 +16,7 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import { AppComponent }  from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './layout/header.component';
+import { FooterComponent } from './layout/footer.component';
 import { CompaniesComponent } from './companies/companies.component'; 
 import { RegistrationComponent } from './registration/registration.component';
 import { ParkingComponent } from './parking/parking.component'; 
@@ -48,7 +49,8 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 
   declarations: [ 	AppComponent, 
 					HomeComponent, 
-					HeaderComponent, 
+					HeaderComponent,
+					FooterComponent, 
 					CompaniesComponent, 
 					RegistrationComponent, 
 					PdfViewerComponent,
