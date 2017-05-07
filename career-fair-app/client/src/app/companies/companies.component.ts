@@ -6,6 +6,7 @@ import { Company } from './companies';
 	moduleId: module.id,
   selector: 'companies',
   templateUrl: 'companies.component.html',
+	styleUrls:['companies.component.css']
 
 })
 export class CompaniesComponent  {  
@@ -23,6 +24,10 @@ export class CompaniesComponent  {
 			
 		}); 
 
+	}
+
+	public toggled(open:boolean):void {
+    console.log('Dropdown is now: ', open);
 	}
 
 	setupString(toTransform: string) {

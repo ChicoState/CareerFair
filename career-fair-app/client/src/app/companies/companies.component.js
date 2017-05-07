@@ -23,6 +23,9 @@ var CompaniesComponent = (function () {
             }
         });
     }
+    CompaniesComponent.prototype.toggled = function (open) {
+        console.log('Dropdown is now: ', open);
+    };
     CompaniesComponent.prototype.setupString = function (toTransform) {
         var toReturn = "";
         var afterSplit;
@@ -86,6 +89,7 @@ var CompaniesComponent = (function () {
             moduleId: module.id,
             selector: 'companies',
             templateUrl: 'companies.component.html',
+            styleUrls: ['companies.component.css']
         }), 
         __metadata('design:paramtypes', [companies_service_1.CompaniesService])
     ], CompaniesComponent);

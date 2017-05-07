@@ -36,12 +36,12 @@ var VolunteerComponent = (function () {
     function VolunteerComponent(volunteersService) {
         var _this = this;
         this.volunteersService = volunteersService;
+        this.title = "Volunteer Registration";
         this.startTime = new Date();
         this.endTime = new Date();
         this.minStep = 30;
         this.maxTime = new Date();
         this.minTime = new Date();
-        this.title = "Volunteer Registration";
         this.volunteerOptions = ['Unloading in Parking Lot', 'Assisting in Setting up Tables'];
         this.tempVolunteer = {
             firstName: "",
@@ -53,6 +53,7 @@ var VolunteerComponent = (function () {
         };
         this.volunteersService.getVolunteers().subscribe(function (volunteers) {
             _this.volunteers = volunteers;
+            _this.volunteersLength = volunteers.length;
         });
         this.maxTime.setHours(17);
         this.minTime.setHours(12);
@@ -60,34 +61,28 @@ var VolunteerComponent = (function () {
         this.minTime.setMinutes(0);
         this.startTime.setHours(12);
         this.startTime.setMinutes(0);
-        this.endTime.setHours(12);
+        this.endTime.setHours(13);
         this.endTime.setMinutes(0);
-        this.volunteerList = [];
-        this.alreadyInList = false;
-        this.registrationComplete = true;
         this.lowerString = "";
     }
     VolunteerComponent.prototype.onSubmit = function () {
-        this.traverseVolunteerList(this.tempVolunteer.firstName);
-        if (this.alreadyInList == false) {
-            this.newVolunteer = new Volunteer(this.tempVolunteer.firstName, this.tempVolunteer.lastName, this.lowerString, this.startTime, this.endTime, this.tempVolunteer.position);
-            this.volunteerList.push(this.newVolunteer);
-            this.registrationComplete = true;
-            this.newDBVolunteer = new DBVolunteer(this.tempVolunteer.firstName, this.tempVolunteer.lastName, this.lowerString, this.startTime.toLocaleString('en-US'), this.endTime.toLocaleString('en-US'), this.tempVolunteer.position);
-            this.volunteersService.addVolunteer(this.newDBVolunteer).subscribe(function (volunteer) {
-            });
-        }
-        else {
-            this.alreadyInList = false;
-        }
+        this.newDBVolunteer = new DBVolunteer(this.tempVolunteer.firstName, this.tempVolunteer.lastName, this.lowerString, this.startTime.toLocaleTimeString(), this.endTime.toLocaleTimeString(), this.tempVolunteer.position);
+        this.volunteersService.addVolunteer(this.newDBVolunteer).subscribe(function (volunteer) { });
     };
     VolunteerComponent.prototype.toLower = function (myString) {
         this.lowerString = myString;
         return true;
     };
     VolunteerComponent.prototype.validEmail = function () {
+        this.myNumber = 0;
         for (var i = 0; i < this.tempVolunteer.email.length; i++) {
             if (this.tempVolunteer.email[i] == '@') {
+                this.myNumber = this.myNumber + 1;
+            }
+            if (this.tempVolunteer.email[i] == '.') {
+                this.myNumber = this.myNumber + 1;
+            }
+            if (this.myNumber == 2) {
                 return true;
             }
         }
@@ -96,21 +91,14 @@ var VolunteerComponent = (function () {
         return false;
     };
     VolunteerComponent.prototype.validSameEmail = function (myEmail) {
-        for (var i = 0; i < this.volunteerList.length; i++) {
-            if (myEmail == this.volunteerList[i].email)
+        for (var i = 0; i < this.volunteersLength; i++) {
+            if (myEmail == this.volunteers[i].email)
                 return true;
         }
         return false;
     };
     VolunteerComponent.prototype.changed = function () {
         console.log('Time changed to:' + this.startTime);
-    };
-    VolunteerComponent.prototype.traverseVolunteerList = function (fname) {
-        for (var i = 0; i < this.volunteerList.length; i++) {
-            if (fname == this.volunteerList[i].firstName) {
-                this.alreadyInList = true;
-            }
-        }
     };
     VolunteerComponent = __decorate([
         core_1.Component({

@@ -1,83 +1,102 @@
-<!--<h1>{{ title }}</h1>-->
-
 <!--<div *ngFor="let company of companies"> 
-  <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class = "row">
-                <div class = "col-sm-3">
-                    <h4 style="color: black;" (click)="staticModal.show()">{{ company.companyName }}</h4>
+  <div class="panel">
+        
+            <div
+             class = "row">
+                <div  class = "col-sm-3">
+                    <span dropdown >
+                        <a dropdownToggle class="dropdown-toggle" (click)="false">{{company.companyName}}</a>
+                        <ul *dropdownMenu class="dropdown-menu" role="menu">
+                            <li role="menuitem"><a class="dropdown-item" href="#">{{company.companyDescription}}</a>
+                        </ul>
+                    </span>
                 </div>
+
                 <div class = "col-sm-3">
                     <p>Interested in:</p>
                     <p>{{ company.desiredMajors }}</p>
                 </div>
+
                 <div class = "col-sm-2">
                     <p>Looking for:</p>
                     <p>{{ company.desiredPositions }}</p>
                 </div>
+
                 <div class = "col-sm-4">
                     <p>{{ company.companyName }}'s site:</p>
                     <p><a target="_blank" href="{{company.companyWebsite}}">{{ company.companyWebsite }}</a></p>
                 </div>
-            </div>
-        </div>
-
-        <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title pull-left"><strong>{{company.companyName}} Description</strong></h4>
-                        <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <alert type="success">
-                            {{company.companyDescription}}
-                        </alert>
-                    </div>
-                </div>
-            </div>
+                
         </div>
     </div>
 </div>-->
-<div *ngFor="let company of companies"> 
-  <div class="panel">
-        
-            <div class = "row">
-                <div class = "col-sm-3">
-                    <h4 style="" (click)="staticModal.show()">{{ company.companyName }}</h4>
-                </div>
-                <div class = "col-sm-3">
-                    <p>Interested in:</p>
-                    <p>{{ company.desiredMajors }}</p>
-                </div>
-                <div class = "col-sm-2">
-                    <p>Looking for:</p>
-                    <p>{{ company.desiredPositions }}</p>
-                </div>
-                <div class = "col-sm-4">
-                    <p>{{ company.companyName }}'s site:</p>
-                    <p><a target="_blank" href="{{company.companyWebsite}}">{{ company.companyWebsite }}</a></p>
-                </div>
-        </div>
+<!--
+<table>
+    <tr>
+        <th>Company Name</th>
+        <th>Majors Desired</th>
+        <th>Positions Desired</th>
+        <th>Website</th>
+    </tr>
 
-        <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title pull-left"><strong>{{company.companyName}} Description</strong></h4>
-                        <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <alert type="success">
-                            {{company.companyDescription}}
-                        </alert>
-                    </div>
-                </div>
+    <tr *ngFor="let company of companies" >
+
+        <td  class = "">
+            <span dropdown >
+                <a dropdownToggle class="dropdown-toggle" (click)="false">{{company.companyName}}</a>
+                <ul *dropdownMenu class="dropdown-menu" role="menu">
+                    <li role="menuitem"><a class="dropdown-item disabled" href="#">{{company.companyDescription}}</a>
+                </ul>
+            </span>
+        </td>
+
+        <td class = "">
+            <p>Interested in:</p>
+            <p>{{ company.desiredMajors }}</p>
+        </td>
+
+        <td class = "">
+            <p>Looking for:</p>
+            <p>{{ company.desiredPositions }}</p>
+        </td>
+
+        <td class = "">
+            <p>{{ company.companyName }}'s site:</p>
+            <p><a target="_blank" href="{{company.companyWebsite}}">{{ company.companyWebsite }}</a></p>
+        </td>
+
+    </tr>
+
+</table>-->
+
+<div *ngFor="let company of companies" class="company-row-even"> 
+    <div class="panel">        
+        <div class = "row">
+
+            <div  class = "col-sm-3">
+                <span dropdown >
+                    <a dropdownToggle class="dropdown-toggle" (click)="false">{{company.companyName}}</a>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu">
+                        <li role="menuitem"><a class="dropdown-item disabled" href="#">{{company.companyDescription}}</a>
+                    </ul>
+                </span>
             </div>
+
+            <div class = "col-sm-3">
+                <p>Interested in:</p>
+                <p>{{ company.desiredMajors }}</p>
+            </div>
+
+            <div class = "col-sm-2">
+                <p>Looking for:</p>
+                <p>{{ company.desiredPositions }}</p>
+            </div>
+
+            <div class = "col-sm-4">
+                <p>{{ company.companyName }}'s site:</p>
+                <p><a target="_blank" href="{{company.companyWebsite}}">{{ company.companyWebsite }}</a></p>
+            </div>
+                
         </div>
     </div>
 </div>
