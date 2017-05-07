@@ -21,8 +21,6 @@ export class RegistrationComponent {
   companyService: CompaniesService;
 
   /* Make sure at least 1 major, 1 position and 1 registration type were selected */
-  majorsSelectedBoolean: boolean;
-  positionsSelectedBoolean: boolean;
   registrationTypeBoolean: boolean;
 
   entireFormSubmitted: boolean;
@@ -42,8 +40,6 @@ export class RegistrationComponent {
   constructor(private aCompaniesService: CompaniesService) {
     this.companiesInserted = [];
     this.companyService = aCompaniesService;
-    this.majorsSelectedBoolean = false;
-    this.positionsSelectedBoolean = false;
     this.entireFormSubmitted = false;
 
     this.newCompany = new Company();
@@ -54,7 +50,7 @@ export class RegistrationComponent {
 
   validURL(): boolean {
     if (this.newCompany.companyWebsite.length > 0) {
-      var urlPattern = /(https:\/\/|http:\/\/)(www\.)?(\w*\d*)+\.\w+(\/(\w*\d*)+)*/gi;
+      var urlPattern = /^(https:\/\/|http:\/\/)(www\.)?(\w*\d*)+\.\w+(\/(\w*\d*)+)*((\w*\d*)+\.\w+)?$/gi;
       var urlRegex = new RegExp(urlPattern);
       if (this.newCompany.companyWebsite.match(urlRegex)) {
         return true;
@@ -70,7 +66,7 @@ export class RegistrationComponent {
 
   validContactEmail(): boolean {
     if (this.newCompany.contactEmail.length > 0) {
-      var emailPattern = /(\d*\w*)+\@\w+\.\w+(\.\w+)*/;
+      var emailPattern = /^(\d*\w*)+\@\w+\.\w+(\.\w+)*$/;
       var emailRegex = new RegExp(emailPattern);
       if (this.newCompany.contactEmail.match(emailRegex)) {
         return true;
@@ -86,7 +82,7 @@ export class RegistrationComponent {
 
   validBillingEmail(): boolean {
     if (this.newCompany.billingEmail.length > 0) {
-      var emailPattern = /(\d*\w*)+\@\w+\.\w+(\.\w+)*/;
+      var emailPattern = /^(\d*\w*)+\@\w+\.\w+(\.\w+)*$/;
       var emailRegex = new RegExp(emailPattern);
       if (this.newCompany.billingEmail.match(emailRegex)) {
         return true;
@@ -101,40 +97,56 @@ export class RegistrationComponent {
   }
 
   validPhoneNumber(): boolean {
-    let numCount: number = 0;
-
-    for (var i = 0; i < this.newCompany.contactPhoneNumber.length; i++) {
-      if (this.newCompany.contactPhoneNumber[i] >= '0' && this.newCompany.contactPhoneNumber[i] <= '9') {
-        numCount += 1;
+    if(this.newCompany.contactPhoneNumber.length > 0) {
+      var phonePattern = /^(\(?\d{3}\)?)\-?\.?\s*\d{3}\-?\.?\s*\d{4}$/;
+      var phoneRegex = new RegExp(phonePattern);
+      if(this.newCompany.contactPhoneNumber.match(phoneRegex)) {
+        return true;
       }
-      if (this.newCompany.contactPhoneNumber[i] >= 'a' &&
-        this.newCompany.contactPhoneNumber[i] <= 'Z')
+      else {
         return false;
+      }
     }
-    if (numCount == 11)
-      return true;
-    else
+    else {
       return false;
+    }
+  }
+
+  validMajorsChosen() : boolean {
+    if(this.newCompany.majorsSelected.length > 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  validPositionsChosen() : boolean {
+    if(this.newCompany.positionsSelected.length > 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  isFormValid() : boolean {
+    let valid: boolean = false;
+    if(this.validBillingEmail() && this.validMajorsChosen() && this.validContactEmail() &&
+        this.validPhoneNumber() && this.validPositionsChosen() && this.validURL() && 
+        this.newCompany.billingContactName.length > 0 && this.newCompany.contactName.length > 0
+        && this.newCompany.companyName.length > 0 && this.newCompany.companyDescription.length > 0) {
+      valid = true;
+    }
+    return valid;
   }
 
   AddMajor(major: string) {
     this.newCompany.AddMajor(major);
-    if (this.newCompany.majorsSelected.length > 0) {
-      this.majorsSelectedBoolean = true;
-    }
-    else {
-      this.majorsSelectedBoolean = false;
-    }
   }
 
   AddPosition(position: string) {
     this.newCompany.AddPosition(position);
-    if (this.newCompany.positionsSelected.length > 0) {
-      this.positionsSelectedBoolean = true;
-    }
-    else {
-      this.positionsSelectedBoolean = false;
-    }
   }
 
   convertToSingleString(toConvert: string[]) {
