@@ -1,8 +1,47 @@
 "use strict";
 var company_1 = require('../registration/company');
+var volunteer_1 = require('../volunteer/volunteer');
 describe('Sanity Test', function () {
     it('should be true', function () { return expect(true).toBe(true); });
     it('2 + 2', function () { return expect(2 + 2).toBe(4); });
+});
+describe('Volunteer Tests', function () {
+    it('Convert to lower string', function () {
+        var myVolunteer = new volunteer_1.Volunteer("", "", "", new Date, new Date, "");
+        var mylowerString = myVolunteer.toLower('PEDRO@YAHOO.COM');
+        expect(mylowerString).toBe(true);
+    });
+    it('Testing functionality of toLower', function () {
+        var myVolunteer = new volunteer_1.Volunteer("", "", "", new Date, new Date, "");
+        var mylowerString = myVolunteer.toLower('PEDRO@YAHOO.COM');
+        expect(myVolunteer.lowerString).toBe('PEDRO@YAHOO.COM');
+    });
+    it('Testing if email is empty', function () {
+        var myVolunteer = new volunteer_1.Volunteer("", "", "", new Date, new Date, "");
+        var myValidEmail = myVolunteer.validEmail();
+        expect(myValidEmail).toBe(false);
+    });
+    it('Testing if email is nonempty, but invalid', function () {
+        var myVolunteer = new volunteer_1.Volunteer("", "", "pedro@dog.", new Date, new Date, "");
+        var myValidEmail = myVolunteer.validEmail();
+        expect(myValidEmail).toBe(false);
+    });
+    it('Testing if email is nonempty and valid', function () {
+        var myVolunteer = new volunteer_1.Volunteer("", "", "pedro@dog.com", new Date, new Date, "");
+        var myValidEmail = myVolunteer.validEmail();
+        expect(myValidEmail).toBe(true);
+    });
+    it('Testing if email is nonempty, but invalid', function () {
+        ;
+        var myVolunteer = new volunteer_1.Volunteer("", "", "pedro@mail.csuchico.", new Date, new Date, "");
+        var myValidEmail = myVolunteer.validEmail();
+        expect(myValidEmail).toBe(false);
+    });
+    it('Testing if email is nonempty and valid', function () {
+        var myVolunteer = new volunteer_1.Volunteer("", "", "pedro@mail.csuchico.edu", new Date, new Date, "");
+        var myValidEmail = myVolunteer.validEmail();
+        expect(myValidEmail).toBe(true);
+    });
 });
 describe('Company Tests', function () {
     it('money owed is 150', function () {

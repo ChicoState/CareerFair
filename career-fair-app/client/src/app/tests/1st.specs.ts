@@ -1,15 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../registration/company';
-import { RegistrationComponent } from '../registration/registration.component';
-
-import { CompaniesService } from '../services/companies.service';
-import { Http, Headers } from '@angular/http';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Volunteer } from '../volunteer/volunteer';
 
 describe('Sanity Test', () => {
   it('should be true', () => expect(true).toBe(true));
 
   it('2 + 2', () => expect(2 + 2).toBe(4));
+});
+
+describe ('Volunteer Tests', () => {
+  it('Convert to lower string', function () {
+    let myVolunteer = new Volunteer("","","",new Date,new Date,"");
+    let mylowerString = myVolunteer.toLower('PEDRO@YAHOO.COM');
+    expect(mylowerString).toBe(true); 
+  });
+   it('Testing functionality of toLower', function () {
+        var myVolunteer = new Volunteer("", "", "", new Date, new Date, "");
+        var mylowerString = myVolunteer.toLower('PEDRO@YAHOO.COM');
+        expect(myVolunteer.lowerString).toBe('PEDRO@YAHOO.COM');
+    });
+    it('Testing if email is empty', function () {
+        var myVolunteer = new Volunteer("", "", "", new Date, new Date, "");
+        var myValidEmail = myVolunteer.validEmail();
+        expect(myValidEmail).toBe(false);
+    });
+     it('Testing if email is nonempty, but invalid', function () {
+        var myVolunteer = new Volunteer("", "", "pedro@dog.", new Date, new Date, "");
+        var myValidEmail = myVolunteer.validEmail();
+        expect(myValidEmail).toBe(false);
+    });
+  it('Testing if email is nonempty and valid', function () {
+        var myVolunteer = new Volunteer("", "", "pedro@dog.com", new Date, new Date, "");
+        var myValidEmail = myVolunteer.validEmail();
+        expect(myValidEmail).toBe(true);
+    }); it('Testing if email is nonempty, but invalid', function () {;
+        var myVolunteer = new Volunteer("", "", "pedro@mail.csuchico.", new Date, new Date, "");
+        var myValidEmail = myVolunteer.validEmail();
+        expect(myValidEmail).toBe(false);
+    });
+     it('Testing if email is nonempty and valid', function () {
+        var myVolunteer = new Volunteer("", "", "pedro@mail.csuchico.edu", new Date, new Date, "");
+        var myValidEmail = myVolunteer.validEmail();
+        expect(myValidEmail).toBe(true);
+    });
 });
 
 describe('Company Tests', () => {

@@ -10,37 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var volunteers_service_1 = require('../services/volunteers.service');
-var Volunteer = (function () {
-    function Volunteer(first, last, mail, begin, end, duty, numVolunteers, newDBVolunteer) {
-        this.firstName = first;
-        this.lastName = last;
-        this.email = mail;
-        this.beginTime = begin;
-        this.endTime = end;
-        this.position = duty;
-        this.volunteerLength = numVolunteers;
-        this.volunteers = newDBVolunteer;
-    }
-    Volunteer.prototype.toLower = function (myString) {
-        this.lowerString = myString;
-        return true;
-    };
-    Volunteer.prototype.validEmail = function () {
-        if (this.email.length > 0) {
-            var emailPattern = /^(\d*\w*)+\@\w+\.\w+(\.\w+)*$/;
-            var emailRegex = new RegExp(emailPattern);
-            if (this.email.match(emailRegex)) {
-                return true;
-            }
-            else
-                return false;
-        }
-        else
-            return false;
-    };
-    return Volunteer;
-}());
-exports.Volunteer = Volunteer;
+var volunteer_1 = require('./volunteer');
 var DBVolunteer = (function () {
     function DBVolunteer(first, last, mail, begin, end, duty) {
         this.firstName = first;
@@ -52,6 +22,7 @@ var DBVolunteer = (function () {
     }
     return DBVolunteer;
 }());
+exports.DBVolunteer = DBVolunteer;
 var VolunteerComponent = (function () {
     function VolunteerComponent(volunteersService) {
         var _this = this;
@@ -66,7 +37,6 @@ var VolunteerComponent = (function () {
         this.volunteersService.getVolunteers().subscribe(function (volunteers) {
             _this.volunteers = volunteers;
             _this.volunteersLength = volunteers.length;
-            _this.tempDBVolunteers = volunteers;
         });
         this.maxTime.setHours(17);
         this.minTime.setHours(12);
@@ -76,8 +46,7 @@ var VolunteerComponent = (function () {
         this.startTime.setMinutes(0);
         this.endTime.setHours(13);
         this.endTime.setMinutes(0);
-        this.lowerString = "";
-        this.tempVolunteer = new Volunteer("", "", "", this.startTime, this.endTime, "", this.volunteersLength, this.tempDBVolunteers);
+        this.tempVolunteer = new volunteer_1.Volunteer("", "", "", this.startTime, this.endTime, "");
     }
     VolunteerComponent.prototype.onSubmit = function () {
         this.newDBVolunteer = new DBVolunteer(this.tempVolunteer.firstName, this.tempVolunteer.lastName, this.tempVolunteer.lowerString, this.tempVolunteer.beginTime.toLocaleTimeString(), this.tempVolunteer.endTime.toLocaleTimeString(), this.tempVolunteer.position);

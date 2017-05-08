@@ -31,9 +31,8 @@ var CarouselComponent = (function () {
 }());
 exports.CarouselComponent = CarouselComponent;
 exports.IMAGES = [
-    { url: "http://lorempixel.com/1500/600/abstract/" },
-    { url: "http://lorempixel.com/1500/600/city/" },
-    { url: "http://lorempixel.com/1500/600/food/" },
-    { url: "http://lorempixel.com/1500/600/nightlife/" }
+    { url: "app/assets/carousel/pix1_sample.jpg" },
+    { url: "http://lorempixel.com/1500/600/business/" },
+    { url: "app/assets/carousel/pix3_sample.jpg" },
 ];
 //# sourceMappingURL=carousel.component.js.map

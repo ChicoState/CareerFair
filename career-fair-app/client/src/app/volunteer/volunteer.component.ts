@@ -3,53 +3,9 @@ import { TimepickerModule } from 'ng2-bootstrap/timepicker';
 import { AlertModule } from 'ng2-bootstrap/alert';
 import { ModalModule } from 'ng2-bootstrap/modal'
 import { VolunteersService } from '../services/volunteers.service'; 
+import { Volunteer } from './volunteer'
 
-export class Volunteer {
-    firstName: string;
-    lastName: string;
-    email: string;
-    beginTime: Date;
-    endTime: Date;
-    position: string;
-    lowerString: string;
-    volunteerLength: number;
-    volunteers: DBVolunteer[];
-	  
-    
-
-    constructor (first: string, last: string, mail: string, begin: Date, end: Date,duty: string,numVolunteers: number,newDBVolunteer: DBVolunteer[])
-    {
-      this.firstName = first;
-      this.lastName = last;
-      this.email = mail;
-      this.beginTime = begin;
-      this.endTime = end;
-      this.position = duty;
-      this.volunteerLength = numVolunteers;
-      this.volunteers = newDBVolunteer;
-    }
-
-  toLower(myString: string): boolean {
-    this.lowerString = myString;
-    return true;
-  }
-
-  validEmail(): boolean {
-    if (this.email.length > 0) {
-      var emailPattern = /^(\d*\w*)+\@\w+\.\w+(\.\w+)*$/;
-      var emailRegex = new RegExp(emailPattern);
-      if (this.email.match(emailRegex)) {
-        return true;
-      }
-      else
-      return false;
-    }
-    else 
-    return false;
-  }
-}
-
-class DBVolunteer { 
+export class DBVolunteer { 
 	firstName: string; 
 	lastName: string; 
 	email: string; 
@@ -83,12 +39,9 @@ export class VolunteerComponent {
   minStep: number = 30;
   maxTime: Date = new Date();
   minTime: Date = new Date();
-  lowerString: string;
-  myNumber: number;
   volunteersLength: number;
 	
 	volunteers: DBVolunteer[]; 
-  tempDBVolunteers: DBVolunteer[];
 	newDBVolunteer: DBVolunteer;
   tempVolunteer: Volunteer;
 
@@ -99,7 +52,6 @@ export class VolunteerComponent {
 		this.volunteersService.getVolunteers().subscribe(volunteers => { 
 			this.volunteers = volunteers; 
       this.volunteersLength = volunteers.length;
-      this.tempDBVolunteers = volunteers;
 		});
 
     this.maxTime.setHours(17);
@@ -110,8 +62,7 @@ export class VolunteerComponent {
     this.startTime.setMinutes(0);
     this.endTime.setHours(13);
     this.endTime.setMinutes(0);
-    this.lowerString = "";
-    this.tempVolunteer = new Volunteer("","","",this.startTime,this.endTime,"",this.volunteersLength,this.tempDBVolunteers)
+    this.tempVolunteer = new Volunteer("","","",this.startTime,this.endTime,"")
 
   }
 
