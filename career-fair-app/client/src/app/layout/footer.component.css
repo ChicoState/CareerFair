@@ -1,3 +1,11 @@
 #footer {
-    background-color: hotpink;
+    background-color: #D1D0CE;
+    text-align: center;
+}
+
+.no-css {
+    
+    all: initial;
+    all: unset;
+  
 }
