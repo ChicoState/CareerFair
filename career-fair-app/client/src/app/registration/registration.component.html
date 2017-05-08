@@ -3,7 +3,10 @@
   <div>
 		<label for="contactName">*Contact Name</label> 
 		<input type="text" class="form-control" id="contactName" name="contactName" ngControl="contactName" 
-    [(ngModel)]="newCompany.contactName" placeholder="Jane Doe" required>
+      [(ngModel)]="newCompany.contactName" #contactName="ngModel" placeholder="Contact Name" required>
+    <div [hidden]="contactName.valid || contactName.untouched" class="alert alert-danger">
+        Contact Name Required
+      </div> 
 	</div>	
   
 	
@@ -13,7 +16,7 @@
     <div>
       <label for="myEmail">*Contact Email</label>     
       <input type="email" class="form-control" id="contactEmail" [(ngModel)]="newCompany.contactEmail" 
-          name="contactEmail" placeholder="Email@mail.com" #contactEmail="ngModel" required/>   
+          name="contactEmail" placeholder="email@mail.com" #contactEmail="ngModel" required/>   
       <div [hidden]="contactEmail.valid || contactEmail.untouched" class="alert alert-danger">
         Email Required
       </div>
@@ -22,25 +25,38 @@
           <strong> Not a Valid Email</strong>
         </alert>
       </div>
+      <div *ngIf="validSameEmail(newCompany.contactEmail | lowercase)">
+        <alert type="warning">
+          <strong>Contact Email already in Database</strong>
+        </alert>
+      </div>
     </div>
 
   
   <div>
 		<label for="billingContactName">*Billing Contact Name</label> 
 		<input type="text" class="form-control" id="billingContactName" name="billingContactName" ngControl="billingContactName" 
-      [(ngModel)]="newCompany.billingContactName" placeholder="Bill Marx" required>
+      [(ngModel)]="newCompany.billingContactName" #billingName="ngModel" placeholder="Billing Name" required>
+      <div [hidden]="billingName.valid || billingName.untouched" class="alert alert-danger">
+        Billing Name Required
+      </div>
 	</div>	
 	
     <div>
       <label for="billingEmail">*Billing Email</label> 
       <input type="email" class="form-control" id="billingEmail" [(ngModel)]="newCompany.billingEmail" 
-          name="billingEmail" placeholder="marx190@billing.com" #billingEmail="ngModel" required> 
+          name="billingEmail" placeholder="billing@billing.com" #billingEmail="ngModel" required> 
       <div [hidden]="billingEmail.valid || billingEmail.untouched" class="alert alert-danger">
         Email Required
       </div>
       <div *ngIf="!validBillingEmail() && billingEmail.touched">
         <alert type="warning">
           <strong> Not a Valid Email</strong>
+        </alert>
+      </div>
+      <div *ngIf="validBillingSameEmail(newCompany.billingEmail | lowercase)">
+        <alert type="warning">
+          <strong>Billing Email already in Database</strong>
         </alert>
       </div>
     </div>
@@ -67,13 +83,16 @@
   <div>
     <label for="companyName">*Company Name</label>
     <input type="text" class="form-control" id="companyName" name="companyName" ngControl="companyName" 
-    [(ngModel)]="newCompany.companyName" placeholder="JaneTech Corporation" required>
+    [(ngModel)]="newCompany.companyName" #companyName="ngModel" placeholder="Company Name" required>
+    <div [hidden]="companyName.valid || companyName.untouched" class="alert alert-danger">
+        Company Name Required
+      </div>
   </div>
   
   <div>
     <label for="companyWebsite">*Company Website</label>
     <input type="url" class="form-control" id="companyWebsite" name="companyWebsite" ngControl="companyWebsite" 
-      [(ngModel)]="newCompany.companyWebsite" placeholder="https://www.janetech.com" #website="ngModel" required>
+      [(ngModel)]="newCompany.companyWebsite" placeholder="https://www.site.com" #website="ngModel" required>
     <div [hidden]="website.valid || website.untouched" class="alert alert-danger">
       Website Required
     </div>
@@ -87,8 +106,11 @@
   <div>
     <label for="companyDescription">*Company Description</label>
     <textarea type="text" class="form-control" rows="5" cols="80" id="companyDescription" name="companyDescription" ngControl="companyDescription" 
-    [(ngModel)]="newCompany.companyDescription" placeholder="Find solutions to your tech problems here!" required>
+    [(ngModel)]="newCompany.companyDescription" #companyDescription="ngModel" placeholder="Describe your company here" required>
     </textarea>
+    <div [hidden]="companyDescription.valid || companyDescription.untouched" class="alert alert-danger">
+        Company Description Required
+      </div>
   </div>
   
   <div>

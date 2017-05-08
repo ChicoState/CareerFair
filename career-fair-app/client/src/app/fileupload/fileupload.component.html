@@ -2,7 +2,7 @@
 <!--First Name registration field-->
     <div>
         <label for="firstName">First Name</label>     
-        <input type="text" class="form-control" id="firstName" [(ngModel)]="uploader_.firstName" name="firstName" placeholder="First Name" #firstName="ngModel" required/> 
+        <input type="text" class="form-control" id="firstName" [(ngModel)]="newResume.firstName" name="firstName" placeholder="First Name" #firstName="ngModel" required/> 
 
         <!--Alert Error Message. Tells the user that a first name is required -->
         <div [hidden]="firstName.valid || firstName.untouched" class="alert alert-danger">
@@ -14,7 +14,7 @@
 <!--Last Name registration field-->
     <div>
         <label for="lastName">Last Name</label>     
-        <input type="text" class="form-control" id="lastName" [(ngModel)]="uploader_.lastName" name="lastName" placeholder="Last Name" #lastName="ngModel" required/>   
+        <input type="text" class="form-control" id="lastName" [(ngModel)]="newResume.lastName" name="lastName" placeholder="Last Name" #lastName="ngModel" required/>   
 
         <!--Alert Error Message. Tells the user that a last name is required -->
         <div [hidden]="lastName.valid || lastName.untouched" class="alert alert-danger">
@@ -25,7 +25,7 @@
 <!--ID Number registration field-->
     <div>
         <label for="idNumber">ID Number</label>     
-        <input type="text" class="form-control" id="idNumber" [(ngModel)]="uploader_.idNumber" name="idNumber" placeholder="School ID Number (006111222)" #idNumber="ngModel" required/>   
+        <input type="text" class="form-control" id="idNumber" [(ngModel)]="newResume.idNumber" name="idNumber" placeholder="School ID Number (006111222)" #idNumber="ngModel" required/>   
 
         <!--Alert Error Message. Tells the user that a last name is required -->
         <div [hidden]="idNumber.valid || idNumber.untouched" class="alert alert-danger">
@@ -54,10 +54,12 @@
                 
                 <!--BUTTONS-->
                 <div class="col-xs-12">
-                    <button type="button" class="btn btn-success btn-s col-xs-6" (click)="uploader.uploadAll()" (click)="staticModal.show()" [disabled]="!uploader.getNotUploadedItems().length">
+                    <!--submit-->
+                    <button type="button" class="btn btn-success btn-s col-xs-6" (click)="onSubmit()" (click)="uploader.uploadAll()" (click)="staticModal.show()" [disabled]="!uploader.getNotUploadedItems().length">
                         <span class="glyphicon glyphicon-upload"></span> Upload Resume
                     </button>
 
+                    <!--delete-->
                     <button type="button" class="btn btn-danger btn-s col-xs-offset-1 col-xs-5" (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
                         <span class="glyphicon glyphicon-trash"></span> Remove
                     </button>

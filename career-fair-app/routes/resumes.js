@@ -1,45 +1,45 @@
 var express = require('express');
 var router = express.Router();
 var mongojs = require('mongojs');
-var db = mongojs('mongodb://mesa:mesa@ds133450.mlab.com:33450/companieslist', ['volunteers']);
+var db = mongojs('mongodb://mesa:mesa@ds133450.mlab.com:33450/companieslist', ['resumes']);
 
 // Get All Tasks
-router.get('/volunteers', function(req, res, next){
-    db.volunteers.find(function(err, volunteers){
+router.get('/resumes', function(req, res, next){
+    db.resumes.find(function(err, resumes){
         if(err){
             res.send(err);
         }else {
-            res.json(volunteers);
+            res.json(resumes);
         }
     });
 });
 
 // Get Single Task
-router.get('/volunteer/:id', function(req, res, next){
-    db.volunteers.findOne({_id: mongojs.ObjectId(req.params.id)},function(err, volunteer){
+router.get('/resume/:id', function(req, res, next){
+    db.resumes.findOne({_id: mongojs.ObjectId(req.params.id)},function(err, resume){
         if(err){
             res.send(err);
         }else {
-            res.json(volunteer);
+            res.json(resume);
         }
     });
 });
 
 
 // Save Task
-router.post('/volunteer', function(req, res, next){
-    var volunteer = req.body;
-		if(!volunteer.firstName || !volunteer.lastName || !volunteer.email || !volunteer.beginTime || !volunteer.endTime || !volunteer.position){
+router.post('/resume', function(req, res, next){
+    var resume = req.body;
+		if(!resume.firstName || !resume.lastName || !resume.studentId){
         res.status(400);
         res.json({
             "error": "Bad Data"
         });
     }else {
-        db.volunteers.save(volunteer, function(err, volunteer){
+        db.resumes.save(resume, function(err, resume){
             if(err){
                 res.send(err);
             }else {
-                res.json(volunteer);
+                res.json(resume);
             }
         });
     }

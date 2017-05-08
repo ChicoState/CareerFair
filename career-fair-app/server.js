@@ -1,6 +1,5 @@
 var express = require('express');
 var path = require('path');
-var fs = require( 'fs' );
 var bodyParser = require('body-parser');
 var cors = require('cors'); 
 var multer = require('multer'); 
@@ -10,8 +9,9 @@ var index = require('./routes/index');
 var tasks = require('./routes/tasks');
 var companies = require('./routes/companies'); 
 var volunteers = require('./routes/volunteers'); 
-var parallel = require('parallel-download');
+var resumes = require('./routes/resumes');
 var archiver = require('archiver'); 
+
 
 var port = 3000;
 
@@ -84,32 +84,6 @@ app.get('/download', function(req, res){
 	}	
 
 	archive.finalize(); 
-//	res.download(theZipDirectory); 
-	/*
-	fs.readdir(downloadingPath, function( err, files ) { 
-		if( err ){ 
-			console.error("Could not list the directory.", err); 
-			process.exit(1); 
-		}
-		var array = []; 
-
-		files.forEach(function (file, index) { 
-			var fromPath = path.join(downloadingPath, file); 
-			archive.append(fs.createReadStream(fromPath), { name: 'fromPath' }); 
-			
-			  res.download(fromPath, function(err) { 
-					if(err) 
-					{
-						console.log("error"); 
-					}
-					else 
-					{
-						console.log("success");
-					}
-				
-		});
-	});
-				*/
 });
 
 // View Engine
@@ -129,6 +103,7 @@ app.use('/', index);
 app.use('/api', tasks);
 app.use('/api', companies);
 app.use('/api', volunteers);
+app.use('/api', resumes);
 
 app.listen(port, function(){
     console.log('Server started on port ' + port);

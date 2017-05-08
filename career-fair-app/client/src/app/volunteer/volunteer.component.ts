@@ -4,15 +4,20 @@ import { AlertModule } from 'ng2-bootstrap/alert';
 import { ModalModule } from 'ng2-bootstrap/modal'
 import { VolunteersService } from '../services/volunteers.service'; 
 
-class Volunteer {
+export class Volunteer {
     firstName: string;
     lastName: string;
     email: string;
     beginTime: Date;
     endTime: Date;
     position: string;
+    lowerString: string;
+    volunteerLength: number;
+    volunteers: DBVolunteer[];
+	  
+    
 
-    constructor (first: string, last: string, mail: string, begin: Date, end: Date,duty: string)
+    constructor (first: string, last: string, mail: string, begin: Date, end: Date,duty: string,numVolunteers: number,newDBVolunteer: DBVolunteer[])
     {
       this.firstName = first;
       this.lastName = last;
@@ -20,7 +25,28 @@ class Volunteer {
       this.beginTime = begin;
       this.endTime = end;
       this.position = duty;
+      this.volunteerLength = numVolunteers;
+      this.volunteers = newDBVolunteer;
     }
+
+  toLower(myString: string): boolean {
+    this.lowerString = myString;
+    return true;
+  }
+
+  validEmail(): boolean {
+    if (this.email.length > 0) {
+      var emailPattern = /^(\d*\w*)+\@\w+\.\w+(\.\w+)*$/;
+      var emailRegex = new RegExp(emailPattern);
+      if (this.email.match(emailRegex)) {
+        return true;
+      }
+      else
+      return false;
+    }
+    else 
+    return false;
+  }
 }
 
 class DBVolunteer { 
@@ -62,24 +88,18 @@ export class VolunteerComponent {
   volunteersLength: number;
 	
 	volunteers: DBVolunteer[]; 
+  tempDBVolunteers: DBVolunteer[];
 	newDBVolunteer: DBVolunteer;
+  tempVolunteer: Volunteer;
 
   volunteerOptions = ['Unloading in Parking Lot','Assisting in Setting up Tables'];
-
-  tempVolunteer: Volunteer = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    beginTime: new Date(),
-    endTime: new Date(),
-    position: ""
-  }
   
   constructor (private volunteersService: VolunteersService)
   {
 		this.volunteersService.getVolunteers().subscribe(volunteers => { 
 			this.volunteers = volunteers; 
       this.volunteersLength = volunteers.length;
+      this.tempDBVolunteers = volunteers;
 		});
 
     this.maxTime.setHours(17);
@@ -91,33 +111,13 @@ export class VolunteerComponent {
     this.endTime.setHours(13);
     this.endTime.setMinutes(0);
     this.lowerString = "";
+    this.tempVolunteer = new Volunteer("","","",this.startTime,this.endTime,"",this.volunteersLength,this.tempDBVolunteers)
 
   }
 
   onSubmit(): void {
-		this.newDBVolunteer = new DBVolunteer(this.tempVolunteer.firstName, this.tempVolunteer.lastName, this.lowerString, this.startTime.toLocaleTimeString(), this.endTime.toLocaleTimeString(),this.tempVolunteer.position);
+		this.newDBVolunteer = new DBVolunteer(this.tempVolunteer.firstName, this.tempVolunteer.lastName, this.tempVolunteer.lowerString, this.tempVolunteer.beginTime.toLocaleTimeString(), this.tempVolunteer.endTime.toLocaleTimeString(),this.tempVolunteer.position);
 	  this.volunteersService.addVolunteer(this.newDBVolunteer).subscribe(volunteer => { });
-  }
-
-  toLower(myString: string): boolean {
-    this.lowerString = myString;
-    return true;
-  }
-
-  validEmail(): boolean {
-    if (this.tempVolunteer.email.length > 0) {
-      var emailPattern = /^(\d*\w*)+\@\w+\.\w+(\.\w+)*$/;
-      var emailRegex = new RegExp(emailPattern);
-      if (this.tempVolunteer.email.match(emailRegex)) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    }
-    else {
-      return false;
-    }
   }
 
   validSameEmail(myEmail: string): boolean {

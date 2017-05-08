@@ -89,7 +89,7 @@ var CompaniesComponent = (function () {
             moduleId: module.id,
             selector: 'companies',
             templateUrl: 'companies.component.html',
-            styleUrls: ['companies.component.css']
+            styleUrls: ['./companies.component.css']
         }), 
         __metadata('design:paramtypes', [companies_service_1.CompaniesService])
     ], CompaniesComponent);

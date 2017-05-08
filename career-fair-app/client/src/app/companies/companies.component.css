@@ -1,13 +1,7 @@
-.company-row-even{
-    background-color: #f2f2f2
-    /*background-color: black*/
-}
-.company-row-odd{
-    background-color: white
-    /*background-color: black*/
-}
 
-.disabled {
-   pointer-events: none;
-   cursor: default;
+.myButton {
+    text-decoration-line: underline;
+    border: none;
+    color: grey;
+    background: white;
 }

@@ -1,102 +1,31 @@
-<!--<div *ngFor="let company of companies"> 
+
+<div *ngFor="let company of companies"> 
   <div class="panel">
         
-            <div
-             class = "row">
+            <div class = "row">
                 <div  class = "col-sm-3">
-                    <span dropdown >
-                        <a dropdownToggle class="dropdown-toggle" (click)="false">{{company.companyName}}</a>
-                        <ul *dropdownMenu class="dropdown-menu" role="menu">
-                            <li role="menuitem"><a class="dropdown-item" href="#">{{company.companyDescription}}</a>
-                        </ul>
-                    </span>
-                </div>
+                    <button type="button" class="myButton"
+                        popover={{company.companyDescription}}
+                        popoverTitle={{company.companyName}}
+                        placement="bottom">
+                        <h3>{{company.companyName}}</h3>
+                        
+                    </button>
 
+                </div>
                 <div class = "col-sm-3">
                     <p>Interested in:</p>
                     <p>{{ company.desiredMajors }}</p>
                 </div>
-
                 <div class = "col-sm-2">
                     <p>Looking for:</p>
                     <p>{{ company.desiredPositions }}</p>
                 </div>
-
                 <div class = "col-sm-4">
                     <p>{{ company.companyName }}'s site:</p>
                     <p><a target="_blank" href="{{company.companyWebsite}}">{{ company.companyWebsite }}</a></p>
                 </div>
-                
-        </div>
-    </div>
-</div>-->
-<!--
-<table>
-    <tr>
-        <th>Company Name</th>
-        <th>Majors Desired</th>
-        <th>Positions Desired</th>
-        <th>Website</th>
-    </tr>
-
-    <tr *ngFor="let company of companies" >
-
-        <td  class = "">
-            <span dropdown >
-                <a dropdownToggle class="dropdown-toggle" (click)="false">{{company.companyName}}</a>
-                <ul *dropdownMenu class="dropdown-menu" role="menu">
-                    <li role="menuitem"><a class="dropdown-item disabled" href="#">{{company.companyDescription}}</a>
-                </ul>
-            </span>
-        </td>
-
-        <td class = "">
-            <p>Interested in:</p>
-            <p>{{ company.desiredMajors }}</p>
-        </td>
-
-        <td class = "">
-            <p>Looking for:</p>
-            <p>{{ company.desiredPositions }}</p>
-        </td>
-
-        <td class = "">
-            <p>{{ company.companyName }}'s site:</p>
-            <p><a target="_blank" href="{{company.companyWebsite}}">{{ company.companyWebsite }}</a></p>
-        </td>
-
-    </tr>
-
-</table>-->
-
-<div *ngFor="let company of companies" class="company-row-even"> 
-    <div class="panel">        
-        <div class = "row">
-
-            <div  class = "col-sm-3">
-                <span dropdown >
-                    <a dropdownToggle class="dropdown-toggle" (click)="false">{{company.companyName}}</a>
-                    <ul *dropdownMenu class="dropdown-menu" role="menu">
-                        <li role="menuitem"><a class="dropdown-item disabled" href="#">{{company.companyDescription}}</a>
-                    </ul>
-                </span>
-            </div>
-
-            <div class = "col-sm-3">
-                <p>Interested in:</p>
-                <p>{{ company.desiredMajors }}</p>
-            </div>
-
-            <div class = "col-sm-2">
-                <p>Looking for:</p>
-                <p>{{ company.desiredPositions }}</p>
-            </div>
-
-            <div class = "col-sm-4">
-                <p>{{ company.companyName }}'s site:</p>
-                <p><a target="_blank" href="{{company.companyWebsite}}">{{ company.companyWebsite }}</a></p>
-            </div>
-                
         </div>
     </div>
 </div>
+

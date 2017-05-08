@@ -24,10 +24,14 @@ var RegistrationComponent = (function () {
      * selecting UI's
      */
     function RegistrationComponent(aCompaniesService) {
+        var _this = this;
         this.aCompaniesService = aCompaniesService;
         this.title = 'Registration';
         this.majorOptions = company_2.MAJOR_OPTIONS; //majors to choose from
         this.positionOptions = company_3.POSITION_OPTIONS; //positions to choose from
+        this.aCompaniesService.getCompanies().subscribe(function (companiesInserted) {
+            _this.companiesInserted = companiesInserted;
+        });
         this.companiesInserted = [];
         this.companyService = aCompaniesService;
         this.entireFormSubmitted = false;
@@ -50,6 +54,20 @@ var RegistrationComponent = (function () {
         else {
             return false;
         }
+    };
+    RegistrationComponent.prototype.validSameEmail = function (myEmail) {
+        for (var i = 0; i < this.companiesInserted.length; i++) {
+            if (myEmail == this.companiesInserted[i].contactEmail)
+                return true;
+        }
+        return false;
+    };
+    RegistrationComponent.prototype.validBillingSameEmail = function (myEmail) {
+        for (var i = 0; i < this.companiesInserted.length; i++) {
+            if (myEmail == this.companiesInserted[i].billingEmail)
+                return true;
+        }
+        return false;
     };
     RegistrationComponent.prototype.validContactEmail = function () {
         if (this.newCompany.contactEmail.length > 0) {
@@ -117,7 +135,8 @@ var RegistrationComponent = (function () {
         if (this.validBillingEmail() && this.validMajorsChosen() && this.validContactEmail() &&
             this.validPhoneNumber() && this.validPositionsChosen() && this.validURL() &&
             this.newCompany.billingContactName.length > 0 && this.newCompany.contactName.length > 0
-            && this.newCompany.companyName.length > 0 && this.newCompany.companyDescription.length > 0) {
+            && this.newCompany.companyName.length > 0 && this.newCompany.companyDescription.length > 0 &&
+            !this.validBillingSameEmail(this.newCompany.billingEmail) && !this.validSameEmail(this.newCompany.contactEmail)) {
             valid = true;
         }
         return valid;

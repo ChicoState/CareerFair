@@ -11,16 +11,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var volunteers_service_1 = require('../services/volunteers.service');
 var Volunteer = (function () {
-    function Volunteer(first, last, mail, begin, end, duty) {
+    function Volunteer(first, last, mail, begin, end, duty, numVolunteers, newDBVolunteer) {
         this.firstName = first;
         this.lastName = last;
         this.email = mail;
         this.beginTime = begin;
         this.endTime = end;
         this.position = duty;
+        this.volunteerLength = numVolunteers;
+        this.volunteers = newDBVolunteer;
     }
+    Volunteer.prototype.toLower = function (myString) {
+        this.lowerString = myString;
+        return true;
+    };
+    Volunteer.prototype.validEmail = function () {
+        if (this.email.length > 0) {
+            var emailPattern = /^(\d*\w*)+\@\w+\.\w+(\.\w+)*$/;
+            var emailRegex = new RegExp(emailPattern);
+            if (this.email.match(emailRegex)) {
+                return true;
+            }
+            else
+                return false;
+        }
+        else
+            return false;
+    };
     return Volunteer;
 }());
+exports.Volunteer = Volunteer;
 var DBVolunteer = (function () {
     function DBVolunteer(first, last, mail, begin, end, duty) {
         this.firstName = first;
@@ -43,17 +63,10 @@ var VolunteerComponent = (function () {
         this.maxTime = new Date();
         this.minTime = new Date();
         this.volunteerOptions = ['Unloading in Parking Lot', 'Assisting in Setting up Tables'];
-        this.tempVolunteer = {
-            firstName: "",
-            lastName: "",
-            email: "",
-            beginTime: new Date(),
-            endTime: new Date(),
-            position: ""
-        };
         this.volunteersService.getVolunteers().subscribe(function (volunteers) {
             _this.volunteers = volunteers;
             _this.volunteersLength = volunteers.length;
+            _this.tempDBVolunteers = volunteers;
         });
         this.maxTime.setHours(17);
         this.minTime.setHours(12);
@@ -64,29 +77,11 @@ var VolunteerComponent = (function () {
         this.endTime.setHours(13);
         this.endTime.setMinutes(0);
         this.lowerString = "";
+        this.tempVolunteer = new Volunteer("", "", "", this.startTime, this.endTime, "", this.volunteersLength, this.tempDBVolunteers);
     }
     VolunteerComponent.prototype.onSubmit = function () {
-        this.newDBVolunteer = new DBVolunteer(this.tempVolunteer.firstName, this.tempVolunteer.lastName, this.lowerString, this.startTime.toLocaleTimeString(), this.endTime.toLocaleTimeString(), this.tempVolunteer.position);
+        this.newDBVolunteer = new DBVolunteer(this.tempVolunteer.firstName, this.tempVolunteer.lastName, this.tempVolunteer.lowerString, this.tempVolunteer.beginTime.toLocaleTimeString(), this.tempVolunteer.endTime.toLocaleTimeString(), this.tempVolunteer.position);
         this.volunteersService.addVolunteer(this.newDBVolunteer).subscribe(function (volunteer) { });
-    };
-    VolunteerComponent.prototype.toLower = function (myString) {
-        this.lowerString = myString;
-        return true;
-    };
-    VolunteerComponent.prototype.validEmail = function () {
-        if (this.tempVolunteer.email.length > 0) {
-            var emailPattern = /^(\d*\w*)+\@\w+\.\w+(\.\w+)*$/;
-            var emailRegex = new RegExp(emailPattern);
-            if (this.tempVolunteer.email.match(emailRegex)) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        else {
-            return false;
-        }
     };
     VolunteerComponent.prototype.validSameEmail = function (myEmail) {
         for (var i = 0; i < this.volunteersLength; i++) {

@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Auth } from '../services/auth.service';
 import { AdminService } from '../services/admin.service'
 import { Company } from './admin.companies'
+import { ResumesService } from '../services/resumes.service'; 
+import { Resume } from './admin.resumes'
+
 
     
 @Component({
@@ -14,9 +17,13 @@ import { Company } from './admin.companies'
 
 export class AdminComponent {
     companies: Company[]
-    constructor(private auth: Auth, private adminService: AdminService){
+    resumes: Resume[]
+    constructor(private auth: Auth, private adminService: AdminService, private resumesService:ResumesService){
         this.adminService.getCompanies().subscribe(companies => {
             this.companies = companies;
+        });
+        this.resumesService.getResumes().subscribe(resumes => {
+            this.resumes = resumes;
         });
      }
 }

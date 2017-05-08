@@ -3,11 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing } from './app.routing'; 
+
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
-import { CarouselModule, TimepickerModule, AlertModule, ModalModule,BsDropdownModule } from 'ngx-bootstrap';
+import { CarouselModule, TimepickerModule, AlertModule, ModalModule,BsDropdownModule,PopoverModule } from 'ngx-bootstrap';
 import { PdfViewerComponent } from 'ng2-pdf-viewer'; 
-import { AgmCoreModule } from 'angular2-google-maps/core';
+
 
 
 
@@ -21,11 +22,13 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ParkingComponent } from './parking/parking.component'; 
 import { FileUploadComponent } from './fileupload/fileupload.component'; 
 import { FileDownloadComponent } from './filedownload/filedownload.component'; 
+
 import { VolunteerComponent } from './volunteer/volunteer.component'; 
 import { AdminComponent } from './admin/admin.component'; 
 import { CarouselComponent } from './carousel/carousel.component'; 
 import { CanvasComponent } from './canvas/canvas.component';
 
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 
 @NgModule({
@@ -41,6 +44,7 @@ import { CanvasComponent } from './canvas/canvas.component';
 					AlertModule.forRoot(),
 					ModalModule.forRoot(),
 					BsDropdownModule.forRoot(),
+					PopoverModule.forRoot(),
 				],
 
   declarations: [ 	AppComponent, 

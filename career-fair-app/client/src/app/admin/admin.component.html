@@ -14,6 +14,8 @@
             <th>Fee </th>
             <th>Contact Name</th>
             <th>Contact Email</th>
+            <th>Billing Name</th>
+            <th>Billing Email</th>
             <th>Contact Phone</th>
             <th>Confirmation</th>
         </tr>
@@ -24,6 +26,8 @@
             <td>{{company.moneyOwed}}</td>
             <td>{{company.contactName}}</td>
             <td>{{company.contactEmail}}</td>
+            <td>{{company.billingContactName}}</td>
+            <td>{{company.billingEmail}}</td>
             <td>{{company.contactPhoneNumber}}</td>  
             <td>{{company.confirmation}}</td>
         </tr>
@@ -31,5 +35,20 @@
 
     <hr>
      <a target="_blank" href="http://localhost:3000/download"><button class="btn btn-primary btn-margin"> Download Resumes</button> </a>
+
+    <table>
+        <tr> 
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Student ID</th>
+        </tr>
+
+        <tr *ngFor="let resume of resumes" >
+            <td>{{resume.firstName}}</td> 
+            <td>{{resume.lastName}}</td> 
+            <td>{{resume.studentId}}</td>
+        </tr>
+    </table>
+
 
 </div>

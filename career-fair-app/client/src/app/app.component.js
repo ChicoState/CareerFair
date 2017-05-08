@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var companies_service_1 = require('./services/companies.service');
 var volunteers_service_1 = require('./services/volunteers.service');
 var admin_service_1 = require('./services/admin.service');
+var resumes_service_1 = require('./services/resumes.service');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Engineering Technical Career Fair';
@@ -28,7 +29,7 @@ var AppComponent = (function () {
             moduleId: module.id,
             selector: 'my-app',
             templateUrl: 'app.component.html',
-            providers: [companies_service_1.CompaniesService, admin_service_1.AdminService, volunteers_service_1.VolunteersService]
+            providers: [companies_service_1.CompaniesService, admin_service_1.AdminService, volunteers_service_1.VolunteersService, resumes_service_1.ResumesService]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CompaniesService } from './../services/companies.service'; 
 import { Company } from './companies'; 
+import { PopoverModule } from 'ngx-bootstrap/popover';
 
 @Component({
 	moduleId: module.id,
   selector: 'companies',
   templateUrl: 'companies.component.html',
-	styleUrls:['companies.component.css']
+	styleUrls: ['./companies.component.css']
 
 })
 export class CompaniesComponent  {  

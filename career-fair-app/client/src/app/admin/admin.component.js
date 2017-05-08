@@ -11,13 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var auth_service_1 = require('../services/auth.service');
 var admin_service_1 = require('../services/admin.service');
+var resumes_service_1 = require('../services/resumes.service');
 var AdminComponent = (function () {
-    function AdminComponent(auth, adminService) {
+    function AdminComponent(auth, adminService, resumesService) {
         var _this = this;
         this.auth = auth;
         this.adminService = adminService;
+        this.resumesService = resumesService;
         this.adminService.getCompanies().subscribe(function (companies) {
             _this.companies = companies;
+        });
+        this.resumesService.getResumes().subscribe(function (resumes) {
+            _this.resumes = resumes;
         });
     }
     AdminComponent = __decorate([
@@ -28,7 +33,7 @@ var AdminComponent = (function () {
             templateUrl: './admin.component.html',
             styleUrls: ['./admin.component.css']
         }), 
-        __metadata('design:paramtypes', [auth_service_1.Auth, admin_service_1.AdminService])
+        __metadata('design:paramtypes', [auth_service_1.Auth, admin_service_1.AdminService, resumes_service_1.ResumesService])
     ], AdminComponent);
     return AdminComponent;
 }());

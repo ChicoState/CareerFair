@@ -38,6 +38,9 @@ export class RegistrationComponent {
 	 * selecting UI's
 	 */
   constructor(private aCompaniesService: CompaniesService) {
+    this.aCompaniesService.getCompanies().subscribe(companiesInserted => { 
+			this.companiesInserted = companiesInserted; 
+		});
     this.companiesInserted = [];
     this.companyService = aCompaniesService;
     this.entireFormSubmitted = false;
@@ -62,6 +65,26 @@ export class RegistrationComponent {
     else {
       return false;
     }
+  }
+
+ validSameEmail(myEmail: string): boolean {
+    for (var i = 0; i < this.companiesInserted.length; i++)
+    {
+      if (myEmail == this.companiesInserted[i].contactEmail)
+      return true;
+    }
+
+    return false
+  }
+
+   validBillingSameEmail(myEmail: string): boolean {
+    for (var i = 0; i < this.companiesInserted.length; i++)
+    {
+      if (myEmail == this.companiesInserted[i].billingEmail)
+      return true;
+    }
+
+    return false
   }
 
   validContactEmail(): boolean {
@@ -135,7 +158,8 @@ export class RegistrationComponent {
     if(this.validBillingEmail() && this.validMajorsChosen() && this.validContactEmail() &&
         this.validPhoneNumber() && this.validPositionsChosen() && this.validURL() && 
         this.newCompany.billingContactName.length > 0 && this.newCompany.contactName.length > 0
-        && this.newCompany.companyName.length > 0 && this.newCompany.companyDescription.length > 0) {
+        && this.newCompany.companyName.length > 0 && this.newCompany.companyDescription.length > 0 &&
+        !this.validBillingSameEmail(this.newCompany.billingEmail) && !this.validSameEmail(this.newCompany.contactEmail)) {
       valid = true;
     }
     return valid;

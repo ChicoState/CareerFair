@@ -23,6 +23,8 @@ export class CompaniesService{
 class DBCompany {
 	contactName: 			string;
 	contactEmail: 			string;
+	billingContactName: 	string;
+	billingEmail: 			string;
 	companyName: 			string;
 	contactPhoneNumber: 	string;
 	companyWebsite: 		string;

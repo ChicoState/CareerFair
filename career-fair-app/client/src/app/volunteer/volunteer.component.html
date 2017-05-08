@@ -35,7 +35,7 @@
       </div>
 
       <!--Alert Error Message. Tells the user that the current email is invalid -->
-      <div *ngIf="!validEmail() && myEmail.touched">
+      <div *ngIf="!tempVolunteer.validEmail() && myEmail.touched">
         <alert type="warning">
           <strong> Not a Valid Email</strong>
         </alert>
@@ -51,7 +51,7 @@
     </div>
 
     <!--Converts the email field to lowercase-->
-    <div *ngIf="toLower(tempVolunteer.email | lowercase)">
+    <div *ngIf="tempVolunteer.toLower(tempVolunteer.email | lowercase)">
     </div>
 
 
@@ -76,21 +76,21 @@
       <!--STARTING TIME-->
       <div class="col-md-offset-1 col-md-4">
         <h3> Select Your Start Time </h3>
-        <timepicker [(ngModel)]="startTime" [minuteStep]="minStep" [max]="maxTime" [min]="minTime"></timepicker>
-        <pre class="alert alert-info"> Time is: {{startTime | date:"HH:mm"}}</pre>
+        <timepicker [(ngModel)]="tempVolunteer.beginTime" [minuteStep]="minStep" [max]="maxTime" [min]="minTime"></timepicker>
+        <pre class="alert alert-info"> Time is: {{tempVolunteer.beginTime | date:"HH:mm"}}</pre>
       </div>
 
       <!--ENDING TIME-->
       <div class="col-md-offset-1 col-md-4">
         <h3> Select Your End Time </h3>
-        <timepicker [(ngModel)]="endTime" [minuteStep]="minStep" [max]="maxTime" [min]="minTime"></timepicker>
-        <pre class="alert alert-info"> Time is: {{endTime | date:"HH:mm"}}</pre>
+        <timepicker [(ngModel)]="tempVolunteer.endTime" [minuteStep]="minStep" [max]="maxTime" [min]="minTime"></timepicker>
+        <pre class="alert alert-info"> Time is: {{tempVolunteer.endTime | date:"HH:mm"}}</pre>
       </div>
 
     </div>
 
     <!--Alert Error Message. Tells the user to fix their time interval -->
-    <div *ngIf="endTime <= startTime">
+    <div *ngIf="tempVolunteer.endTime <= tempVolunteer.beginTime">
         <alert type="danger">
           <strong> Oh Snap! </strong> You Cant Do That Bro. Fix your Time Interval
         </alert>
@@ -100,12 +100,12 @@
 
 
 <!--Button that verifies all requirements are met,then displays the Modal-->
-    <button [hidden]="validSameEmail(tempVolunteer.email | lowercase) || !validEmail() || firstName.invalid || myOption.invalid || lastName.invalid || myEmail.invalid || (endTime <= startTime)" (click)="onSubmit()" (click)="staticModal.show()" > Submit Registration</button>
+    <button [disabled]="validSameEmail(email | lowercase) || !tempVolunteer.validEmail() || firstName.invalid || myOption.invalid || lastName.invalid || myEmail.invalid || (tempVolunteer.endTime <= tempVolunteer.beginTime)" (click)="onSubmit()" (click)="staticModal.show()" > Submit Registration</button>
     
     <!--Error Alert Message. Tells the user to fix their errors-->
-    <div *ngIf="validSameEmail(tempVolunteer.email | lowercase) || !validEmail() || firstName.invalid || myOption.invalid || lastName.invalid || myEmail.invalid || (endTime <= startTime)" >
+    <div *ngIf="validSameEmail(email | lowercase) || !tempVolunteer.validEmail() || firstName.invalid || myOption.invalid || lastName.invalid || myEmail.invalid || (tempVolunteer.endTime <= tempVolunteer.beginTime)" >
         <alert type="info">
-          The <strong>Submit Button</strong> Will Appear Once you Fill The Applicaton and Fix All of the Above Errors.
+          The <strong>Submit Button</strong> Will Activate Once You Fill Apllication and Fix All Errors.
         </alert>
     </div>
 

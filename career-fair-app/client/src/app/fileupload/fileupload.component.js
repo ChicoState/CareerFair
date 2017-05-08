@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ng2_file_upload_1 = require('ng2-file-upload');
+var resumes_service_1 = require('../services/resumes.service');
 var Uploader = (function () {
     function Uploader(firstName, lastName, idNumber) {
         this.firstName = firstName;
@@ -19,9 +20,15 @@ var Uploader = (function () {
     return Uploader;
 }());
 var FileUploadComponent = (function () {
-    function FileUploadComponent() {
+    function FileUploadComponent(aResumeService) {
+        this.aResumeService = aResumeService;
         this.uploader = new ng2_file_upload_1.FileUploader({ url: 'http://localhost:3000/upload' });
         this.uploader_ = new Uploader("", "", "");
+        this.resumeService = aResumeService;
+        this.newResume = new DBResume();
+        this.newResume.firstName = "";
+        this.newResume.lastName = "";
+        this.newResume.studentId = "";
     }
     FileUploadComponent.prototype.validIdNumber = function () {
         if (this.uploader_.idNumber.length > 0) {
@@ -38,9 +45,14 @@ var FileUploadComponent = (function () {
             return false;
         }
     };
-    FileUploadComponent.prototype.onSumbit = function () {
-        //currently just goes to companies home page
-        //code to push uploader_ to database goes HERE
+    FileUploadComponent.prototype.onSubmit = function () {
+        var newResume = {
+            firstName: this.newResume.firstName,
+            lastName: this.newResume.lastName,
+            studentId: this.newResume.studentId,
+        };
+        this.resumeService.addResume(newResume).subscribe(function (resume) {
+        });
     };
     FileUploadComponent = __decorate([
         core_1.Component({
@@ -49,9 +61,15 @@ var FileUploadComponent = (function () {
             templateUrl: 'fileupload.component.html',
             styleUrls: ['./fileupload.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [resumes_service_1.ResumesService])
     ], FileUploadComponent);
     return FileUploadComponent;
 }());
 exports.FileUploadComponent = FileUploadComponent;
+var DBResume = (function () {
+    function DBResume() {
+    }
+    return DBResume;
+}());
+exports.DBResume = DBResume;
 //# sourceMappingURL=fileupload.component.js.map
