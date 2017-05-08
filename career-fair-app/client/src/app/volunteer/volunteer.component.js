@@ -74,21 +74,19 @@ var VolunteerComponent = (function () {
         return true;
     };
     VolunteerComponent.prototype.validEmail = function () {
-        this.myNumber = 0;
-        for (var i = 0; i < this.tempVolunteer.email.length; i++) {
-            if (this.tempVolunteer.email[i] == '@') {
-                this.myNumber = this.myNumber + 1;
-            }
-            if (this.tempVolunteer.email[i] == '.') {
-                this.myNumber = this.myNumber + 1;
-            }
-            if (this.myNumber == 2) {
+        if (this.tempVolunteer.email.length > 0) {
+            var emailPattern = /^(\d*\w*)+\@\w+\.\w+(\.\w+)*$/;
+            var emailRegex = new RegExp(emailPattern);
+            if (this.tempVolunteer.email.match(emailRegex)) {
                 return true;
             }
+            else {
+                return false;
+            }
         }
-        if (this.tempVolunteer.email.length == 0)
-            return true;
-        return false;
+        else {
+            return false;
+        }
     };
     VolunteerComponent.prototype.validSameEmail = function (myEmail) {
         for (var i = 0; i < this.volunteersLength; i++) {

@@ -35,7 +35,7 @@
       </div>
 
       <!--Alert Error Message. Tells the user that the current email is invalid -->
-      <div *ngIf="!validEmail()">
+      <div *ngIf="!validEmail() && myEmail.touched">
         <alert type="warning">
           <strong> Not a Valid Email</strong>
         </alert>

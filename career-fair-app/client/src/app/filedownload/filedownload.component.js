@@ -14,7 +14,8 @@ require('rxjs/add/operator/map');
 var FileDownloadComponent = (function () {
     function FileDownloadComponent(http) {
         this.http = http;
-        // window.location.href = 'http://localhost:3000/download';	
+        //lets download start automatically on load of page
+        //window.location.href = 'http://localhost:3000/download';	
     }
     FileDownloadComponent = __decorate([
         core_1.Component({

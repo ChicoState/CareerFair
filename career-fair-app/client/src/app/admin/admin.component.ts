@@ -3,7 +3,6 @@ import { Auth } from '../services/auth.service';
 import { AdminService } from '../services/admin.service'
 import { Company } from './admin.companies'
 
-
     
 @Component({
     moduleId: module.id,
@@ -15,9 +14,9 @@ import { Company } from './admin.companies'
 
 export class AdminComponent {
     companies: Company[]
-     constructor(private auth: Auth, private adminService: AdminService){
-         this.adminService.getCompanies().subscribe(companies => {
-             this.companies = companies;
-         });
+    constructor(private auth: Auth, private adminService: AdminService){
+        this.adminService.getCompanies().subscribe(companies => {
+            this.companies = companies;
+        });
      }
 }

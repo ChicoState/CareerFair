@@ -12,7 +12,8 @@ import 'rxjs/add/operator/map';
 
 export class FileDownloadComponent { 
 	constructor(private http:Http){ 
-		// window.location.href = 'http://localhost:3000/download';	
+		//lets download start automatically on load of page
+		//window.location.href = 'http://localhost:3000/download';	
 	}
 
 }

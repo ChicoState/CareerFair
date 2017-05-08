@@ -38,10 +38,10 @@ const appRoutes: Routes = [
 		path: 'fileupload', 
 		component: FileUploadComponent
 	}, 
-	{
-		path: 'filedownload', 
-		component: FileDownloadComponent
-	},
+	// {
+	// 	path: 'filedownload', 
+	// 	component: FileDownloadComponent
+	// },
 	{
 		path: 'admin', 
 		component: AdminComponent

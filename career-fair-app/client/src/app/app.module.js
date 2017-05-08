@@ -16,6 +16,7 @@ var app_routing_1 = require('./app.routing');
 var ng2_file_upload_1 = require('ng2-file-upload');
 var ngx_bootstrap_1 = require('ngx-bootstrap');
 var ng2_pdf_viewer_1 = require('ng2-pdf-viewer');
+var core_2 = require('angular2-google-maps/core');
 // components we create
 var app_component_1 = require('./app.component');
 var home_component_1 = require('./home/home.component');
@@ -30,7 +31,6 @@ var volunteer_component_1 = require('./volunteer/volunteer.component');
 var admin_component_1 = require('./admin/admin.component');
 var carousel_component_1 = require('./carousel/carousel.component');
 var canvas_component_1 = require('./canvas/canvas.component');
-var core_2 = require('angular2-google-maps/core');
 var AppModule = (function () {
     function AppModule() {
     }

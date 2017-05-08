@@ -105,26 +105,19 @@ export class VolunteerComponent {
   }
 
   validEmail(): boolean {
-    this.myNumber = 0;
-    for (var i = 0; i < this.tempVolunteer.email.length; i++)
-    {
-      if (this.tempVolunteer.email[i] == '@')
-      { 
-        this.myNumber = this.myNumber + 1;
-      }
-      if (this.tempVolunteer.email[i] == '.')
-      {
-        this.myNumber = this.myNumber + 1;
-      }
-      if (this.myNumber == 2)
-      {
+    if (this.tempVolunteer.email.length > 0) {
+      var emailPattern = /^(\d*\w*)+\@\w+\.\w+(\.\w+)*$/;
+      var emailRegex = new RegExp(emailPattern);
+      if (this.tempVolunteer.email.match(emailRegex)) {
         return true;
       }
+      else {
+        return false;
+      }
     }
-    if (this.tempVolunteer.email.length == 0)
-    return true;
-
-    return false;
+    else {
+      return false;
+    }
   }
 
   validSameEmail(myEmail: string): boolean {

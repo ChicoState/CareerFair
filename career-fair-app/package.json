@@ -21,6 +21,7 @@
     "ng2-bs-dropdown": "^0.7.0",
     "ng2-file-upload": "^1.2.0",
     "ng2-pdf-viewer": "^1.1.0",
-    "ngx-bootstrap": "^1.6.5"
+    "ngx-bootstrap": "^1.6.5",
+    "parallel-download": "^1.1.0"
   }
 }

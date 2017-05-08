@@ -1,17 +1,16 @@
 <div class="admin-login">
     <button class="btn btn-primary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
     <button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
-
-<h4 *ngIf="!auth.authenticated()">Hello Ben, Please log in</h4>
-
 </div>
-<h4 *ngIf="auth.authenticated()">
-    
+
+
+<h4 class="admin-login" *ngIf="!auth.authenticated()">Hello Ben, Please log in</h4>
+<div *ngIf="auth.authenticated()">
     
     <table>
         <tr> 
             <th>Company Name</th>
-            <th>payment type</th>
+            <th>Payment type</th>
             <th>Fee </th>
             <th>Contact Name</th>
             <th>Contact Email</th>
@@ -30,4 +29,7 @@
         </tr>
     </table>
 
-</h4>
+    <hr>
+     <a target="_blank" href="http://localhost:3000/download"><button class="btn btn-primary btn-margin"> Download Resumes</button> </a>
+
+</div>
